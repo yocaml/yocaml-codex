@@ -8,6 +8,27 @@
 > library_ that provides prebuilt (_recurring_) models to simplify
 > site creation.
 
+By repeatedly building sites using
+[YOCaml](https://github.com/xhtmlboi/yocaml), _we_ (the maintainers)
+realized that certain parts of the data model were being copied from
+project to project (such as `Url`, `Repository`, etc.). Rather than
+providing these directly in YOCaml (as an extended version of
+`Archetype`), we decided to keep the core dependencies as small as
+possible and to create a dedicated library that would provide all
+these reusable tools.
+
+## Library organisation
+
+The library is called `yocaml-codex`, and all of its internal
+libraries are prefixed with `Codex_`. It exposes several
+_sub-libraries_ :
+
+- `yocaml-codex.atoms`, `Codex_atoms`, which describes the set of
+  **primitive types** one might want to use (such as `url`)
+
+- `yocaml-codex.ontology`, `Codex_ontology`, which describes complete
+  data models (such as `repository`)
+
 ## Local development environment
 
 To work, we assume that a version greater than or equal to `2.2.0~beta1` of
