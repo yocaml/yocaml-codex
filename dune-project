@@ -25,7 +25,8 @@
    "A set of data models that can be used with YOCaml to build rich pages")
  (depends
   (ocaml (>= 5.3.0))
-  yocaml
+   yocaml
+   yocaml_syndication
    
   ;; dev setup
   (utop :with-dev-setup)
