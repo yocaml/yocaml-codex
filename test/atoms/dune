@@ -1,0 +1,7 @@
+(library
+ (name codex_atoms_test)
+ (package yocaml-codex)
+ (inline_tests)
+ (libraries yocaml-codex.atoms)
+ (preprocess
+  (pps ppx_expect)))
