@@ -1,4 +1,5 @@
 (library
  (name codex_atoms)
  (public_name yocaml-codex.atoms)
+ (modules_without_implementation sigs codex_atoms)
  (libraries yocaml))

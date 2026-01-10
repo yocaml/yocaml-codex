@@ -27,6 +27,9 @@
   (ocaml (>= 5.3.0))
    yocaml
    yocaml_syndication
+
+  ;; test setup
+  (ppx_expect :with-test)
    
   ;; dev setup
   (utop :with-dev-setup)
