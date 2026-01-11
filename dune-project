@@ -29,6 +29,8 @@
    yocaml
    yocaml_syndication
 
+   uri
+
   ;; test setup
   (ppx_expect :with-test)
   (mdx :with-test)
