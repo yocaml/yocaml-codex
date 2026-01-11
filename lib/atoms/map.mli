@@ -37,13 +37,8 @@
 
     Construction of Map that can be standardised: [to_data]. *)
 
-module Projectable
-    (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.S with type t = C.t) : sig
-  include Stdlib.Map.S with type key = C.t
-
-  val to_data : 'a Yocaml.Data.converter -> 'a t Yocaml.Data.converter
-end
+module Projectable (C : Sigs.COMPARABLE) (_ : Yocaml.Data.S with type t = C.t) :
+  Sigs.PROJECTABLE_MAP with type key = C.t
 
 (** {1 Validation}
 
@@ -51,11 +46,8 @@ end
 
 module Validable
     (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) : sig
-  include Stdlib.Map.S with type key = C.t
-
-  val from_data : 'a Yocaml.Data.validable -> 'a t Yocaml.Data.validable
-end
+    (_ : Yocaml.Data.Validation.S with type t = C.t) :
+  Sigs.VALIDABLE_MAP with type key = C.t
 
 (** {1 Validation and Projection}
 
@@ -65,9 +57,9 @@ end
 module Make
     (C : Sigs.COMPARABLE)
     (_ : Yocaml.Data.S with type t = C.t)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) : sig
-  include Stdlib.Map.S with type key = C.t
+    (_ : Yocaml.Data.Validation.S with type t = C.t) :
+  Sigs.MAP with type key = C.t
 
-  val to_data : 'a Yocaml.Data.converter -> 'a t Yocaml.Data.converter
-  val from_data : 'a Yocaml.Data.validable -> 'a t Yocaml.Data.validable
-end
+(** {1 Predefined Maps} *)
+
+module String : Sigs.MAP with type key = string

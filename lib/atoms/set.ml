@@ -46,3 +46,5 @@ struct
   include Projection (Set) (C) (P)
   include Validation (Set) (C) (V)
 end
+
+module String = Make (Orderable.String) (Orderable.String) (Orderable.String)

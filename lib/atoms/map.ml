@@ -79,3 +79,5 @@ struct
   include Projection (Map) (C) (P)
   include Validation (Map) (C) (V)
 end
+
+module String = Make (Orderable.String) (Orderable.String) (Orderable.String)
