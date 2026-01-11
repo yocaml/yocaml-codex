@@ -2,6 +2,7 @@
 (name yocaml-codex)
 (version dev)
 (generate_opam_files)
+(using mdx 0.4)
 
 (source (github yocaml/yocaml-codex))
 (license GPL-3.0-or-later)
@@ -30,6 +31,7 @@
 
   ;; test setup
   (ppx_expect :with-test)
+  (mdx :with-test)
    
   ;; dev setup
   (utop :with-dev-setup)

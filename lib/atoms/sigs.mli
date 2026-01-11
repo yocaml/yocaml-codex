@@ -25,14 +25,13 @@ end
 module type PROJECTABLE_SET = sig
   (** A module that describe a projectable set. *)
 
-  include Stdlib.Set.S
-  include Yocaml.Data.S with type t := t
+  include Yocaml.Data.S
 end
 
 module type PROJECTABLE_MAP = sig
   (** A module that describe a projectable map. *)
 
-  include Stdlib.Map.S
+  type 'a t
 
   val to_data : 'a Yocaml.Data.converter -> 'a t Yocaml.Data.converter
 end
@@ -40,14 +39,13 @@ end
 module type VALIDABLE_SET = sig
   (** A module that describe a Validable set. *)
 
-  include Stdlib.Set.S
-  include Yocaml.Data.Validation.S with type t := t
+  include Yocaml.Data.Validation.S
 end
 
 module type VALIDABLE_MAP = sig
   (** A module that describe a Validable map. *)
 
-  include Stdlib.Map.S
+  type 'a t
 
   val from_data : 'a Yocaml.Data.validable -> 'a t Yocaml.Data.validable
 end
@@ -55,15 +53,14 @@ end
 module type SET = sig
   (** A module that describe a projectable and validable set. *)
 
-  include Stdlib.Set.S
-  include Yocaml.Data.S with type t := t
+  include Yocaml.Data.S
   include Yocaml.Data.Validation.S with type t := t
 end
 
 module type MAP = sig
   (** A module that describe a projectable and validable map. *)
 
-  include Stdlib.Map.S
+  type 'a t
 
   val to_data : 'a Yocaml.Data.converter -> 'a t Yocaml.Data.converter
   val from_data : 'a Yocaml.Data.validable -> 'a t Yocaml.Data.validable

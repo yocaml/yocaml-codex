@@ -30,17 +30,19 @@
 
     Construction of Set that can be standardised: [to_data]. *)
 
-module Projectable (C : Sigs.COMPARABLE) (_ : Yocaml.Data.S with type t = C.t) :
-  Sigs.PROJECTABLE_SET with type elt = C.t
+module Projectable
+    (Set : Stdlib.Set.S)
+    (_ : Yocaml.Data.S with type t = Set.elt) :
+  Sigs.PROJECTABLE_SET with type t = Set.t
 
 (** {1 Validation}
 
     Construction of Set that can be validated: [from_data]. *)
 
 module Validable
-    (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) :
-  Sigs.VALIDABLE_SET with type elt = C.t
+    (Set : Stdlib.Set.S)
+    (_ : Yocaml.Data.Validation.S with type t = Set.elt) :
+  Sigs.VALIDABLE_SET with type t = Set.t
 
 (** {1 Validation and Projection}
 
@@ -48,11 +50,24 @@ module Validable
     standarized: [to_data]. *)
 
 module Make
-    (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.S with type t = C.t)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) :
-  Sigs.SET with type elt = C.t
+    (Set : Stdlib.Set.S)
+    (_ : Yocaml.Data.S with type t = Set.elt)
+    (_ : Yocaml.Data.Validation.S with type t = Set.elt) :
+  Sigs.SET with type t = Set.t
 
 (** {1 Predefined Sets} *)
 
-module String : Sigs.SET with type elt = string
+module String : sig
+  include module type of Stdlib.Set.Make (Stdlib.String)
+  include Sigs.SET with type t := t
+end
+
+module Datetime : sig
+  include module type of Stdlib.Set.Make (Orderable.Datetime)
+  include Sigs.SET with type t := t
+end
+
+module Path : sig
+  include module type of Yocaml.Path.Set
+  include Sigs.SET with type t := t
+end

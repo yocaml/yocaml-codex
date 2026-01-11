@@ -25,6 +25,7 @@ depends: [
   "yocaml"
   "yocaml_syndication"
   "ppx_expect" {with-test}
+  "mdx" {with-test}
   "utop" {with-dev-setup}
   "ocamlformat" {with-dev-setup & = "0.28.1"}
   "ocp-indent" {with-dev-setup}

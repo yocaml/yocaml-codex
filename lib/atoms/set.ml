@@ -1,8 +1,9 @@
-module Projection
+module Projectable
     (Set : Stdlib.Set.S)
-    (C : Sigs.COMPARABLE with type t = Set.elt)
-    (S : Yocaml.Data.S with type t = C.t) =
+    (S : Yocaml.Data.S with type t = Set.elt) =
 struct
+  type t = Set.t
+
   let to_data =
     Enumerable.to_data
       ~kind:"set"
@@ -12,39 +13,37 @@ struct
   ;;
 end
 
-module Validation
+module Validable
     (Set : Stdlib.Set.S)
-    (C : Sigs.COMPARABLE with type t = Set.elt)
-    (S : Yocaml.Data.Validation.S with type t = C.t) =
+    (S : Yocaml.Data.Validation.S with type t = Set.elt) =
 struct
+  type t = Set.t
+
   let from_data = Enumerable.from_data ~from_list:Set.of_list S.from_data
 end
 
-module Projectable (C : Sigs.COMPARABLE) (S : Yocaml.Data.S with type t = C.t) =
-struct
-  module Set = Stdlib.Set.Make (C)
-  include Set
-  include Projection (Set) (C) (S)
-end
-
-module Validable
-    (C : Sigs.COMPARABLE)
-    (S : Yocaml.Data.Validation.S with type t = C.t) =
-struct
-  module Set = Stdlib.Set.Make (C)
-  include Set
-  include Validation (Set) (C) (S)
-end
-
 module Make
-    (C : Sigs.COMPARABLE)
-    (P : Yocaml.Data.S with type t = C.t)
-    (V : Yocaml.Data.Validation.S with type t = C.t) =
+    (Set : Stdlib.Set.S)
+    (P : Yocaml.Data.S with type t = Set.elt)
+    (V : Yocaml.Data.Validation.S with type t = Set.elt) =
 struct
-  module Set = Stdlib.Set.Make (C)
-  include Set
-  include Projection (Set) (C) (P)
-  include Validation (Set) (C) (V)
+  include Projectable (Set) (P)
+  include Validable (Set) (V)
 end
 
-module String = Make (Orderable.String) (Orderable.String) (Orderable.String)
+module String = struct
+  module Set = Stdlib.Set.Make (Stdlib.String)
+  include Set
+  include Make (Set) (Orderable.String) (Orderable.String)
+end
+
+module Datetime = struct
+  module Set = Stdlib.Set.Make (Orderable.Datetime)
+  include Set
+  include Make (Set) (Orderable.Datetime) (Orderable.Datetime)
+end
+
+module Path = struct
+  include Yocaml.Path.Set
+  include Make (Yocaml.Path.Set) (Orderable.Path) (Orderable.Path)
+end

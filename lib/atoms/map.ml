@@ -1,8 +1,9 @@
-module Projection
+module Projectable
     (Map : Stdlib.Map.S)
-    (C : Sigs.COMPARABLE with type t = Map.key)
-    (S : Yocaml.Data.S with type t = C.t) =
+    (S : Yocaml.Data.S with type t = Map.key) =
 struct
+  type 'a t = 'a Map.t
+
   let to_data f =
     Enumerable.to_data
       ~kind:"map"
@@ -16,11 +17,12 @@ struct
   ;;
 end
 
-module Validation
+module Validable
     (Map : Stdlib.Map.S)
-    (C : Sigs.COMPARABLE with type t = Map.key)
-    (S : Yocaml.Data.Validation.S with type t = C.t) =
+    (S : Yocaml.Data.Validation.S with type t = Map.key) =
 struct
+  type 'a t = 'a Map.t
+
   let validate_line f =
     let open Yocaml.Data.Validation in
     ((function
@@ -53,31 +55,28 @@ struct
   ;;
 end
 
-module Projectable (C : Sigs.COMPARABLE) (S : Yocaml.Data.S with type t = C.t) =
-struct
-  module Map = Stdlib.Map.Make (C)
-  include Map
-  include Projection (Map) (C) (S)
-end
-
-module Validable
-    (C : Sigs.COMPARABLE)
-    (S : Yocaml.Data.Validation.S with type t = C.t) =
-struct
-  module Map = Stdlib.Map.Make (C)
-  include Map
-  include Validation (Map) (C) (S)
-end
-
 module Make
-    (C : Sigs.COMPARABLE)
-    (P : Yocaml.Data.S with type t = C.t)
-    (V : Yocaml.Data.Validation.S with type t = C.t) =
+    (Map : Stdlib.Map.S)
+    (P : Yocaml.Data.S with type t = Map.key)
+    (V : Yocaml.Data.Validation.S with type t = Map.key) =
 struct
-  module Map = Stdlib.Map.Make (C)
-  include Map
-  include Projection (Map) (C) (P)
-  include Validation (Map) (C) (V)
+  include Projectable (Map) (P)
+  include Validable (Map) (V)
 end
 
-module String = Make (Orderable.String) (Orderable.String) (Orderable.String)
+module String = struct
+  module Map = Stdlib.Map.Make (Stdlib.String)
+  include Map
+  include Make (Map) (Orderable.String) (Orderable.String)
+end
+
+module Datetime = struct
+  module Map = Stdlib.Map.Make (Orderable.Datetime)
+  include Map
+  include Make (Map) (Orderable.Datetime) (Orderable.Datetime)
+end
+
+module Path = struct
+  include Yocaml.Path.Map
+  include Make (Yocaml.Path.Map) (Orderable.Path) (Orderable.Path)
+end

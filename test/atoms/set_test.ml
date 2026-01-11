@@ -1,6 +1,11 @@
 open Codex_atoms
 open Test_util
-module SP = Set.Make (Person) (Person) (Person)
+
+module SP = struct
+  module SSet = Stdlib.Set.Make (Person)
+  include SSet
+  include Set.Make (SSet) (Person) (Person)
+end
 
 let%expect_test "normalize an empty set" =
   SP.empty |> dump_data SP.to_data;

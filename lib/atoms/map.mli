@@ -37,17 +37,19 @@
 
     Construction of Map that can be standardised: [to_data]. *)
 
-module Projectable (C : Sigs.COMPARABLE) (_ : Yocaml.Data.S with type t = C.t) :
-  Sigs.PROJECTABLE_MAP with type key = C.t
+module Projectable
+    (Map : Stdlib.Map.S)
+    (_ : Yocaml.Data.S with type t = Map.key) :
+  Sigs.PROJECTABLE_MAP with type 'a t = 'a Map.t
 
 (** {1 Validation}
 
     Construction of Map that can be validated: [from_data]. *)
 
 module Validable
-    (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) :
-  Sigs.VALIDABLE_MAP with type key = C.t
+    (Map : Stdlib.Map.S)
+    (_ : Yocaml.Data.Validation.S with type t = Map.key) :
+  Sigs.VALIDABLE_MAP with type 'a t = 'a Map.t
 
 (** {1 Validation and Projection}
 
@@ -55,11 +57,24 @@ module Validable
     standarized: [to_data]. *)
 
 module Make
-    (C : Sigs.COMPARABLE)
-    (_ : Yocaml.Data.S with type t = C.t)
-    (_ : Yocaml.Data.Validation.S with type t = C.t) :
-  Sigs.MAP with type key = C.t
+    (Map : Stdlib.Map.S)
+    (_ : Yocaml.Data.S with type t = Map.key)
+    (_ : Yocaml.Data.Validation.S with type t = Map.key) :
+  Sigs.MAP with type 'a t = 'a Map.t
 
 (** {1 Predefined Maps} *)
 
-module String : Sigs.MAP with type key = string
+module String : sig
+  include module type of Stdlib.Map.Make (Stdlib.String)
+  include Sigs.MAP with type 'a t := 'a t
+end
+
+module Datetime : sig
+  include module type of Stdlib.Map.Make (Orderable.Datetime)
+  include Sigs.MAP with type 'a t := 'a t
+end
+
+module Path : sig
+  include module type of Yocaml.Path.Map
+  include Sigs.MAP with type 'a t := 'a t
+end

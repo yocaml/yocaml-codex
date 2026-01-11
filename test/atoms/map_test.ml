@@ -1,6 +1,11 @@
 open Codex_atoms
 open Test_util
-module MP = Map.Make (Person) (Person) (Person)
+
+module MP = struct
+  module SMap = Stdlib.Map.Make (Person)
+  include SMap
+  include Map.Make (SMap) (Person) (Person)
+end
 
 let%expect_test "normalize an empty map" =
   MP.empty |> dump_data (MP.to_data Yocaml.Data.string);
