@@ -103,3 +103,29 @@ let with_scheme ~scheme ?path rest =
 
 let http = with_scheme ~scheme:"http"
 let https = with_scheme ~scheme:"https"
+
+let name ?(with_scheme = false) ?(with_path = true) { host; scheme; uri; _ } =
+  let scheme = if with_scheme then scheme_to_string scheme ^ "://" else ""
+  and path = if with_path then Uri.path uri else "" in
+  scheme ^ host ^ path
+;;
+
+module Orderable = struct
+  type nonrec t = t
+
+  let compare = compare
+  let to_data = to_data
+  let from_data = from_data
+end
+
+module Set = struct
+  module S = Stdlib.Set.Make (Orderable)
+  include S
+  include Set.Make (S) (Orderable) (Orderable)
+end
+
+module Map = struct
+  module S = Stdlib.Map.Make (Orderable)
+  include S
+  include Map.Make (S) (Orderable) (Orderable)
+end

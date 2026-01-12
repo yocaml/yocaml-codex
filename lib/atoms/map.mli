@@ -5,7 +5,7 @@
 
     {2 Projection}
 
-    A map is projected as the following records:
+    A map is projected as the following record:
 
     {eof@json[
       {

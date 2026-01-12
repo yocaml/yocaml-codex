@@ -5,7 +5,7 @@
 
     {2 Projection}
 
-    A set is projected as the following records:
+    A set is projected as the following record:
 
     {eof@json[
       {
