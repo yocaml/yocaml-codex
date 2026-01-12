@@ -1,0 +1,8 @@
+(library
+ (name codex_ontology_test)
+ (package yocaml-codex)
+ (inline_tests)
+ (flags (:standard) -open Codex_atoms_test)
+ (libraries yocaml-codex.atoms yocaml-codex.ontology codex_atoms_test)
+ (preprocess
+  (pps ppx_expect)))
