@@ -12,15 +12,15 @@ type t
 
     {eof@json[
       {
-        target: string,
-        scheme: string,
-        host: string,
-        port: option int,
-        path: string,
-        has_port: bool,
-        query_params: Map<string, List<string>>,
-        query_string: option string,
-        has_query_string: bool
+        "target": string,
+        "scheme": string,
+        "host": string,
+        "port": Option<int>,
+        "path": string,
+        "has_port": bool,
+        "query_params": Map<string, List<string>>,
+        "query_string": Option<string>,
+        "has_query_string": bool
       }
     ]eof}
 

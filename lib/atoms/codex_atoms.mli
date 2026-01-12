@@ -13,3 +13,4 @@ module Map = Map
 (** {1 Elements} *)
 
 module Url = Url
+module Link = Link

@@ -9,11 +9,11 @@
 
     {eof@json[
       {
-        kind: "map",
-        length: int,
-        is_empty: bool,
-        is_not_empty: bool,
-        elements: list(key, value)
+        "kind": "map",
+        "length": int,
+        "is_empty": bool,
+        "is_not_empty": bool,
+        "elements": List<{key: A, value: B}>
       }
     ]eof}
 

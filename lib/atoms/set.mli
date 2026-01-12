@@ -9,11 +9,11 @@
 
     {eof@json[
       {
-        kind: "set",
-        length: int,
-        is_empty: bool,
-        is_not_empty: bool,
-        elements: list
+        "kind": "set",
+        "length": int,
+        "is_empty": bool,
+        "is_not_empty": bool,
+        "elements": List<A>
       }
     ]eof}
 
