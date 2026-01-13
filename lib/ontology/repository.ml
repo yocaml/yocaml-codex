@@ -27,6 +27,7 @@ type t =
       ; releases : Url.t option
       ; blob : Url.t
       ; kind : string option
+      ; default_branch : string
       }
 
 let github
@@ -95,8 +96,18 @@ let gitlab_org
     }
 ;;
 
-let make ?kind ?bug_tracker ?releases ~repository ~home ~blob () =
-  Unknown { repository; home; bug_tracker; blob; releases; kind }
+let make
+      ?kind
+      ?(default_branch = "main")
+      ?bug_tracker
+      ?releases
+      ~repository
+      ~home
+      ~blob
+      ()
+  =
+  Unknown
+    { repository; home; bug_tracker; blob; releases; kind; default_branch }
 ;;
 
 let name = function
@@ -190,9 +201,9 @@ let blob_provider is_file branch path provider repository =
 ;;
 
 let resolve ?(is_file = true) ?branch path = function
-  | Unknown { blob; _ } ->
+  | Unknown { blob; default_branch; _ } ->
     blob
-    |> Url.resolve (Path.rel [ Option.value ~default:"main" branch ])
+    |> Url.resolve (Path.rel [ Option.value ~default:default_branch branch ])
     |> Url.resolve path
   | Known { provider; repository; _ } ->
     blob_provider is_file branch path provider repository
@@ -225,7 +236,7 @@ let to_data repo =
           [ "home", Url.to_data home
           ; "bug_tracker", option Url.to_data bug_tracker
           ; "releases", option Url.to_data releases
-          ; "blob", Url.to_data blob_root
+          ; "blob_root", Url.to_data blob_root
           ; "has_bug_tracker", bool @@ Option.is_some bug_tracker
           ; "has_releases", bool @@ Option.is_some releases
           ] )

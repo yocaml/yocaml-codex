@@ -67,6 +67,7 @@ val gitlab_org
     URL for resolving files (should have the form: ["url/branch/.."]). *)
 val make
   :  ?kind:string
+  -> ?default_branch:string
   -> ?bug_tracker:Url.t
   -> ?releases:Url.t
   -> repository:string
