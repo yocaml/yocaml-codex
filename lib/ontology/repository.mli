@@ -10,7 +10,7 @@ type t
 
 (** Build a Github repository. *)
 val github
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> username:string
   -> repository:string
   -> unit
@@ -18,7 +18,7 @@ val github
 
 (** Build a Gitlab repository. *)
 val gitlab
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> username:string
   -> repository:string
   -> unit
@@ -26,7 +26,7 @@ val gitlab
 
 (** Build a Tangled repository. *)
 val tangled
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> username:string
   -> repository:string
   -> unit
@@ -34,7 +34,7 @@ val tangled
 
 (** Build a Sourcehut repository. *)
 val sourcehut
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> username:string
   -> repository:string
   -> unit
@@ -42,7 +42,7 @@ val sourcehut
 
 (** Build a Codeberg repository. *)
 val codeberg
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> username:string
   -> repository:string
   -> unit
@@ -50,7 +50,7 @@ val codeberg
 
 (** Build a Gitlab (organization) repository. *)
 val gitlab_org
-  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
+  :  ?bug_tracker:Url.t Derivable.opt
   -> name:string
   -> project:string
   -> repository:string

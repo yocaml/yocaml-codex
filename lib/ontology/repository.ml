@@ -14,7 +14,7 @@ type provider =
 type t =
   | Known of
       { provider : provider
-      ; bug_tracker : [ `Derived | `Given of Url.t | `None ]
+      ; bug_tracker : Url.t Derivable.opt
       ; repository : string
       }
   | Unknown of
@@ -102,6 +102,19 @@ let bug_tracker = function
     Some (Url.resolve fragment (home provider repository))
   | _ -> None
 ;;
+
+(* let releases = function *)
+(*   | Known { provider; repository; _ } -> *)
+(*     let fragment = *)
+(*       match provider with *)
+(*       | Gitlab _ | Gitlab_org _ -> Yocaml.Path.rel [ "-"; "releases" ] *)
+(*       | Tangled _ -> Yocaml.Path.rel [ "tags" ] *)
+(*       | Sourcehut _ -> Yocaml.Path.rel [ "refs" ] *)
+(*       | _ -> Yocaml.Path.rel [ "releases" ] *)
+(*     in *)
+(*     Url.resolve fragment (home provider repository) *)
+(*   | _ -> assert false *)
+(* ;; *)
 
 let to_data repo =
   let open Yocaml.Data in

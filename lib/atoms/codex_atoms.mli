@@ -14,3 +14,7 @@ module Map = Map
 
 module Url = Url
 module Link = Link
+
+(** {1 Misc} *)
+
+module Derivable = Derivable
