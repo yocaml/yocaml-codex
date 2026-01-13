@@ -10,7 +10,7 @@ type t
 
 (** Build a Github repository. *)
 val github
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> username:string
   -> repository:string
   -> unit
@@ -18,7 +18,7 @@ val github
 
 (** Build a Gitlab repository. *)
 val gitlab
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> username:string
   -> repository:string
   -> unit
@@ -26,7 +26,7 @@ val gitlab
 
 (** Build a Tangled repository. *)
 val tangled
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> username:string
   -> repository:string
   -> unit
@@ -34,7 +34,7 @@ val tangled
 
 (** Build a Sourcehut repository. *)
 val sourcehut
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> username:string
   -> repository:string
   -> unit
@@ -42,7 +42,7 @@ val sourcehut
 
 (** Build a Codeberg repository. *)
 val codeberg
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> username:string
   -> repository:string
   -> unit
@@ -50,7 +50,7 @@ val codeberg
 
 (** Build a Gitlab (organization) repository. *)
 val gitlab_org
-  :  ?bug_tracker:Url.t
+  :  ?bug_tracker:[ `Derived | `Given of Url.t | `None ]
   -> name:string
   -> project:string
   -> repository:string
@@ -59,9 +59,9 @@ val gitlab_org
 
 (** Build a repository (component by component). *)
 val make
-  :  repository:string
+  :  ?bug_tracker:Url.t
+  -> repository:string
   -> home:Url.t
-  -> bug_tracker:Url.t
   -> blob:Url.t
   -> unit
   -> t
@@ -72,7 +72,7 @@ val make
 val homepage : t -> Url.t
 
 (** Get the bug-tracker of a given repository. *)
-val bug_tracker : t -> Url.t
+val bug_tracker : t -> Url.t option
 
 (** {1 Yocaml Related} *)
 

@@ -1,3 +1,10 @@
+let dump f x = x |> f |> print_endline
+
+let dump_opt f = function
+  | None -> ()
+  | Some x -> dump f x
+;;
+
 let dump_data f data =
   data |> f |> Format.asprintf "%a" Yocaml.Data.pp |> print_endline
 ;;

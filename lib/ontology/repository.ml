@@ -14,41 +14,41 @@ type provider =
 type t =
   | Known of
       { provider : provider
-      ; bug_tracker : Url.t option
+      ; bug_tracker : [ `Derived | `Given of Url.t | `None ]
       ; repository : string
       }
   | Unknown of
       { repository : string
       ; home : Url.t
-      ; bug_tracker : Url.t
+      ; bug_tracker : Url.t option
       ; blob : Url.t
       }
 
-let github ?bug_tracker ~username ~repository () =
+let github ?(bug_tracker = `Derived) ~username ~repository () =
   Known { provider = Github username; repository; bug_tracker }
 ;;
 
-let gitlab ?bug_tracker ~username ~repository () =
+let gitlab ?(bug_tracker = `Derived) ~username ~repository () =
   Known { provider = Gitlab username; repository; bug_tracker }
 ;;
 
-let tangled ?bug_tracker ~username ~repository () =
+let tangled ?(bug_tracker = `Derived) ~username ~repository () =
   Known { provider = Tangled username; repository; bug_tracker }
 ;;
 
-let sourcehut ?bug_tracker ~username ~repository () =
+let sourcehut ?(bug_tracker = `Derived) ~username ~repository () =
   Known { provider = Sourcehut username; repository; bug_tracker }
 ;;
 
-let codeberg ?bug_tracker ~username ~repository () =
+let codeberg ?(bug_tracker = `Derived) ~username ~repository () =
   Known { provider = Codeberg username; repository; bug_tracker }
 ;;
 
-let gitlab_org ?bug_tracker ~name ~project ~repository () =
+let gitlab_org ?(bug_tracker = `Derived) ~name ~project ~repository () =
   Known { provider = Gitlab_org { name; project }; repository; bug_tracker }
 ;;
 
-let make ~repository ~home ~bug_tracker ~blob () =
+let make ?bug_tracker ~repository ~home ~blob () =
   Unknown { repository; home; bug_tracker; blob }
 ;;
 
@@ -67,9 +67,10 @@ let provider_base_url = function
 let account provider =
   let base = provider_base_url provider in
   match provider with
-  | Github username | Sourcehut username | Codeberg username | Gitlab username
-    -> Url.resolve (Yocaml.Path.abs [ username ]) base
-  | Tangled username -> Url.resolve (Yocaml.Path.abs [ "@" ^ username ]) base
+  | Github username | Codeberg username | Gitlab username | Tangled username ->
+    Url.resolve (Yocaml.Path.abs [ username ]) base
+  | Sourcehut username ->
+    Url.resolve (Yocaml.Path.abs [ "~" ^ username ]) (Url.https "git.sr.ht")
   | Gitlab_org { name; project } ->
     Url.resolve (Yocaml.Path.abs [ name; project ]) base
 ;;
@@ -85,26 +86,31 @@ let homepage = function
 
 let bug_tracker = function
   | Unknown { bug_tracker; _ } -> bug_tracker
-  | Known { bug_tracker = Some bug_tracker; _ } -> bug_tracker
-  | Known { provider = Sourcehut user; repository; _ } ->
-    Url.resolve
-      (Yocaml.Path.abs [ "~" ^ user; repository ])
-      (Url.https "todo.sr.ht")
-  | Known { provider; repository; _ } ->
+  | Known { bug_tracker = `Given bug_tracker; _ } -> Some bug_tracker
+  | Known { provider = Sourcehut user; repository; bug_tracker = `Derived; _ }
+    ->
+    Some
+      (Url.resolve
+         (Yocaml.Path.abs [ "~" ^ user; repository ])
+         (Url.https "todo.sr.ht"))
+  | Known { provider; repository; bug_tracker = `Derived; _ } ->
     let fragment =
       match provider with
       | Gitlab _ | Gitlab_org _ -> Yocaml.Path.rel [ "-"; "issues" ]
       | _ -> Yocaml.Path.rel [ "issues" ]
     in
-    Url.resolve fragment (home provider repository)
+    Some (Url.resolve fragment (home provider repository))
+  | _ -> None
 ;;
 
 let to_data repo =
   let open Yocaml.Data in
   let home = homepage repo in
+  let bug_tracker = bug_tracker repo in
   record
     [ "name", string @@ name repo
     ; "home", Url.to_data home
-    ; "bug_tracker", Url.to_data @@ bug_tracker repo
+    ; "bug_tracker", option Url.to_data bug_tracker
+    ; "has_bug_tracker", bool @@ Option.is_some bug_tracker
     ]
 ;;
