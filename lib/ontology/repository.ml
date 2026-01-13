@@ -86,21 +86,20 @@ let homepage = function
 
 let bug_tracker = function
   | Unknown { bug_tracker; _ } -> bug_tracker
-  | Known { bug_tracker = `Given bug_tracker; _ } -> Some bug_tracker
-  | Known { provider = Sourcehut user; repository; bug_tracker = `Derived; _ }
-    ->
-    Some
-      (Url.resolve
-         (Yocaml.Path.abs [ "~" ^ user; repository ])
-         (Url.https "todo.sr.ht"))
-  | Known { provider; repository; bug_tracker = `Derived; _ } ->
-    let fragment =
-      match provider with
-      | Gitlab _ | Gitlab_org _ -> Yocaml.Path.rel [ "-"; "issues" ]
-      | _ -> Yocaml.Path.rel [ "issues" ]
-    in
-    Some (Url.resolve fragment (home provider repository))
-  | _ -> None
+  | Known { bug_tracker; provider; repository; _ } ->
+    Derivable.resolve_opt
+      (fun () ->
+         let home, fragment =
+           match provider with
+           | Sourcehut user ->
+             Url.https "todo.sr.ht", Yocaml.Path.abs [ "~" ^ user; repository ]
+           | Gitlab _ | Gitlab_org _ ->
+             home provider repository, Yocaml.Path.rel [ "-"; "issues" ]
+           | Github _ | Tangled _ | Codeberg _ ->
+             home provider repository, Yocaml.Path.rel [ "issues" ]
+         in
+         Some (Url.resolve fragment home))
+      bug_tracker
 ;;
 
 (* let releases = function *)
