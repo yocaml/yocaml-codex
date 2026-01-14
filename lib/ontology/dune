@@ -4,3 +4,7 @@
  (flags (:standard) -open Codex_atoms)
  (modules_without_implementation codex_ontology)
  (libraries uri yocaml yocaml-codex.atoms))
+
+(mdx
+ (files *.mli)
+ (libraries yocaml yocaml-codex.atoms yocaml-codex.ontology))

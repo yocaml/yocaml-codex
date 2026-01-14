@@ -50,7 +50,7 @@ let%expect_test "gitlab homepage - 2" =
 
 let%expect_test "tangled homepage - 1" =
   tuatara |> Repository.homepage |> dump Url.to_string;
-  [%expect {| https://tangled.sh/anil.recoil.org/tuatara |}]
+  [%expect {| https://tangled.org/anil.recoil.org/tuatara |}]
 ;;
 
 let%expect_test "sourcehut homepage - 1" =
@@ -86,7 +86,7 @@ let%expect_test "gitlab bugtracker - 2" =
 
 let%expect_test "tangled bugtracker - 1" =
   tuatara |> Repository.bug_tracker |> dump_opt Url.to_string;
-  [%expect {| https://tangled.sh/anil.recoil.org/tuatara/issues |}]
+  [%expect {| https://tangled.org/anil.recoil.org/tuatara/issues |}]
 ;;
 
 let%expect_test "sourcehut bugtracker - 1" =
@@ -121,7 +121,7 @@ let%expect_test "gitlab releases - 2" =
 
 let%expect_test "tangled releases - 1" =
   tuatara |> Repository.releases |> dump_opt Url.to_string;
-  [%expect {| https://tangled.sh/anil.recoil.org/tuatara/tags |}]
+  [%expect {| https://tangled.org/anil.recoil.org/tuatara/tags |}]
 ;;
 
 let%expect_test "sourcehut releases - 1" =
@@ -183,7 +183,7 @@ let%expect_test "Resolve files - 5" =
   |> Repository.resolve (Yocaml.Path.rel [ "LICENSE.md" ])
   |> dump Url.to_string;
   [%expect
-    {| https://tangled.sh/anil.recoil.org/tuatara/blob/main/LICENSE.md |}]
+    {| https://tangled.org/anil.recoil.org/tuatara/blob/main/LICENSE.md |}]
 ;;
 
 let%expect_test "Resolve files - 6" =
@@ -192,7 +192,7 @@ let%expect_test "Resolve files - 6" =
        (Yocaml.Path.rel [ "lib"; "schema"; "tuatara_config.ml" ])
   |> dump Url.to_string;
   [%expect
-    {| https://tangled.sh/anil.recoil.org/tuatara/blob/main/lib/schema/tuatara_config.ml |}]
+    {| https://tangled.org/anil.recoil.org/tuatara/blob/main/lib/schema/tuatara_config.ml |}]
 ;;
 
 let%expect_test "Resolve files - 7" =
@@ -200,7 +200,7 @@ let%expect_test "Resolve files - 7" =
   |> Repository.resolve ~is_file:false (Yocaml.Path.rel [ "lib"; "schema" ])
   |> dump Url.to_string;
   [%expect
-    {| https://tangled.sh/anil.recoil.org/tuatara/tree/main/lib/schema |}]
+    {| https://tangled.org/anil.recoil.org/tuatara/tree/main/lib/schema |}]
 ;;
 
 let%expect_test "Resolve files - 8" =

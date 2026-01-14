@@ -117,7 +117,7 @@ let name = function
 let provider_base_url = function
   | Github _ -> Url.https "github.com"
   | Gitlab _ | Gitlab_org _ -> Url.https "gitlab.com"
-  | Tangled _ -> Url.https "tangled.sh"
+  | Tangled _ -> Url.https "tangled.org"
   | Sourcehut _ -> Url.https "sr.ht"
   | Codeberg _ -> Url.https "codeberg.org"
 ;;
@@ -494,3 +494,35 @@ let from_data =
   / Validation.from_known_record
   / Validation.from_compact
 ;;
+
+let compare a b =
+  let a = components a
+  and b = components b in
+  List.compare String.compare a b
+;;
+
+let equal a b =
+  let a = components a
+  and b = components b in
+  List.equal String.equal a b
+;;
+
+module Orderable = struct
+  type nonrec t = t
+
+  let compare = compare
+  let to_data = to_data
+  let from_data = from_data
+end
+
+module Set = struct
+  module S = Stdlib.Set.Make (Orderable)
+  include S
+  include Set.Make (S) (Orderable) (Orderable)
+end
+
+module Map = struct
+  module S = Stdlib.Map.Make (Orderable)
+  include S
+  include Map.Make (S) (Orderable) (Orderable)
+end
