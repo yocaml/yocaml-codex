@@ -222,15 +222,39 @@ let kind = function
   | Known { provider; _ } -> kind_from_provider provider
 ;;
 
+let components_from_provider repository = function
+  | Github username
+  | Gitlab username
+  | Tangled username
+  | Sourcehut username
+  | Codeberg username -> [ username; repository ]
+  | Gitlab_org { name; project } -> [ name; project; repository ]
+;;
+
+let components repo =
+  let kind = kind repo in
+  let tail =
+    match repo with
+    | Unknown { repository; _ } -> [ repository ]
+    | Known { repository; provider; _ } ->
+      components_from_provider repository provider
+  in
+  kind :: tail
+;;
+
 let to_data repo =
   let open Yocaml.Data in
-  let home = homepage repo in
-  let bug_tracker = bug_tracker repo in
-  let releases = releases repo in
-  let blob_root = resolve Path.cwd repo in
+  let home = homepage repo
+  and components = components repo
+  and bug_tracker = bug_tracker repo
+  and releases = releases repo
+  and blob_root = resolve Path.cwd repo in
+  let identifier = String.concat "/" components in
   record
     [ "name", string @@ name repo
     ; "kind", string @@ kind repo
+    ; "components", list_of string components
+    ; "identifier", string identifier
     ; ( "pages"
       , record
           [ "home", Url.to_data home
@@ -241,4 +265,148 @@ let to_data repo =
           ; "has_releases", bool @@ Option.is_some releases
           ] )
     ]
+;;
+
+module Validation = struct
+  let github_kind = [ "github.com"; "github"; "gh" ]
+  let gitlab_kind = [ "gitlab.com"; "gitlab"; "gl" ]
+  let tangled_kind = [ "tangled.org"; "tangled"; "tl" ]
+  let codeberg_kind = [ "codeberg.org"; "codeberg"; "cb" ]
+
+  let sourcehut_kind =
+    [ "sourcehut.org"; "sr.ht"; "git.sr.ht"; "sourcehut"; "sr" ]
+  ;;
+
+  let all_kind =
+    github_kind @ tangled_kind @ gitlab_kind @ codeberg_kind @ sourcehut_kind
+  ;;
+
+  let kind_enum =
+    let open Yocaml.Data.Validation in
+    (string $ fun x -> x |> Stdlib.String.trim |> Stdlib.String.lowercase_ascii)
+    & String.one_of ~case_sensitive:false all_kind
+    & fun k ->
+    if List.exists (Stdlib.String.equal k) github_kind
+    then Ok `Github
+    else if List.exists (Stdlib.String.equal k) gitlab_kind
+    then Ok `Gitlab
+    else if List.exists (Stdlib.String.equal k) tangled_kind
+    then Ok `Tangled
+    else if List.exists (Stdlib.String.equal k) codeberg_kind
+    then Ok `Codeberg
+    else if List.exists (Stdlib.String.equal k) sourcehut_kind
+    then Ok `Sourcehut
+    else fail_with ~given:k "Invalid repository provider"
+  ;;
+
+  let split_path p =
+    p
+    |> String.split_on_char '/'
+    |> List.map (fun x ->
+      x
+      |> Ext.String.trim_when (function
+        | ' ' | '\012' | '\n' | '\r' | '\t' | '@' | '~' -> true
+        | _ -> false)
+      |> String.lowercase_ascii)
+  ;;
+
+  let as_name =
+    let open Yocaml.Data.Validation in
+    (string
+     $ fun x ->
+     x
+     |> Stdlib.String.trim
+     |> Stdlib.String.lowercase_ascii
+     |> Ext.String.remove_leading_arobase)
+    & String.not_blank
+  ;;
+
+  let ltrim_path = function
+    | x :: xs when String.(equal (trim x)) "" -> xs
+    | xs -> xs
+  ;;
+
+  let record_from_path ?kind repo_path =
+    let open Yocaml.Data in
+    let k = "kind", option string kind in
+    match ltrim_path repo_path with
+    | user :: repository :: ([ "" ] | []) ->
+      k :: [ "user", string user; "repository", string repository ] |> record
+    | name :: project :: repository :: ([ "" ] | [])
+      when Stdlib.List.exists
+             (fun x ->
+                match kind with
+                | None -> false
+                | Some k -> Stdlib.String.equal x k)
+             gitlab_kind ->
+      [ "name", string name
+      ; "project", string project
+      ; "repository", string repository
+      ]
+      |> record
+    | _ -> record [ k ]
+  ;;
+
+  let required_kind fields =
+    let open Yocaml.Data.Validation in
+    field (fetch fields "kind") (option kind_enum)
+    |? field (fetch fields "provider") (option kind_enum)
+    $? field (fetch fields "forge") kind_enum
+  ;;
+
+  let required_repository o =
+    let open Yocaml.Data.Validation in
+    field (fetch o "repository") (option as_name)
+    |? field (fetch o "name") (option as_name)
+    $? field (fetch o "repo") as_name
+  ;;
+
+  let from_record_user =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ kind = required_kind fields
+      and+ username = required fields "user" as_name
+      and+ repository = required_repository fields
+      and+ bug_tracker = Derivable.optional fields "bug_tracker" Url.from_data
+      and+ releases = Derivable.optional fields "releases" Url.from_data in
+      let make =
+        match kind with
+        | `Github -> github
+        | `Gitlab -> gitlab
+        | `Tangled -> tangled
+        | `Codeberg -> codeberg
+        | `Sourcehut -> sourcehut
+      in
+      make ~bug_tracker ~releases ~username ~repository ())
+  ;;
+
+  let from_record_org =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ name = required fields "name" as_name
+      and+ project = required fields "project" as_name
+      and+ repository = required_repository fields
+      and+ bug_tracker = Derivable.optional fields "bug_tracker" Url.from_data
+      and+ releases = Derivable.optional fields "releases" Url.from_data in
+      gitlab_org ~bug_tracker ~releases ~name ~project ~repository ())
+  ;;
+
+  let from_known_record =
+    let open Yocaml.Data.Validation in
+    from_record_org / from_record_user
+  ;;
+
+  let from_identifier s =
+    let fields =
+      match split_path s with
+      | [] -> Yocaml.Data.record []
+      | kind :: xs -> record_from_path ~kind xs
+    in
+    from_known_record fields
+  ;;
+end
+
+let from_data =
+  let open Yocaml.Data.Validation in
+  (string & Validation.from_identifier) / Validation.from_known_record
 ;;

@@ -22,3 +22,10 @@ let resolve_opt f = function
 let given x = `Given x
 let derived = `Derived
 let none = `None
+
+let optional fields name handler =
+  let open Yocaml.Data.Validation in
+  let a = string & String.equal "<none>" & const none
+  and b = handler $ given in
+  optional_or ~default:derived fields name (a / b)
+;;

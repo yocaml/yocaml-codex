@@ -25,3 +25,10 @@ val resolve_opt : (unit -> 'a option) -> 'a opt -> 'a option
 val given : 'a -> [> `Given of 'a ]
 val derived : [> `Derived ]
 val none : [> `None ]
+
+val optional
+  :  (string * Yocaml.Data.t) list
+  -> string
+  -> 'a Yocaml.Data.validable
+  -> [> `Derived | `Given of 'a | `None ]
+       Yocaml.Data.Validation.validated_record

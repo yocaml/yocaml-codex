@@ -276,3 +276,504 @@ let%expect_test "Resolve files - 15" =
   [%expect
     {| https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/tree/master/src/test/java/com |}]
 ;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "gh/xvw/capsule"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "github/xvw/capsule"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "github.com/xvw/capsule"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "gl/tezos/tezos"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "tezos", "kind": "gitlab", "components":
+         ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
+        "pages":
+         {"home":
+          {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
+           "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/issues", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "gitlab/tezos/tezos"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "tezos", "kind": "gitlab", "components":
+         ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
+        "pages":
+         {"home":
+          {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
+           "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/issues", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "gitlab.com/tezos/tezos"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "tezos", "kind": "gitlab", "components":
+         ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
+        "pages":
+         {"home":
+          {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
+           "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/issues", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/tezos/tezos/-/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "gl/gitlab-examples/maven/simple-maven-dep"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "simple-maven-dep", "kind": "gitlab", "components":
+         ["gitlab", "gitlab-examples", "maven", "simple-maven-dep"],
+        "identifier": "gitlab/gitlab-examples/maven/simple-maven-dep", "pages":
+         {"home":
+          {"target":
+           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep", "scheme":
+           "https", "host": "gitlab.com", "port": null, "path":
+           "/gitlab-examples/maven/simple-maven-dep", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target":
+           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/issues",
+          "scheme": "https", "host": "gitlab.com", "port": null, "path":
+           "/gitlab-examples/maven/simple-maven-dep/-/issues", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target":
+           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/releases",
+          "scheme": "https", "host": "gitlab.com", "port": null, "path":
+           "/gitlab-examples/maven/simple-maven-dep/-/releases", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target":
+           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/blob/main",
+          "scheme": "https", "host": "gitlab.com", "port": null, "path":
+           "/gitlab-examples/maven/simple-maven-dep/-/blob/main", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier fail because of components" =
+  let input =
+    let open Yocaml.Data in
+    string "gh/tezos/tezos/proj"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [X]	--- Oh dear, an error has occurred ---Validation error: `test`
+    Invalid shape:
+      Expected: record
+      Given: `"gh/tezos/tezos/proj"`---
+    The backtrace is not available because the function is called (according to the [in_exception_handler] parameter) outside an exception handler. This makes the trace unspecified.
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "sr/tim-ats-d/ofortune"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+         ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
+         "sourcehut/tim-ats-d/ofortune", "pages":
+         {"home":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
+          "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+           "https", "host": "todo.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+           "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/refs", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
+          "scheme": "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/tree/master/item", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "sr.ht/tim-ats-d/ofortune"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+         ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
+         "sourcehut/tim-ats-d/ofortune", "pages":
+         {"home":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
+          "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+           "https", "host": "todo.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+           "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/refs", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
+          "scheme": "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/tree/master/item", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "sourcehut/tim-ats-d/ofortune"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+         ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
+         "sourcehut/tim-ats-d/ofortune", "pages":
+         {"home":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
+          "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+           "https", "host": "todo.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+           "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/refs", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
+          "scheme": "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/tree/master/item", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from identifier" =
+  let input =
+    let open Yocaml.Data in
+    string "git.sr.ht/tim-ats-d/ofortune"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+         ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
+         "sourcehut/tim-ats-d/ofortune", "pages":
+         {"home":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
+          "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+           "https", "host": "todo.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+           "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/refs", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
+          "scheme": "https", "host": "git.sr.ht", "port": null, "path":
+           "/~tim-ats-d/ofortune/tree/master/item", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;

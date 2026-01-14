@@ -94,4 +94,4 @@ val resolve : ?is_file:bool -> ?branch:string -> Yocaml.Path.t -> t -> Url.t
 (** {1 Yocaml Related} *)
 
 include Yocaml.Data.S with type t := t
-(* include Yocaml.Data.Validation.S with type t := t *)
+include Yocaml.Data.Validation.S with type t := t
