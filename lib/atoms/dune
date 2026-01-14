@@ -3,3 +3,5 @@
  (public_name yocaml-codex.atoms)
  (modules_without_implementation sigs codex_atoms)
  (libraries uri yocaml))
+
+(include_subdirs qualified)

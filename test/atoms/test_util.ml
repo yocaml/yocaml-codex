@@ -1,4 +1,22 @@
 let dump f x = x |> f |> print_endline
+let dump_string = dump Fun.id
+
+let dump_list f list =
+  list
+  |> List.map f
+  |> Format.asprintf
+       "%a"
+       (Format.pp_print_list
+          ~pp_sep:(fun ppf () -> Format.fprintf ppf "; ")
+          (fun ppf s -> Format.fprintf ppf "`%s`" s))
+  |> dump_string
+;;
+
+let dump_opt_list f =
+  dump_list (function
+    | None -> "None"
+    | Some x -> "Some(" ^ f x ^ ")")
+;;
 
 let dump_opt f = function
   | None -> ()
