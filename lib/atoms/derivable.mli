@@ -26,9 +26,12 @@ val given : 'a -> [> `Given of 'a ]
 val derived : [> `Derived ]
 val none : [> `None ]
 
+(** Read a derivable fields as an optional field.*)
 val optional
   :  (string * Yocaml.Data.t) list
   -> string
   -> 'a Yocaml.Data.validable
   -> [> `Derived | `Given of 'a | `None ]
        Yocaml.Data.Validation.validated_record
+
+val to_option : 'a opt -> 'a option

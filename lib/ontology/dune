@@ -3,4 +3,4 @@
  (public_name yocaml-codex.ontology)
  (flags (:standard) -open Codex_atoms)
  (modules_without_implementation codex_ontology)
- (libraries yocaml yocaml-codex.atoms))
+ (libraries uri yocaml yocaml-codex.atoms))

@@ -29,3 +29,8 @@ let optional fields name handler =
   and b = handler $ given in
   optional_or ~default:derived fields name (a / b)
 ;;
+
+let to_option = function
+  | `Given x -> Some x
+  | `None | `Derived -> None
+;;

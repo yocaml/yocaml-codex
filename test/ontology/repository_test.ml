@@ -777,3 +777,398 @@ let%expect_test "from_data - from identifier" =
          "has_bug_tracker": true, "has_releases": true}}
     |}]
 ;;
+
+let%expect_test "from_data - from record" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "kind", string "github"
+      ; "user", string "xvw"
+      ; "repo", string "capsule"
+      ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from record" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "kind", string "github"
+      ; "user", string "xvw"
+      ; "repo", string "capsule"
+      ; "bug_tracker", string "https://xvw.lol/capsule/bug-tracker.html"
+      ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
+           "https", "host": "xvw.lol", "port": null, "path":
+           "/capsule/bug-tracker.html", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from unknown record" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "repo", string "custom-capsule"
+      ; "home", string "https://xvw.lol/capsule/bug-tracker.html"
+      ; "blob", string "https://xvw.lol/capsule/blob/"
+      ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "custom-capsule", "kind": "custom", "components":
+         ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
+        "pages":
+         {"home":
+          {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
+           "https", "host": "xvw.lol", "port": null, "path":
+           "/capsule/bug-tracker.html", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker": null, "releases": null, "blob_root":
+          {"target": "https://xvw.lol/capsule/blob//main", "scheme": "https",
+          "host": "xvw.lol", "port": null, "path": "/capsule/blob//main",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": false, "has_releases": false}}
+    |}]
+;;
+
+let%expect_test "from_data - from unknown record" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "repo", string "custom-capsule"
+      ; "www", string "https://xvw.lol/capsule/"
+      ; "blob", string "https://xvw.lol/capsule/blob/"
+      ; "bug_tracker", string "https://xvw.lol/capsule/bug-tracker.html"
+      ; "releases", string "https://xvw.lol/capsule/releases.html"
+      ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "custom-capsule", "kind": "custom", "components":
+         ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
+        "pages":
+         {"home":
+          {"target": "https://xvw.lol/capsule/", "scheme": "https", "host":
+           "xvw.lol", "port": null, "path": "/capsule/", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
+           "https", "host": "xvw.lol", "port": null, "path":
+           "/capsule/bug-tracker.html", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://xvw.lol/capsule/releases.html", "scheme": "https",
+          "host": "xvw.lol", "port": null, "path": "/capsule/releases.html",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://xvw.lol/capsule/blob//main", "scheme": "https",
+          "host": "xvw.lol", "port": null, "path": "/capsule/blob//main",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from uri" =
+  let input =
+    let open Yocaml.Data in
+    string "https://github.com/xvw/capsule.git"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from uri" =
+  let input =
+    let open Yocaml.Data in
+    string "git+https://github.com/xvw/capsule.git"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from uri" =
+  let input =
+    let open Yocaml.Data in
+    string "https://github.com/~xvw/capsule"
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from uri" =
+  let input =
+    let open Yocaml.Data in
+    record [ "repo", string "git+https://github.com/xvw/capsule.git" ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;
+
+let%expect_test "from_data - from uri" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "repo", string "git+https://github.com/xvw/capsule.git"
+      ; "releases", string "https://all-releases.com"
+      ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://all-releases.com", "scheme": "https", "host":
+           "all-releases.com", "port": null, "path": "/", "has_port": false,
+          "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;

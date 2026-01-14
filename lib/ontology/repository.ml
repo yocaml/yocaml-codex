@@ -326,12 +326,26 @@ module Validation = struct
     | xs -> xs
   ;;
 
-  let record_from_path ?kind repo_path =
+  let remove_dot_git s =
+    match String.lowercase_ascii @@ Filename.extension s with
+    | ".git" -> Filename.remove_extension s
+    | _ -> s
+  ;;
+
+  let record_from_path ?kind ?releases ?bug_tracker repo_path =
     let open Yocaml.Data in
-    let k = "kind", option string kind in
+    let k = "kind", option string kind
+    and releases = "releases", option Url.to_data releases
+    and bug_tracker = "bug_tracker", option Url.to_data bug_tracker in
     match ltrim_path repo_path with
     | user :: repository :: ([ "" ] | []) ->
-      k :: [ "user", string user; "repository", string repository ] |> record
+      k
+      :: releases
+      :: bug_tracker
+      :: [ "user", string user
+         ; "repository", string (remove_dot_git repository)
+         ]
+      |> record
     | name :: project :: repository :: ([ "" ] | [])
       when Stdlib.List.exists
              (fun x ->
@@ -339,10 +353,12 @@ module Validation = struct
                 | None -> false
                 | Some k -> Stdlib.String.equal x k)
              gitlab_kind ->
-      [ "name", string name
-      ; "project", string project
-      ; "repository", string repository
-      ]
+      releases
+      :: bug_tracker
+      :: [ "name", string name
+         ; "project", string project
+         ; "repository", string (remove_dot_git repository)
+         ]
       |> record
     | _ -> record [ k ]
   ;;
@@ -361,14 +377,21 @@ module Validation = struct
     $? field (fetch o "repo") as_name
   ;;
 
+  let resolve_derivable_links =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ bug_tracker = Derivable.optional fields "bug_tracker" Url.from_data
+      and+ releases = Derivable.optional fields "releases" Url.from_data in
+      bug_tracker, releases)
+  ;;
+
   let from_record_user =
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ kind = required_kind fields
       and+ username = required fields "user" as_name
       and+ repository = required_repository fields
-      and+ bug_tracker = Derivable.optional fields "bug_tracker" Url.from_data
-      and+ releases = Derivable.optional fields "releases" Url.from_data in
+      and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       let make =
         match kind with
         | `Github -> github
@@ -386,8 +409,7 @@ module Validation = struct
       let+ name = required fields "name" as_name
       and+ project = required fields "project" as_name
       and+ repository = required_repository fields
-      and+ bug_tracker = Derivable.optional fields "bug_tracker" Url.from_data
-      and+ releases = Derivable.optional fields "releases" Url.from_data in
+      and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       gitlab_org ~bug_tracker ~releases ~name ~project ~repository ())
   ;;
 
@@ -396,17 +418,79 @@ module Validation = struct
     from_record_org / from_record_user
   ;;
 
-  let from_identifier s =
+  let from_unknown_record =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ kind = optional fields "kind" as_name
+      and+ default_branch = optional fields "default_branch" as_name
+      and+ bug_tracker = optional fields "bug_tracker" Url.from_data
+      and+ releases = optional fields "releases" Url.from_data
+      and+ repository = required_repository fields
+      and+ home =
+        field (fetch fields "home") (option Url.from_data)
+        |? field (fetch fields "www") (option Url.from_data)
+        $? field (fetch fields "homepage") Url.from_data
+      and+ blob =
+        field (fetch fields "blob") (option Url.from_data)
+        |? field (fetch fields "root") (option Url.from_data)
+        $? field (fetch fields "resolver") Url.from_data
+      in
+      make
+        ?kind
+        ?default_branch
+        ?bug_tracker
+        ?releases
+        ~repository
+        ~home
+        ~blob
+        ())
+  ;;
+
+  let from_uri ?releases ?bug_tracker s =
+    let uri = Uri.of_string s in
+    let path = uri |> Uri.path |> split_path in
+    let kind = Uri.host uri in
+    let fields = record_from_path ?releases ?bug_tracker ?kind path in
+    from_known_record fields
+  ;;
+
+  let from_identifier ?releases ?bug_tracker s =
     let fields =
       match split_path s with
       | [] -> Yocaml.Data.record []
-      | kind :: xs -> record_from_path ~kind xs
+      | kind :: xs -> record_from_path ?releases ?bug_tracker ~kind xs
     in
     from_known_record fields
+  ;;
+
+  let from_string ?releases ?bug_tracker =
+    let open Yocaml.Data.Validation in
+    string
+    & (from_identifier ?releases ?bug_tracker / from_uri ?releases ?bug_tracker)
+  ;;
+
+  let from_compact =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ bug_tracker, releases = sub_record fields resolve_derivable_links
+      and+ repo =
+        field (fetch fields "repository") (option string)
+        |? field (fetch fields "name") (option string)
+        $? field (fetch fields "repo") string
+      in
+      bug_tracker, releases, repo)
+    & fun (bug_tracker, releases, repo) ->
+    from_string
+      ?releases:(Derivable.to_option releases)
+      ?bug_tracker:(Derivable.to_option bug_tracker)
+      (Yocaml.Data.string repo)
   ;;
 end
 
 let from_data =
   let open Yocaml.Data.Validation in
-  (string & Validation.from_identifier) / Validation.from_known_record
+  Validation.from_string
+  / Validation.from_unknown_record
+  / Validation.from_known_record
+  / Validation.from_compact
 ;;
