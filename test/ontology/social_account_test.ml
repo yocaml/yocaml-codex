@@ -431,3 +431,29 @@ let%expect_test "Validate a mastodon account 2" =
          "query_string": null, "has_query_string": false}}
     |}]
 ;;
+
+let%expect_test "Validate a mastodon account 2" =
+  let input =
+    let open Yocaml.Data in
+    record [ "instance", string "merveilles.town"; "username", string "xvw" ]
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+         "merveilles.town/xvw", "domain":
+         {"target": "https://merveilles.town", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;

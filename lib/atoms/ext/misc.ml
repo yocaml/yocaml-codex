@@ -33,3 +33,9 @@ let as_name =
    |> Ext_string.remove_leading_arobase)
   & String.not_blank
 ;;
+
+let add_scheme ?(scheme = "https") s =
+  match Stdlib.String.split_on_char ':' s with
+  | _ :: ([ xs ] | xs :: _) when Stdlib.String.starts_with ~prefix:"//" xs -> s
+  | _ -> scheme ^ "://" ^ s
+;;

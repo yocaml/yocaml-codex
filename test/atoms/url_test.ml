@@ -106,10 +106,10 @@ let%expect_test "name of url 4" =
 let%expect_test "from_string corner case" =
   Url.from_data Yocaml.Data.(string "xvw.lol") |> dump_validation Url.to_data;
   [%expect {|
-    [X]	--- Oh dear, an error has occurred ---Validation error: `test`
-    Message:
-      Message: Missing host and scheme
-      Given: `xvw.lol`---
-    The backtrace is not available because the function is called (according to the [in_exception_handler] parameter) outside an exception handler. This makes the trace unspecified.
+    [V]	{"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
+        "port": null, "path": "/", "has_port": false, "query_params":
+         {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "query_string": null, "has_query_string": false}
     |}]
 ;;
