@@ -45,9 +45,6 @@ val http : ?path:Yocaml.Path.t -> string -> t
 (** [https ?path url] build an https URL. *)
 val https : ?path:Yocaml.Path.t -> string -> t
 
-(** [from_string s] convert a [string] into *)
-val from_string : string -> t
-
 (** [to_string url] convert an [url] to a string. *)
 val to_string : t -> string
 

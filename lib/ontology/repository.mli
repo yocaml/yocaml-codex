@@ -43,7 +43,9 @@ type t
       list [["github"; "xhtmlboi"; "yocaml"]]
     - [identifier] is a compacted version of [components],
       ["github/xhtmlboi/yocaml"]
-    - [pages] is a record that give some links.
+    - [pages] is a record that give some links
+    - [is_known] is [true] if the provider is one of the list
+    - [is_custom] is [not is_known]
 
     {3 Example with Jingoo}
 

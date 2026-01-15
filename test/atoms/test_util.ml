@@ -23,6 +23,10 @@ let dump_opt f = function
   | Some x -> dump f x
 ;;
 
+let dump_data_list f =
+  dump_list (fun x -> x |> f |> Format.asprintf "%a" Yocaml.Data.pp)
+;;
+
 let dump_data f data =
   data |> f |> Format.asprintf "%a" Yocaml.Data.pp |> print_endline
 ;;

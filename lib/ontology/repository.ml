@@ -289,44 +289,24 @@ module Validation = struct
     github_kind @ tangled_kind @ gitlab_kind @ codeberg_kind @ sourcehut_kind
   ;;
 
+  let in_enum = Ext.Misc.in_str_enum ~case_sensitive:false
+
   let kind_enum =
     let open Yocaml.Data.Validation in
     (string $ fun x -> x |> Stdlib.String.trim |> Stdlib.String.lowercase_ascii)
     & String.one_of ~case_sensitive:false all_kind
     & fun k ->
-    if List.exists (Stdlib.String.equal k) github_kind
+    if in_enum github_kind k
     then Ok `Github
-    else if List.exists (Stdlib.String.equal k) gitlab_kind
+    else if in_enum gitlab_kind k
     then Ok `Gitlab
-    else if List.exists (Stdlib.String.equal k) tangled_kind
+    else if in_enum tangled_kind k
     then Ok `Tangled
-    else if List.exists (Stdlib.String.equal k) codeberg_kind
+    else if in_enum codeberg_kind k
     then Ok `Codeberg
-    else if List.exists (Stdlib.String.equal k) sourcehut_kind
+    else if in_enum sourcehut_kind k
     then Ok `Sourcehut
     else fail_with ~given:k "Invalid repository provider"
-  ;;
-
-  let split_path p =
-    p
-    |> String.split_on_char '/'
-    |> List.map (fun x ->
-      x
-      |> Ext.String.trim_when (function
-        | ' ' | '\012' | '\n' | '\r' | '\t' | '@' | '~' -> true
-        | _ -> false)
-      |> String.lowercase_ascii)
-  ;;
-
-  let as_name =
-    let open Yocaml.Data.Validation in
-    (string
-     $ fun x ->
-     x
-     |> Stdlib.String.trim
-     |> Stdlib.String.lowercase_ascii
-     |> Ext.String.remove_leading_arobase)
-    & String.not_blank
   ;;
 
   let ltrim_path = function
@@ -380,9 +360,9 @@ module Validation = struct
 
   let required_repository o =
     let open Yocaml.Data.Validation in
-    field (fetch o "repository") (option as_name)
-    |? field (fetch o "name") (option as_name)
-    $? field (fetch o "repo") as_name
+    field (fetch o "repository") (option Ext.Misc.as_name)
+    |? field (fetch o "name") (option Ext.Misc.as_name)
+    $? field (fetch o "repo") Ext.Misc.as_name
   ;;
 
   let resolve_derivable_links =
@@ -397,7 +377,7 @@ module Validation = struct
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ kind = required_kind fields
-      and+ username = required fields "user" as_name
+      and+ username = required fields "user" Ext.Misc.as_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       let make =
@@ -414,8 +394,8 @@ module Validation = struct
   let from_record_org =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ name = required fields "name" as_name
-      and+ project = required fields "project" as_name
+      let+ name = required fields "name" Ext.Misc.as_name
+      and+ project = required fields "project" Ext.Misc.as_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       gitlab_org ~bug_tracker ~releases ~name ~project ~repository ())
@@ -429,8 +409,8 @@ module Validation = struct
   let from_unknown_record =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ kind = optional fields "kind" as_name
-      and+ default_branch = optional fields "default_branch" as_name
+      let+ kind = optional fields "kind" Ext.Misc.as_name
+      and+ default_branch = optional fields "default_branch" Ext.Misc.as_name
       and+ bug_tracker = optional fields "bug_tracker" Url.from_data
       and+ releases = optional fields "releases" Url.from_data
       and+ repository = required_repository fields
@@ -456,7 +436,7 @@ module Validation = struct
 
   let from_uri ?releases ?bug_tracker s =
     let uri = Uri.of_string s in
-    let path = uri |> Uri.path |> split_path in
+    let path = uri |> Uri.path |> Ext.Misc.split_path in
     let kind = Uri.host uri in
     let fields = record_from_path ?releases ?bug_tracker ?kind path in
     from_known_record fields
@@ -464,7 +444,7 @@ module Validation = struct
 
   let from_identifier ?releases ?bug_tracker s =
     let fields =
-      match split_path s with
+      match Ext.Misc.split_path s with
       | [] -> Yocaml.Data.record []
       | kind :: xs -> record_from_path ?releases ?bug_tracker ~kind xs
     in

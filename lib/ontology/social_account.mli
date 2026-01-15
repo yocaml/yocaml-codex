@@ -18,6 +18,40 @@
 
 type t
 
+(** {2 Projection}
+
+    A Social Account is projected as the following record:
+
+    {eof@json[
+      {
+        "kind": string,
+        "is_known": bool,
+        "is_custom": bool,
+        "username": string,
+        "domain": Url,
+        "url", Url
+      }
+    ]eof}
+
+    - [kind] is the provider (ie: [github], [mastodon], [x])
+    - [is_known] is [true] if the provider is one of the list
+    - [is_custom] is [not is_known]
+    - [username] the username of the social media account
+    - [domain] the main url of the social media platform (ie: [https://x.com])
+    - [url] the URL to access to the account.
+
+    {3 Example with Jingoo}
+
+    {eof@html[
+      <a href="{{ account.url.target }}"
+         title="my account on {{ account.kind }}">
+         {% if account.is_known %}
+         <img src="/images/{{ account.kind }}.svg">
+         {% endif %}
+         {{ account.username }}
+      </a>
+    ]eof} *)
+
 (** {1 Building Social media accounts} *)
 
 (** Build a social media account (not supported by default). *)
@@ -79,4 +113,4 @@ val username : t -> string
 (** {1 Yocaml Related} *)
 
 include Yocaml.Data.S with type t := t
-(* include Yocaml.Data.Validation.S with type t := t *)
+include Yocaml.Data.Validation.S with type t := t

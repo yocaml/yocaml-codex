@@ -146,3 +146,94 @@ let to_data account =
     ; "url", Url.to_data url
     ]
 ;;
+
+module Validation = struct
+  (* let github_kind = [ "github.com"; "github"; "gh" ] *)
+  (* let gitlab_kind = [ "gitlab.com"; "gitlab"; "gl" ] *)
+  (* let codeberg_kind = [ "codeberg.org"; "codeberg"; "cb" ] *)
+
+  (* let sourcehut_kind = *)
+  (*   [ "sourcehut.org"; "sr.ht"; "git.sr.ht"; "sourcehut"; "sr" ] *)
+  (* ;; *)
+
+  (* let x_kind = [ "x.com"; "twitter.com"; "x"; "twitter" ] *)
+  (* let bluesky_kind = [ "bsky.app"; "bluesky"; "bsky" ] *)
+  (* let linkedin_kind = [ "linkedin.com"; "linkedin" ] *)
+  (* let instagram_kind = [ "instagram.com"; "instagram"; "ig" ] *)
+  (* let facebook_kind = [ "facebook.com"; "facebook"; "fb" ] *)
+  (* let cara_kind = [ "cara.app"; "cara" ] *)
+  (* let threads_kind = [ "threads.com"; "threads" ] *)
+
+  (* let all_kind = *)
+  (*   github_kind *)
+  (*   @ gitlab_kind *)
+  (*   @ codeberg_kind *)
+  (*   @ sourcehut_kind *)
+  (*   @ x_kind *)
+  (*   @ bluesky_kind *)
+  (*   @ linkedin_kind *)
+  (*   @ instagram_kind *)
+  (*   @ facebook_kind *)
+  (*   @ cara_kind *)
+  (*   @ threads_kind *)
+  (* ;; *)
+
+  (* let in_enum = Ext.Misc.in_str_enum ~case_sensitive:false *)
+
+  (* let kind_enum = *)
+  (*   let open Yocaml.Data.Validation in *)
+  (*   (string $ fun x -> x |> Stdlib.String.trim |> Stdlib.String.lowercase_ascii) *)
+  (*   & String.one_of ~case_sensitive:false all_kind *)
+  (*   & fun k -> *)
+  (*   if in_enum github_kind k *)
+  (*   then Ok `Github *)
+  (*   else if in_enum gitlab_kind k *)
+  (*   then Ok `Gitlab *)
+  (*   else if in_enum codeberg_kind k *)
+  (*   then Ok `Codeberg *)
+  (*   else if in_enum sourcehut_kind k *)
+  (*   then Ok `Sourcehut *)
+  (*   else if in_enum x_kind k *)
+  (*   then Ok `X *)
+  (*   else if in_enum bluesky_kind k *)
+  (*   then Ok `Bluesky *)
+  (*   else if in_enum linkedin_kind k *)
+  (*   then Ok `Linkedin *)
+  (*   else if in_enum instagram_kind k *)
+  (*   then Ok `Instagram *)
+  (*   else if in_enum facebook_kind k *)
+  (*   then Ok `Facebook *)
+  (*   else if in_enum cara_kind k *)
+  (*   then Ok `Cara *)
+  (*   else if in_enum threads_kind k *)
+  (*   then Ok `Threads *)
+  (*   else fail_with ~given:k "Invalid social media account provider" *)
+  (* ;; *)
+
+  let mastodon_from_string =
+    let open Yocaml.Data.Validation in
+    string
+    & String.has_prefix ~prefix:"@" $ Ext.String.remove_leading_arobase
+    & fun str ->
+    match Stdlib.String.split_on_char '@' str with
+    | [ instance; username ] ->
+      let instance = Url.https instance in
+      Ok (mastodon ~instance ~username ())
+    | _ -> fail_with ~given:str "Not a mastodon account"
+  ;;
+
+  let mastodon_from_record =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ instance = required fields "instance" Url.from_data
+      and+ username = required fields "username" Ext.Misc.as_name in
+      mastodon ~instance ~username ())
+  ;;
+
+  let mastodon =
+    let open Yocaml.Data.Validation in
+    mastodon_from_string / mastodon_from_record
+  ;;
+end
+
+let from_data = Validation.mastodon

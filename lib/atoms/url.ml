@@ -41,7 +41,17 @@ let from_uri uri =
 
 let compare { uri = a; _ } { uri = b; _ } = Uri.compare a b
 let equal { uri = a; _ } { uri = b; _ } = Uri.equal a b
-let from_string url = url |> Uri.of_string |> from_uri
+
+let from_string url =
+  let uri = Uri.of_string url in
+  let open Yocaml.Data.Validation in
+  match Uri.scheme uri, Uri.host uri with
+  | None, Some _ -> fail_with ~given:url "Missing scheme"
+  | Some _, None -> fail_with ~given:url "Missing host"
+  | None, None -> fail_with ~given:url "Missing host and scheme"
+  | _ -> Ok (from_uri uri)
+;;
+
 let to_string { uri; _ } = uri |> Uri.to_string
 
 let to_data ({ scheme; host; port; path = uri_path; query_params; uri } as url) =
@@ -62,7 +72,7 @@ let to_data ({ scheme; host; port; path = uri_path; query_params; uri } as url) 
 
 let from_data_string =
   let open Yocaml.Data.Validation in
-  string & String.not_blank $ from_string
+  string & String.not_blank & from_string
 ;;
 
 let from_data =
@@ -97,7 +107,7 @@ let resolve
 ;;
 
 let with_scheme ~scheme ?path rest =
-  let url = scheme ^ "://" ^ rest |> from_string in
+  let url = scheme ^ "://" ^ rest |> Uri.of_string |> from_uri in
   Stdlib.Option.fold ~none:url ~some:(fun path -> resolve path url) path
 ;;
 
