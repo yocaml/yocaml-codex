@@ -87,3 +87,10 @@ let remove_leading_char_when pred string =
 let remove_leading_arobase = remove_leading_char_when (Char.equal '@')
 let remove_leading_dot = remove_leading_char_when (Char.equal '.')
 let remove_leading_hash = remove_leading_char_when (Char.equal '#')
+
+let may_prepend c s =
+  match char_at 0 s with
+  | None -> from_char c
+  | Some r when Char.equal r c -> s
+  | _ -> from_char c ^ s
+;;

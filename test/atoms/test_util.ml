@@ -7,7 +7,7 @@ let dump_list f list =
   |> Format.asprintf
        "%a"
        (Format.pp_print_list
-          ~pp_sep:(fun ppf () -> Format.fprintf ppf "; ")
+          ~pp_sep:(fun ppf () -> Format.fprintf ppf ";\n")
           (fun ppf s -> Format.fprintf ppf "`%s`" s))
   |> dump_string
 ;;

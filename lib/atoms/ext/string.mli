@@ -47,3 +47,6 @@ val remove_leading_hash : string -> string
 
 (** [remove_leading_dot s] remove the leading [.]. *)
 val remove_leading_dot : string -> string
+
+(** [may_prepend c s] is concat [c] if [s] does not start with [c]. *)
+val may_prepend : char -> string -> string

@@ -5,3 +5,4 @@
     in [yocaml-codex.atoms]. *)
 
 module Repository = Repository
+module Social_account = Social_account
