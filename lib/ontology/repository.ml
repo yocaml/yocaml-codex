@@ -242,19 +242,27 @@ let components repo =
   kind :: tail
 ;;
 
+let known = function
+  | Known _ -> true
+  | Unknown _ -> false
+;;
+
 let to_data repo =
   let open Yocaml.Data in
   let home = homepage repo
   and components = components repo
   and bug_tracker = bug_tracker repo
   and releases = releases repo
-  and blob_root = resolve Path.cwd repo in
+  and blob_root = resolve Path.cwd repo
+  and known = known repo in
   let identifier = String.concat "/" components in
   record
     [ "name", string @@ name repo
     ; "kind", string @@ kind repo
     ; "components", list_of string components
     ; "identifier", string identifier
+    ; "is_known", bool known
+    ; "is_custom", bool (not known)
     ; ( "pages"
       , record
           [ "home", Url.to_data home

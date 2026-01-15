@@ -287,7 +287,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -330,7 +330,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -373,7 +373,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -416,7 +416,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
            "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
@@ -459,7 +459,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
            "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
@@ -502,7 +502,7 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://gitlab.com/tezos/tezos", "scheme": "https", "host":
            "gitlab.com", "port": null, "path": "/tezos/tezos", "has_port":
@@ -545,7 +545,8 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "simple-maven-dep", "kind": "gitlab", "components":
          ["gitlab", "gitlab-examples", "maven", "simple-maven-dep"],
-        "identifier": "gitlab/gitlab-examples/maven/simple-maven-dep", "pages":
+        "identifier": "gitlab/gitlab-examples/maven/simple-maven-dep",
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target":
            "https://gitlab.com/gitlab-examples/maven/simple-maven-dep", "scheme":
@@ -612,7 +613,8 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
-         "sourcehut/tim-ats-d/ofortune", "pages":
+         "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
+        "pages":
          {"home":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
           "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
@@ -656,7 +658,8 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
-         "sourcehut/tim-ats-d/ofortune", "pages":
+         "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
+        "pages":
          {"home":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
           "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
@@ -700,7 +703,8 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
-         "sourcehut/tim-ats-d/ofortune", "pages":
+         "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
+        "pages":
          {"home":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
           "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
@@ -744,7 +748,8 @@ let%expect_test "from_data - from identifier" =
     {|
     [V]	{"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
-         "sourcehut/tim-ats-d/ofortune", "pages":
+         "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
+        "pages":
          {"home":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune", "scheme": "https",
           "host": "git.sr.ht", "port": null, "path": "/~tim-ats-d/ofortune",
@@ -792,7 +797,7 @@ let%expect_test "from_data - from record" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -840,7 +845,7 @@ let%expect_test "from_data - from record" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -887,7 +892,7 @@ let%expect_test "from_data - from unknown record" =
     {|
     [V]	{"name": "custom-capsule", "kind": "custom", "components":
          ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
-        "pages":
+        "is_known": false, "is_custom": true, "pages":
          {"home":
           {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
            "https", "host": "xvw.lol", "port": null, "path":
@@ -922,7 +927,7 @@ let%expect_test "from_data - from unknown record" =
     {|
     [V]	{"name": "custom-capsule", "kind": "custom", "components":
          ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
-        "pages":
+        "is_known": false, "is_custom": true, "pages":
          {"home":
           {"target": "https://xvw.lol/capsule/", "scheme": "https", "host":
            "xvw.lol", "port": null, "path": "/capsule/", "has_port": false,
@@ -965,7 +970,7 @@ let%expect_test "from_data - from uri" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -1008,7 +1013,7 @@ let%expect_test "from_data - from uri" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -1051,7 +1056,7 @@ let%expect_test "from_data - from uri" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -1094,7 +1099,7 @@ let%expect_test "from_data - from uri" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":
@@ -1140,7 +1145,7 @@ let%expect_test "from_data - from uri" =
     {|
     [V]	{"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
-        "pages":
+        "is_known": true, "is_custom": false, "pages":
          {"home":
           {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
            "github.com", "port": null, "path": "/xvw/capsule", "has_port":

@@ -23,6 +23,8 @@ type t
         "kind": string,
         "components": List<string>,
         "identifier": string,
+        "is_known": bool,
+        "is_custom": bool,
         "page": {
             "home": Url,
             "bug_tracker": Option<Url>,
