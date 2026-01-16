@@ -353,16 +353,12 @@ module Validation = struct
 
   let required_kind fields =
     let open Yocaml.Data.Validation in
-    field (fetch fields "kind") (option kind_enum)
-    |? field (fetch fields "provider") (option kind_enum)
-    $? field (fetch fields "forge") kind_enum
+    req fields "kind" ~alt:[ "provider"; "forge" ] kind_enum
   ;;
 
-  let required_repository o =
+  let required_repository fields =
     let open Yocaml.Data.Validation in
-    field (fetch o "repository") (option Ext.Misc.as_name)
-    |? field (fetch o "name") (option Ext.Misc.as_name)
-    $? field (fetch o "repo") Ext.Misc.as_name
+    req fields "repository" ~alt:[ "name"; "repo" ] Ext.Misc.as_name
   ;;
 
   let resolve_derivable_links =
@@ -377,7 +373,7 @@ module Validation = struct
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ kind = required_kind fields
-      and+ username = required fields "user" Ext.Misc.as_name
+      and+ username = req fields "user" Ext.Misc.as_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       let make =
@@ -394,8 +390,8 @@ module Validation = struct
   let from_record_org =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ name = required fields "name" Ext.Misc.as_name
-      and+ project = required fields "project" Ext.Misc.as_name
+      let+ name = req fields "name" Ext.Misc.as_name
+      and+ project = req fields "project" Ext.Misc.as_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       gitlab_org ~bug_tracker ~releases ~name ~project ~repository ())
@@ -409,20 +405,13 @@ module Validation = struct
   let from_unknown_record =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ kind = optional fields "kind" Ext.Misc.as_name
-      and+ default_branch = optional fields "default_branch" Ext.Misc.as_name
-      and+ bug_tracker = optional fields "bug_tracker" Url.from_data
-      and+ releases = optional fields "releases" Url.from_data
+      let+ kind = opt fields "kind" Ext.Misc.as_name
+      and+ default_branch = opt fields "default_branch" Ext.Misc.as_name
+      and+ bug_tracker = opt fields "bug_tracker" Url.from_data
+      and+ releases = opt fields "releases" Url.from_data
       and+ repository = required_repository fields
-      and+ home =
-        field (fetch fields "home") (option Url.from_data)
-        |? field (fetch fields "www") (option Url.from_data)
-        $? field (fetch fields "homepage") Url.from_data
-      and+ blob =
-        field (fetch fields "blob") (option Url.from_data)
-        |? field (fetch fields "root") (option Url.from_data)
-        $? field (fetch fields "resolver") Url.from_data
-      in
+      and+ home = req fields "home" ~alt:[ "www"; "homepage" ] Url.from_data
+      and+ blob = req fields "blob" ~alt:[ "root"; "resolver" ] Url.from_data in
       make
         ?kind
         ?default_branch
@@ -461,11 +450,7 @@ module Validation = struct
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ bug_tracker, releases = sub_record fields resolve_derivable_links
-      and+ repo =
-        field (fetch fields "repository") (option string)
-        |? field (fetch fields "name") (option string)
-        $? field (fetch fields "repo") string
-      in
+      and+ repo = required_repository fields in
       bug_tracker, releases, repo)
     & fun (bug_tracker, releases, repo) ->
     from_string

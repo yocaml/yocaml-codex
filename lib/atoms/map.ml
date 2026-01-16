@@ -30,22 +30,15 @@ struct
          Ok (Yocaml.Data.record [ "fst", a; "snd", b ])
        | x -> Ok x)
      & pair S.from_data f)
-    / record (fun o ->
+    / record (fun fields ->
       let+ key =
-        field o.${"key"} (option S.from_data)
-        |? field o.${"k"} (option S.from_data)
-        |? field o.${"index"} (option S.from_data)
-        |? field o.${"i"} (option S.from_data)
-        |? field o.${"fst"} (option S.from_data)
-        |? field o.${"first"} (option S.from_data)
-        $? field o.${"0"} S.from_data
+        req
+          fields
+          "key"
+          ~alt:[ "k"; "index"; "i"; "fst"; "first"; "0" ]
+          S.from_data
       and+ value =
-        field o.${"value"} (option f)
-        |? field o.${"val"} (option f)
-        |? field o.${"v"} (option f)
-        |? field o.${"snd"} (option f)
-        |? field o.${"second"} (option f)
-        $? field o.${"1"} f
+        req fields "value" ~alt:[ "val"; "v"; "snd"; "second"; "1" ] f
       in
       key, value)
   ;;

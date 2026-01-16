@@ -15,18 +15,11 @@ let make ?name ?description url =
 
 let from_record =
   let open Yocaml.Data.Validation in
-  record (fun o ->
-    let+ name =
-      field o.${"name"} (option (string & String.not_blank))
-      |? field o.${"title"} (option (string & String.not_blank))
+  record (fun fields ->
+    let+ name = opt fields "name" ~alt:[ "title" ] (string & String.not_blank)
     and+ description =
-      field o.${"description"} (option (string & String.not_blank))
-      |? field o.${"desc"} (option (string & String.not_blank))
-      |? field o.${"alt"} (option (string & String.not_blank))
-    and+ url =
-      field o.${"url"} (option Url.from_data)
-      $? field o.${"target"} Url.from_data
-    in
+      opt fields "description" ~alt:[ "desc"; "alt" ] (string & String.not_blank)
+    and+ url = req fields "url" ~alt:[ "target"; "link" ] Url.from_data in
     make ?name ?description url)
 ;;
 

@@ -225,8 +225,8 @@ module Validation = struct
   let mastodon_from_record =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ instance = required fields "instance" Url.from_data
-      and+ username = required fields "username" Ext.Misc.as_name in
+      let+ instance = req fields "instance" Url.from_data
+      and+ username = req fields "username" ~alt:[ "user" ] Ext.Misc.as_name in
       mastodon ~instance ~username ())
   ;;
 

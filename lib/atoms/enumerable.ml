@@ -13,11 +13,11 @@ let to_data ~kind ~cardinal ~is_empty on_element value =
 let from_data ~from_list validation =
   let open Yocaml.Data.Validation in
   list_of validation
-  / record (fun o ->
-    field o.${"elements"} (option (list_of validation))
-    |? field o.${"set"} (option (list_of validation))
-    |? field o.${"values"} (option (list_of validation))
-    |? field o.${"all"} (option (list_of validation))
-    $? Ok [])
+  / record (fun fields ->
+    req
+      fields
+      "elements"
+      ~alt:[ "set"; "values"; "all"; "map" ]
+      (list_of validation))
   $ from_list
 ;;
