@@ -23,14 +23,21 @@ let split_path p =
     |> Stdlib.String.lowercase_ascii)
 ;;
 
+let ltrim_path = function
+  | x :: xs when Stdlib.String.(equal (trim x)) "" -> xs
+  | xs -> xs
+;;
+
 let as_name =
   let open Yocaml.Data.Validation in
   (string
    $ fun x ->
    x
    |> Stdlib.String.trim
-   |> Stdlib.String.lowercase_ascii
-   |> Ext_string.remove_leading_arobase)
+   |> Ext_string.remove_leading_arobase
+   |> Ext_string.remove_leading_char_when (function
+     | '@' | '~' -> true
+     | _ -> false))
   & String.not_blank
 ;;
 

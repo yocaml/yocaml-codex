@@ -457,3 +457,441 @@ let%expect_test "Validate a mastodon account 2" =
          "query_string": null, "has_query_string": false}}
     |}]
 ;;
+
+let%expect_test "Validate a mastodon account 3" =
+  let input =
+    let open Yocaml.Data in
+    string "mastodon/merveilles.town/xvw"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+         "merveilles.town/xvw", "domain":
+         {"target": "https://merveilles.town", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a github account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "github/xvw"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "github", "is_known": true, "is_custom": false, "username":
+         "xvw", "domain":
+         {"target": "https://github.com", "scheme": "https", "host":
+          "github.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://github.com/xvw", "scheme": "https", "host":
+          "github.com", "port": null, "path": "/xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a gitlab account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "gitlab/xvw"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "gitlab", "is_known": true, "is_custom": false, "username":
+         "xvw", "domain":
+         {"target": "https://gitlab.com", "scheme": "https", "host":
+          "gitlab.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://gitlab.com/xvw", "scheme": "https", "host":
+          "gitlab.com", "port": null, "path": "/xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a codeberg account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "codeberg/forgejo"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "codeberg", "is_known": true, "is_custom": false, "username":
+         "forgejo", "domain":
+         {"target": "https://codeberg.org", "scheme": "https", "host":
+          "codeberg.org", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://codeberg.org/forgejo", "scheme": "https", "host":
+          "codeberg.org", "port": null, "path": "/forgejo", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a sourcehut account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "sourcehut/tim-ats-d"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
+         "tim-ats-d", "domain":
+         {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
+          null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://sr.ht/~tim-ats-d", "scheme": "https", "host":
+          "sr.ht", "port": null, "path": "/~tim-ats-d", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a x account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "x/@vdwxv"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "x", "is_known": true, "is_custom": false, "username": "vdwxv",
+        "domain":
+         {"target": "https://x.com", "scheme": "https", "host": "x.com", "port":
+          null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://x.com/vdwxv", "scheme": "https", "host": "x.com",
+         "port": null, "path": "/vdwxv", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a bsky account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "bsky/xvw.lol"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "bluesky", "is_known": true, "is_custom": false, "username":
+         "xvw.lol", "domain":
+         {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
+         "port": null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https",
+         "host": "bsky.app", "port": null, "path": "/profile/xvw.lol",
+         "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a linkedin account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "linkedin/xavdw"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "linkedin", "is_known": true, "is_custom": false, "username":
+         "xavdw", "domain":
+         {"target": "https://linkedin.com", "scheme": "https", "host":
+          "linkedin.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://linkedin.com/in/xavdw", "scheme": "https", "host":
+          "linkedin.com", "port": null, "path": "/in/xavdw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a instagram account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "ig/vdwxv"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "instagram", "is_known": true, "is_custom": false, "username":
+         "vdwxv", "domain":
+         {"target": "https://instagram.com", "scheme": "https", "host":
+          "instagram.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://instagram.com/vdwxv", "scheme": "https", "host":
+          "instagram.com", "port": null, "path": "/vdwxv", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a facebook account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "fb/nukidoudi"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "facebook", "is_known": true, "is_custom": false, "username":
+         "nukidoudi", "domain":
+         {"target": "https://facebook.com", "scheme": "https", "host":
+          "facebook.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://facebook.com/nukidoudi", "scheme": "https", "host":
+          "facebook.com", "port": null, "path": "/nukidoudi", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a cara account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "cara/vdwxv"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "cara", "is_known": true, "is_custom": false, "username":
+         "vdwxv", "domain":
+         {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
+         "port": null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://cara.app/vdwxv", "scheme": "https", "host":
+          "cara.app", "port": null, "path": "/vdwxv", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a threads account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "threads/xvw"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "threads", "is_known": true, "is_custom": false, "username":
+         "xvw", "domain":
+         {"target": "https://threads.com", "scheme": "https", "host":
+          "threads.com", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://threads.com/@xvw", "scheme": "https", "host":
+          "threads.com", "port": null, "path": "/@xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate a cara account from string" =
+  let input =
+    let open Yocaml.Data in
+    string "cara/vdwxv"
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "cara", "is_known": true, "is_custom": false, "username":
+         "vdwxv", "domain":
+         {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
+         "port": null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://cara.app/vdwxv", "scheme": "https", "host":
+          "cara.app", "port": null, "path": "/vdwxv", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate from a list - 1" =
+  let input =
+    let open Yocaml.Data in
+    list_of string [ "sr.ht"; "~tim-ats-d" ]
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
+         "tim-ats-d", "domain":
+         {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
+          null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://sr.ht/~tim-ats-d", "scheme": "https", "host":
+          "sr.ht", "port": null, "path": "/~tim-ats-d", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate from a list - 2" =
+  let input =
+    let open Yocaml.Data in
+    list_of string [ "mastodon"; "merveilles.town"; "xvw" ]
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+         "merveilles.town/xvw", "domain":
+         {"target": "https://merveilles.town", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
+          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate from a known record" =
+  let input =
+    let open Yocaml.Data in
+    record [ "platform", string "bsky"; "username", string "xvw.lol" ]
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "bluesky", "is_known": true, "is_custom": false, "username":
+         "xvw.lol", "domain":
+         {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
+         "port": null, "path": "/", "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https",
+         "host": "bsky.app", "port": null, "path": "/profile/xvw.lol",
+         "has_port": false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;
+
+let%expect_test "Validate from an unknown record" =
+  let input =
+    let open Yocaml.Data in
+    record
+      [ "platform", string "muhokama"
+      ; "username", string "xvw"
+      ; "www", string "https://ring.muhokama.fun/u/xvw"
+      ]
+  in
+  input |> Social_account.from_data |> dump_validation Social_account.to_data;
+  [%expect
+    {|
+    [V]	{"kind": "muhokama", "is_known": false, "is_custom": true, "username":
+         "xvw", "domain":
+         {"target": "https://ring.muhokama.fun/", "scheme": "https", "host":
+          "ring.muhokama.fun", "port": null, "path": "/", "has_port": false,
+         "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false},
+        "url":
+         {"target": "https://ring.muhokama.fun/u/xvw", "scheme": "https", "host":
+          "ring.muhokama.fun", "port": null, "path": "/u/xvw", "has_port":
+          false, "query_params":
+          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+          "elements": []},
+         "query_string": null, "has_query_string": false}}
+    |}]
+;;

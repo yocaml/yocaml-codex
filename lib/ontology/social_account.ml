@@ -148,67 +148,77 @@ let to_data account =
 ;;
 
 module Validation = struct
-  (* let github_kind = [ "github.com"; "github"; "gh" ] *)
-  (* let gitlab_kind = [ "gitlab.com"; "gitlab"; "gl" ] *)
-  (* let codeberg_kind = [ "codeberg.org"; "codeberg"; "cb" ] *)
+  let github_kind = [ "github.com"; "github"; "gh" ]
+  let gitlab_kind = [ "gitlab.com"; "gitlab"; "gl" ]
+  let codeberg_kind = [ "codeberg.org"; "codeberg"; "cb" ]
 
-  (* let sourcehut_kind = *)
-  (*   [ "sourcehut.org"; "sr.ht"; "git.sr.ht"; "sourcehut"; "sr" ] *)
-  (* ;; *)
+  let sourcehut_kind =
+    [ "sourcehut.org"; "sr.ht"; "git.sr.ht"; "sourcehut"; "sr" ]
+  ;;
 
-  (* let x_kind = [ "x.com"; "twitter.com"; "x"; "twitter" ] *)
-  (* let bluesky_kind = [ "bsky.app"; "bluesky"; "bsky" ] *)
-  (* let linkedin_kind = [ "linkedin.com"; "linkedin" ] *)
-  (* let instagram_kind = [ "instagram.com"; "instagram"; "ig" ] *)
-  (* let facebook_kind = [ "facebook.com"; "facebook"; "fb" ] *)
-  (* let cara_kind = [ "cara.app"; "cara" ] *)
-  (* let threads_kind = [ "threads.com"; "threads" ] *)
+  let x_kind = [ "x.com"; "twitter.com"; "x"; "twitter" ]
+  let bluesky_kind = [ "bsky.app"; "bluesky"; "bsky" ]
+  let linkedin_kind = [ "linkedin.com"; "linkedin" ]
+  let instagram_kind = [ "instagram.com"; "instagram"; "insta"; "ig" ]
+  let facebook_kind = [ "facebook.com"; "facebook"; "fb" ]
+  let cara_kind = [ "cara.app"; "cara" ]
+  let threads_kind = [ "threads.com"; "threads" ]
 
-  (* let all_kind = *)
-  (*   github_kind *)
-  (*   @ gitlab_kind *)
-  (*   @ codeberg_kind *)
-  (*   @ sourcehut_kind *)
-  (*   @ x_kind *)
-  (*   @ bluesky_kind *)
-  (*   @ linkedin_kind *)
-  (*   @ instagram_kind *)
-  (*   @ facebook_kind *)
-  (*   @ cara_kind *)
-  (*   @ threads_kind *)
-  (* ;; *)
+  let all_kind =
+    github_kind
+    @ gitlab_kind
+    @ codeberg_kind
+    @ sourcehut_kind
+    @ x_kind
+    @ bluesky_kind
+    @ linkedin_kind
+    @ instagram_kind
+    @ facebook_kind
+    @ cara_kind
+    @ threads_kind
+  ;;
 
-  (* let in_enum = Ext.Misc.in_str_enum ~case_sensitive:false *)
+  let in_enum = Ext.Misc.in_str_enum ~case_sensitive:false
 
-  (* let kind_enum = *)
-  (*   let open Yocaml.Data.Validation in *)
-  (*   (string $ fun x -> x |> Stdlib.String.trim |> Stdlib.String.lowercase_ascii) *)
-  (*   & String.one_of ~case_sensitive:false all_kind *)
-  (*   & fun k -> *)
-  (*   if in_enum github_kind k *)
-  (*   then Ok `Github *)
-  (*   else if in_enum gitlab_kind k *)
-  (*   then Ok `Gitlab *)
-  (*   else if in_enum codeberg_kind k *)
-  (*   then Ok `Codeberg *)
-  (*   else if in_enum sourcehut_kind k *)
-  (*   then Ok `Sourcehut *)
-  (*   else if in_enum x_kind k *)
-  (*   then Ok `X *)
-  (*   else if in_enum bluesky_kind k *)
-  (*   then Ok `Bluesky *)
-  (*   else if in_enum linkedin_kind k *)
-  (*   then Ok `Linkedin *)
-  (*   else if in_enum instagram_kind k *)
-  (*   then Ok `Instagram *)
-  (*   else if in_enum facebook_kind k *)
-  (*   then Ok `Facebook *)
-  (*   else if in_enum cara_kind k *)
-  (*   then Ok `Cara *)
-  (*   else if in_enum threads_kind k *)
-  (*   then Ok `Threads *)
-  (*   else fail_with ~given:k "Invalid social media account provider" *)
-  (* ;; *)
+  let kind_enum =
+    let open Yocaml.Data.Validation in
+    (string $ fun x -> x |> Stdlib.String.trim |> Stdlib.String.lowercase_ascii)
+    & String.one_of ~case_sensitive:false all_kind
+    & fun k ->
+    if in_enum github_kind k
+    then Ok `Github
+    else if in_enum gitlab_kind k
+    then Ok `Gitlab
+    else if in_enum codeberg_kind k
+    then Ok `Codeberg
+    else if in_enum sourcehut_kind k
+    then Ok `Sourcehut
+    else if in_enum x_kind k
+    then Ok `X
+    else if in_enum bluesky_kind k
+    then Ok `Bluesky
+    else if in_enum linkedin_kind k
+    then Ok `Linkedin
+    else if in_enum instagram_kind k
+    then Ok `Instagram
+    else if in_enum facebook_kind k
+    then Ok `Facebook
+    else if in_enum cara_kind k
+    then Ok `Cara
+    else if in_enum threads_kind k
+    then Ok `Threads
+    else fail_with ~given:k "Invalid social media account provider"
+  ;;
+
+  let on_kind f v fields =
+    f ?alt:(Some [ "platform"; "network" ]) fields "kind" v
+  ;;
+
+  let required_kind = on_kind Yocaml.Data.Validation.req kind_enum
+
+  let optional_kind =
+    on_kind Yocaml.Data.Validation.opt Yocaml.Data.Validation.string
+  ;;
 
   let mastodon_from_string =
     let open Yocaml.Data.Validation in
@@ -222,11 +232,19 @@ module Validation = struct
     | _ -> fail_with ~given:str "Not a mastodon account"
   ;;
 
+  let required_username fields =
+    Yocaml.Data.Validation.req
+      fields
+      "username"
+      ~alt:[ "user"; "profile"; "id"; "ident" ]
+      Ext.Misc.as_name
+  ;;
+
   let mastodon_from_record =
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ instance = req fields "instance" Url.from_data
-      and+ username = req fields "username" ~alt:[ "user" ] Ext.Misc.as_name in
+      and+ username = required_username fields in
       mastodon ~instance ~username ())
   ;;
 
@@ -234,6 +252,73 @@ module Validation = struct
     let open Yocaml.Data.Validation in
     mastodon_from_string / mastodon_from_record
   ;;
+
+  let record_from_path ?kind social_path =
+    let open Yocaml.Data in
+    let k = "kind", option string kind in
+    let opt_k =
+      Option.map (fun x -> Stdlib.String.(trim @@ lowercase_ascii x)) kind
+    in
+    match Ext.Misc.ltrim_path social_path with
+    | user :: ([ "" ] | []) -> k :: [ "username", string user ] |> record
+    | instance :: user :: ([ "" ] | [])
+      when Option.equal String.equal opt_k (Some "mastodon") ->
+      record [ "instance", string instance; "username", string user ]
+    | _ -> record [ k ]
+  ;;
+
+  let from_known_record =
+    let open Yocaml.Data.Validation in
+    mastodon_from_record
+    / record (fun fields ->
+      let+ kind = required_kind fields
+      and+ username = required_username fields in
+      let make =
+        match kind with
+        | `Github -> github
+        | `Gitlab -> gitlab
+        | `Codeberg -> codeberg
+        | `Sourcehut -> sourcehut
+        | `X -> x
+        | `Bluesky -> bluesky
+        | `Linkedin -> linkedin
+        | `Instagram -> instagram
+        | `Facebook -> facebook
+        | `Cara -> cara
+        | `Threads -> threads
+      in
+      make ~username ())
+  ;;
+
+  let from_unkown_record =
+    let open Yocaml.Data.Validation in
+    record (fun fields ->
+      let+ kind = optional_kind fields
+      and+ url = req fields "url" ~alt:[ "www"; "link" ] Url.from_data
+      and+ username = required_username fields in
+      make ?kind ~url ~username ())
+  ;;
+
+  let from_identifier s =
+    let fields =
+      match Ext.Misc.split_path s with
+      | [] -> Yocaml.Data.record []
+      | kind :: xs -> record_from_path ~kind xs
+    in
+    let open Yocaml.Data.Validation in
+    (mastodon_from_record / from_known_record) fields
+  ;;
+
+  let from_string =
+    let open Yocaml.Data.Validation in
+    ((list_of string $ Stdlib.String.concat "/") / string) & from_identifier
+  ;;
 end
 
-let from_data = Validation.mastodon
+let from_data =
+  let open Yocaml.Data.Validation in
+  Validation.from_string
+  / Validation.mastodon
+  / Validation.from_unkown_record
+  / Validation.from_known_record
+;;

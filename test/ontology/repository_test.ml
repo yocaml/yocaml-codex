@@ -1177,3 +1177,46 @@ let%expect_test "from_data - from uri" =
          "has_bug_tracker": true, "has_releases": true}}
     |}]
 ;;
+
+let%expect_test "from_data - from list 1" =
+  let input =
+    let open Yocaml.Data in
+    list_of string [ "github"; "xvw"; "capsule" ]
+  in
+  input |> Repository.from_data |> dump_validation Repository.to_data;
+  [%expect
+    {|
+    [V]	{"name": "capsule", "kind": "github", "components":
+         ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
+        "is_known": true, "is_custom": false, "pages":
+         {"home":
+          {"target": "https://github.com/xvw/capsule", "scheme": "https", "host":
+           "github.com", "port": null, "path": "/xvw/capsule", "has_port":
+           false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "bug_tracker":
+          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
+          "host": "github.com", "port": null, "path": "/xvw/capsule/issues",
+          "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "releases":
+          {"target": "https://github.com/xvw/capsule/releases", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/releases", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "blob_root":
+          {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
+           "https", "host": "github.com", "port": null, "path":
+           "/xvw/capsule/blob/main", "has_port": false, "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": null, "has_query_string": false},
+         "has_bug_tracker": true, "has_releases": true}}
+    |}]
+;;

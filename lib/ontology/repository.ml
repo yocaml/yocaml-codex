@@ -309,11 +309,6 @@ module Validation = struct
     else fail_with ~given:k "Invalid repository provider"
   ;;
 
-  let ltrim_path = function
-    | x :: xs when String.(equal (trim x)) "" -> xs
-    | xs -> xs
-  ;;
-
   let remove_dot_git s =
     match String.lowercase_ascii @@ Filename.extension s with
     | ".git" -> Filename.remove_extension s
@@ -325,7 +320,7 @@ module Validation = struct
     let k = "kind", option string kind
     and releases = "releases", option Url.to_data releases
     and bug_tracker = "bug_tracker", option Url.to_data bug_tracker in
-    match ltrim_path repo_path with
+    match Ext.Misc.ltrim_path repo_path with
     | user :: repository :: ([ "" ] | []) ->
       k
       :: releases
@@ -442,7 +437,7 @@ module Validation = struct
 
   let from_string ?releases ?bug_tracker =
     let open Yocaml.Data.Validation in
-    string
+    ((list_of string $ Stdlib.String.concat "/") / string)
     & (from_identifier ?releases ?bug_tracker / from_uri ?releases ?bug_tracker)
   ;;
 
