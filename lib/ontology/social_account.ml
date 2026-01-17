@@ -322,3 +322,35 @@ let from_data =
   / Validation.from_unkown_record
   / Validation.from_known_record
 ;;
+
+let compare a b =
+  let a = url a
+  and b = url b in
+  Url.compare a b
+;;
+
+let equal a b =
+  let a = url a
+  and b = url b in
+  Url.equal a b
+;;
+
+module Orderable = struct
+  type nonrec t = t
+
+  let compare = compare
+  let to_data = to_data
+  let from_data = from_data
+end
+
+module Set = struct
+  module S = Stdlib.Set.Make (Orderable)
+  include S
+  include Set.Make (S) (Orderable) (Orderable)
+end
+
+module Map = struct
+  module S = Stdlib.Map.Make (Orderable)
+  include S
+  include Map.Make (S) (Orderable) (Orderable)
+end
