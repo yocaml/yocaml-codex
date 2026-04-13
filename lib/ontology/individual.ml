@@ -5,6 +5,12 @@ type t =
   ; gender : Gender.t option
   }
 
+let compare { display_name; _ } other =
+  (* HACK: the comparison seems a little bit lax here. But for the moment I
+     think it is sufficient. *)
+  String.compare display_name other.display_name
+;;
+
 let make ?gender ?first_name ?last_name display_name =
   { display_name; first_name; last_name; gender }
 ;;
@@ -156,3 +162,23 @@ let from_data =
   let open Yocaml.Data.Validation in
   from_string / from_record
 ;;
+
+module Orderable = struct
+  type nonrec t = t
+
+  let compare = compare
+  let to_data = to_data
+  let from_data = from_data
+end
+
+module Set = struct
+  module S = Stdlib.Set.Make (Orderable)
+  include S
+  include Set.Make (S) (Orderable) (Orderable)
+end
+
+module Map = struct
+  module S = Stdlib.Map.Make (Orderable)
+  include S
+  include Map.Make (S) (Orderable) (Orderable)
+end
