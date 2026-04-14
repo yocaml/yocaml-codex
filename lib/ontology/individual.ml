@@ -3,21 +3,23 @@ type t =
   ; first_name : string option
   ; last_name : string option
   ; gender : Gender.t option
+  ; email : Email.t option
   }
 
-let compare { display_name; _ } other =
+let compare { display_name; email; _ } other =
   (* HACK: the comparison seems a little bit lax here. But for the moment I
      think it is sufficient. *)
-  String.compare display_name other.display_name
+  let c = String.compare display_name other.display_name in
+  if Int.equal c 0 then Option.compare Email.compare email other.email else c
 ;;
 
-let make ?gender ?first_name ?last_name display_name =
-  { display_name; first_name; last_name; gender }
+let make ?gender ?first_name ?last_name ?email display_name =
+  { display_name; first_name; last_name; gender; email }
 ;;
 
 let to_syndication inv = Yocaml_syndication.Person.make inv.display_name
 
-let to_data { display_name; first_name; last_name; gender } =
+let to_data { display_name; first_name; last_name; gender; email } =
   let open Yocaml.Data in
   let names = Ext.Option.zip first_name last_name in
   record
@@ -25,9 +27,11 @@ let to_data { display_name; first_name; last_name; gender } =
     ; "slug", string (Yocaml.Slug.from display_name)
     ; "first_name", option string first_name
     ; "last_name", option string last_name
+    ; "email", option Email.to_data email
     ; "gender", option Gender.to_data gender
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
+    ; "has_email", bool @@ Ext.Option.to_bool email
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
     ; ( "with_names"
@@ -149,8 +153,9 @@ let from_record =
   record (fun fields ->
     let+ display_name, first_name, last_name =
       (validate_name & from_triple) fields
+    and+ email = opt fields "email" ~alt:[ "mail" ] Email.from_data
     and+ gender = opt fields "gender" Gender.from_data in
-    make ?gender ?first_name ?last_name display_name)
+    make ?gender ?first_name ?email ?last_name display_name)
 ;;
 
 let from_data =
