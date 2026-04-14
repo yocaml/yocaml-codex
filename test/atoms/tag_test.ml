@@ -3,26 +3,26 @@ open Test_util
 
 let%expect_test "validate a tag from string" =
   Yocaml.Data.string "food" |> Tag.from_data |> dump_validation Tag.to_data;
-  [%expect {| [V]	{"value": "food", "slug": "food"} |}]
+  [%expect {| [V] {"value": "food", "slug": "food"} |}]
 ;;
 
 let%expect_test "validate a tag trims whitespace" =
   Yocaml.Data.string "  Machine Learning  "
   |> Tag.from_data
   |> dump_validation Tag.to_data;
-  [%expect {| [V]	{"value": "Machine Learning", "slug": "machine-learning"} |}]
+  [%expect {| [V] {"value": "Machine Learning", "slug": "machine-learning"} |}]
 ;;
 
 let%expect_test "validate a tag removes leading hash" =
   Yocaml.Data.string "#AI" |> Tag.from_data |> dump_validation Tag.to_data;
-  [%expect {| [V]	{"value": "AI", "slug": "ai"} |}]
+  [%expect {| [V] {"value": "AI", "slug": "ai"} |}]
 ;;
 
 let%expect_test "reject empty tag" =
   Yocaml.Data.string "" |> Tag.from_data |> dump_validation Tag.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 
@@ -37,7 +37,7 @@ let%expect_test "reject blank tag" =
   Yocaml.Data.string "   " |> Tag.from_data |> dump_validation Tag.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 

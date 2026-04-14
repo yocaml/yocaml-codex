@@ -285,7 +285,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -328,7 +328,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -371,7 +371,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -414,7 +414,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "tezos", "kind": "gitlab", "components":
+    [V] {"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -457,7 +457,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "tezos", "kind": "gitlab", "components":
+    [V] {"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -500,7 +500,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "tezos", "kind": "gitlab", "components":
+    [V] {"name": "tezos", "kind": "gitlab", "components":
          ["gitlab", "tezos", "tezos"], "identifier": "gitlab/tezos/tezos",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -543,7 +543,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "simple-maven-dep", "kind": "gitlab", "components":
+    [V] {"name": "simple-maven-dep", "kind": "gitlab", "components":
          ["gitlab", "gitlab-examples", "maven", "simple-maven-dep"],
         "identifier": "gitlab/gitlab-examples/maven/simple-maven-dep",
         "is_known": true, "is_custom": false, "pages":
@@ -595,7 +595,7 @@ let%expect_test "from_data - from identifier fail because of components" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 
@@ -614,7 +614,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+    [V] {"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
          "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
         "pages":
@@ -659,7 +659,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+    [V] {"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
          "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
         "pages":
@@ -704,7 +704,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+    [V] {"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
          "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
         "pages":
@@ -749,7 +749,7 @@ let%expect_test "from_data - from identifier" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "ofortune", "kind": "sourcehut", "components":
+    [V] {"name": "ofortune", "kind": "sourcehut", "components":
          ["sourcehut", "tim-ats-d", "ofortune"], "identifier":
          "sourcehut/tim-ats-d/ofortune", "is_known": true, "is_custom": false,
         "pages":
@@ -798,7 +798,7 @@ let%expect_test "from_data - from record" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -846,7 +846,7 @@ let%expect_test "from_data - from record" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -893,7 +893,7 @@ let%expect_test "from_data - from unknown record" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "custom-capsule", "kind": "custom", "components":
+    [V] {"name": "custom-capsule", "kind": "custom", "components":
          ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
         "is_known": false, "is_custom": true, "pages":
          {"home":
@@ -928,7 +928,7 @@ let%expect_test "from_data - from unknown record" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "custom-capsule", "kind": "custom", "components":
+    [V] {"name": "custom-capsule", "kind": "custom", "components":
          ["custom", "custom-capsule"], "identifier": "custom/custom-capsule",
         "is_known": false, "is_custom": true, "pages":
          {"home":
@@ -971,7 +971,7 @@ let%expect_test "from_data - from uri" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -1014,7 +1014,7 @@ let%expect_test "from_data - from uri" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -1057,7 +1057,7 @@ let%expect_test "from_data - from uri" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -1100,7 +1100,7 @@ let%expect_test "from_data - from uri" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -1146,7 +1146,7 @@ let%expect_test "from_data - from uri" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":
@@ -1189,7 +1189,7 @@ let%expect_test "from_data - from list 1" =
   input |> Repository.from_data |> dump_validation Repository.to_data;
   [%expect
     {|
-    [V]	{"name": "capsule", "kind": "github", "components":
+    [V] {"name": "capsule", "kind": "github", "components":
          ["github", "xvw", "capsule"], "identifier": "github/xvw/capsule",
         "is_known": true, "is_custom": false, "pages":
          {"home":

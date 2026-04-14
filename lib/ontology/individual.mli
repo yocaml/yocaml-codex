@@ -31,7 +31,7 @@ module Map : sig
   include Sigs.MAP with type 'a t := 'a t
 end
 
-(** {1 Utilitie}s *)
+(** {1 Utilities} *)
 
 (** [to_meta authors] create a list of creators
     [<meta name="creator" content="display-name"]/>. *)

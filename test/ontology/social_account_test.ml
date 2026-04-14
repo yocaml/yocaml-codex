@@ -387,7 +387,7 @@ let%expect_test "Validate a mastodon account 1" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "merveilles.town/xvw", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
@@ -414,7 +414,7 @@ let%expect_test "Validate a mastodon account 2" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "merveilles.town/xvw", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
@@ -440,7 +440,7 @@ let%expect_test "Validate a mastodon account 2" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "merveilles.town/xvw", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
@@ -466,7 +466,7 @@ let%expect_test "Validate a mastodon account 3" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "merveilles.town/xvw", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
@@ -492,7 +492,7 @@ let%expect_test "Validate a github account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "github", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "github", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://github.com", "scheme": "https", "host":
           "github.com", "port": null, "path": "/", "has_port": false,
@@ -518,7 +518,7 @@ let%expect_test "Validate a gitlab account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "gitlab", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "gitlab", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://gitlab.com", "scheme": "https", "host":
           "gitlab.com", "port": null, "path": "/", "has_port": false,
@@ -544,7 +544,7 @@ let%expect_test "Validate a codeberg account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "codeberg", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "codeberg", "is_known": true, "is_custom": false, "username":
          "forgejo", "domain":
          {"target": "https://codeberg.org", "scheme": "https", "host":
           "codeberg.org", "port": null, "path": "/", "has_port": false,
@@ -570,7 +570,7 @@ let%expect_test "Validate a sourcehut account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
          "tim-ats-d", "domain":
          {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
           null, "path": "/", "has_port": false, "query_params":
@@ -595,7 +595,7 @@ let%expect_test "Validate a x account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "x", "is_known": true, "is_custom": false, "username": "vdwxv",
+    [V] {"kind": "x", "is_known": true, "is_custom": false, "username": "vdwxv",
         "domain":
          {"target": "https://x.com", "scheme": "https", "host": "x.com", "port":
           null, "path": "/", "has_port": false, "query_params":
@@ -619,7 +619,7 @@ let%expect_test "Validate a bsky account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "bluesky", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "bluesky", "is_known": true, "is_custom": false, "username":
          "xvw.lol", "domain":
          {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
          "port": null, "path": "/", "has_port": false, "query_params":
@@ -644,7 +644,7 @@ let%expect_test "Validate a linkedin account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "linkedin", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "linkedin", "is_known": true, "is_custom": false, "username":
          "xavdw", "domain":
          {"target": "https://linkedin.com", "scheme": "https", "host":
           "linkedin.com", "port": null, "path": "/", "has_port": false,
@@ -670,7 +670,7 @@ let%expect_test "Validate a instagram account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "instagram", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "instagram", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://instagram.com", "scheme": "https", "host":
           "instagram.com", "port": null, "path": "/", "has_port": false,
@@ -696,7 +696,7 @@ let%expect_test "Validate a facebook account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "facebook", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "facebook", "is_known": true, "is_custom": false, "username":
          "nukidoudi", "domain":
          {"target": "https://facebook.com", "scheme": "https", "host":
           "facebook.com", "port": null, "path": "/", "has_port": false,
@@ -722,7 +722,7 @@ let%expect_test "Validate a cara account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "cara", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "cara", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
          "port": null, "path": "/", "has_port": false, "query_params":
@@ -747,7 +747,7 @@ let%expect_test "Validate a threads account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "threads", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "threads", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://threads.com", "scheme": "https", "host":
           "threads.com", "port": null, "path": "/", "has_port": false,
@@ -773,7 +773,7 @@ let%expect_test "Validate a cara account from string" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "cara", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "cara", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
          "port": null, "path": "/", "has_port": false, "query_params":
@@ -798,7 +798,7 @@ let%expect_test "Validate from a list - 1" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
          "tim-ats-d", "domain":
          {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
           null, "path": "/", "has_port": false, "query_params":
@@ -823,7 +823,7 @@ let%expect_test "Validate from a list - 2" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "mastodon", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "merveilles.town/xvw", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
@@ -849,7 +849,7 @@ let%expect_test "Validate from a known record" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "bluesky", "is_known": true, "is_custom": false, "username":
+    [V] {"kind": "bluesky", "is_known": true, "is_custom": false, "username":
          "xvw.lol", "domain":
          {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
          "port": null, "path": "/", "has_port": false, "query_params":
@@ -878,7 +878,7 @@ let%expect_test "Validate from an unknown record" =
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect
     {|
-    [V]	{"kind": "muhokama", "is_known": false, "is_custom": true, "username":
+    [V] {"kind": "muhokama", "is_known": false, "is_custom": true, "username":
          "xvw", "domain":
          {"target": "https://ring.muhokama.fun/", "scheme": "https", "host":
           "ring.muhokama.fun", "port": null, "path": "/", "has_port": false,

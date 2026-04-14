@@ -34,7 +34,7 @@ let%expect_test "validate from an empty list" =
   |> dump_validation SP.to_data;
   [%expect
     {|
-    [V]	{"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+    [V] {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
         "elements": []}
     |}]
 ;;
@@ -46,7 +46,7 @@ let%expect_test "validate from a list" =
   |> dump_validation SP.to_data;
   [%expect
     {|
-    [V]	{"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"display_name": "a", "first_name": null, "last_name": null},
          {"display_name": "b", "first_name": null, "last_name": null}]}
@@ -63,7 +63,7 @@ let%expect_test "validate from a record - all" =
   |> dump_validation SP.to_data;
   [%expect
     {|
-    [V]	{"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"display_name": "a", "first_name": null, "last_name": null},
          {"display_name": "b", "first_name": null, "last_name": null}]}
@@ -80,7 +80,7 @@ let%expect_test "validate from a record - elements" =
   |> dump_validation SP.to_data;
   [%expect
     {|
-    [V]	{"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"display_name": "a", "first_name": null, "last_name": null},
          {"display_name": "b", "first_name": null, "last_name": null}]}

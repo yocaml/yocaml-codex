@@ -107,7 +107,7 @@ let%expect_test "from_string corner case" =
   Url.from_data Yocaml.Data.(string "xvw.lol") |> dump_validation Url.to_data;
   [%expect
     {|
-    [V]	{"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
+    [V] {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
         "port": null, "path": "/", "has_port": false, "query_params":
          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},

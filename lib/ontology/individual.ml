@@ -22,6 +22,7 @@ let to_data { display_name; first_name; last_name; gender } =
   let names = Ext.Option.zip first_name last_name in
   record
     [ "display_name", string display_name
+    ; "slug", string (Yocaml.Slug.from display_name)
     ; "first_name", option string first_name
     ; "last_name", option string last_name
     ; "gender", option Gender.to_data gender
@@ -37,11 +38,7 @@ let to_data { display_name; first_name; last_name; gender } =
              let ff = first_name.[0] |> Ext.String.from_char
              and fl = last_name.[0] |> Ext.String.from_char in
              let initials = ff ^ fl |> String.lowercase_ascii
-             and display =
-               (ff |> String.uppercase_ascii)
-               ^ ". "
-               ^ (last_name |> String.capitalize_ascii)
-             in
+             and display = (ff |> String.uppercase_ascii) ^ ". " ^ last_name in
              record [ "initials", string initials; "display", string display ])
           names )
     ]
@@ -61,11 +58,9 @@ let missing_display_name =
 ;;
 
 let from_triple = function
-  | Some a, Some b, Some c ->
-    Ok (a, Some (String.capitalize_ascii b), Some (String.capitalize_ascii c))
+  | Some a, Some b, Some c -> Ok (a, Some (String.capitalize_ascii b), Some c)
   | None, Some b, Some c ->
-    let b = String.capitalize_ascii b
-    and c = String.capitalize_ascii c in
+    let b = String.capitalize_ascii b in
     let a = b ^ " " ^ c in
     Ok (a, Some b, Some c)
   | Some a, b, c -> Ok (a, b, c)

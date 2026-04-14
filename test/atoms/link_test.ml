@@ -7,7 +7,7 @@ let%expect_test "validate a link - from a simple URL" =
   |> dump_validation Link.to_data;
   [%expect
     {|
-    [V]	{"name": "xvw.lol/foo", "url":
+    [V] {"name": "xvw.lol/foo", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
          "port": null, "path": "/foo", "has_port": false, "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -24,7 +24,7 @@ let%expect_test "validate a link - from an url 2" =
   |> dump_validation Link.to_data;
   [%expect
     {|
-    [V]	{"name": "xvw.lol/foo", "url":
+    [V] {"name": "xvw.lol/foo", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
          "port": null, "path": "/foo", "has_port": false, "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -42,7 +42,7 @@ let%expect_test "validate a link - from an url with a name" =
   |> dump_validation Link.to_data;
   [%expect
     {|
-    [V]	{"name": "xvw", "url":
+    [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
          "port": null, "path": "/foo", "has_port": false, "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -60,7 +60,7 @@ let%expect_test "validate a link - from an url with a name 2" =
   |> dump_validation Link.to_data;
   [%expect
     {|
-    [V]	{"name": "xvw", "url":
+    [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
          "port": null, "path": "/foo", "has_port": false, "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -82,7 +82,7 @@ let%expect_test "validate a link - from an url with a name and desc" =
   |> dump_validation Link.to_data;
   [%expect
     {|
-    [V]	{"name": "xvw", "url":
+    [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
          "port": null, "path": "/foo", "has_port": false, "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,

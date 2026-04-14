@@ -9,9 +9,10 @@ let%expect_test "Validating a simple name - 1" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "Xavier", "first_name": null, "last_name": null,
-        "gender": null, "has_first_name": false, "has_last_name": false,
-        "has_names": false, "has_gender": false, "with_names": null}
+    [V] {"display_name": "Xavier", "slug": "xavier", "first_name": null,
+        "last_name": null, "gender": null, "has_first_name": false,
+        "has_last_name": false, "has_names": false, "has_gender": false,
+        "with_names": null}
     |}]
 ;;
 
@@ -23,8 +24,9 @@ let%expect_test "Validating a simple name - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "Xavier Van de Woestyne", "first_name": "Xavier",
-        "last_name": "Van de Woestyne", "gender": null, "has_first_name": true,
+    [V] {"display_name": "Xavier Van de Woestyne", "slug":
+         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
+         "Van de Woestyne", "gender": null, "has_first_name": true,
         "has_last_name": true, "has_names": true, "has_gender": false,
         "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
@@ -38,8 +40,8 @@ let%expect_test "Validating a simple name with alias - 1" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "xvw", "first_name": "Xavier", "last_name":
-         "Van de Woestyne", "gender": null, "has_first_name": true,
+    [V] {"display_name": "xvw", "slug": "xvw", "first_name": "Xavier",
+        "last_name": "Van de Woestyne", "gender": null, "has_first_name": true,
         "has_last_name": true, "has_names": true, "has_gender": false,
         "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
@@ -53,8 +55,8 @@ let%expect_test "Validating a simple name with alias - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "xvw", "first_name": "Xavier", "last_name":
-         "Van de Woestyne", "gender": null, "has_first_name": true,
+    [V] {"display_name": "xvw", "slug": "xvw", "first_name": "Xavier",
+        "last_name": "Van de Woestyne", "gender": null, "has_first_name": true,
         "has_last_name": true, "has_names": true, "has_gender": false,
         "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
@@ -68,9 +70,9 @@ let%expect_test "Validating a simple name using record" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "xvw", "first_name": null, "last_name": null, "gender":
-         null, "has_first_name": false, "has_last_name": false, "has_names":
-         false, "has_gender": false, "with_names": null}
+    [V] {"display_name": "xvw", "slug": "xvw", "first_name": null, "last_name":
+         null, "gender": null, "has_first_name": false, "has_last_name": false,
+        "has_names": false, "has_gender": false, "with_names": null}
     |}]
 ;;
 
@@ -83,8 +85,9 @@ let%expect_test "Validating a simple name using record - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "Xavier Van de Woestyne", "first_name": "Xavier",
-        "last_name": "Van de Woestyne", "gender": null, "has_first_name": true,
+    [V] {"display_name": "Xavier Van de Woestyne", "slug":
+         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
+         "Van de Woestyne", "gender": null, "has_first_name": true,
         "has_last_name": true, "has_names": true, "has_gender": false,
         "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
@@ -102,8 +105,9 @@ let%expect_test "Validating a simple name using record - 3" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V]	{"display_name": "Xavier Van de Woestyne", "first_name": "Xavier",
-        "last_name": "Van de Woestyne", "gender":
+    [V] {"display_name": "Xavier Van de Woestyne", "slug":
+         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
+         "Van de Woestyne", "gender":
          {"name": "male", "has_pronouns": true, "pronouns":
           {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}},
         "has_first_name": true, "has_last_name": true, "has_names": true,

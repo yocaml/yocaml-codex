@@ -67,7 +67,7 @@ let%expect_test "from_data image" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/image.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/image.png", "has_port": false,
          "query_params":
@@ -86,7 +86,7 @@ let%expect_test "from_data url" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/image.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/image.png", "has_port": false,
          "query_params":
@@ -108,7 +108,7 @@ let%expect_test "from_data kind normalization" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "video", "url":
+    [V] {"kind": "video", "url":
          {"target": "https://example.com/video.mp4", "scheme": "https", "host":
           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
          "query_params":
@@ -131,7 +131,7 @@ let%expect_test "from_data mime_type" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "video", "url":
+    [V] {"kind": "video", "url":
          {"target": "https://example.com/video.mp4", "scheme": "https", "host":
           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
          "query_params":
@@ -154,7 +154,7 @@ let%expect_test "from_data mime_type alias" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "video", "url":
+    [V] {"kind": "video", "url":
          {"target": "https://example.com/video.mp4", "scheme": "https", "host":
           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
          "query_params":
@@ -178,7 +178,7 @@ let%expect_test "from_data dimensions" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/cover.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/cover.png", "has_port": false,
          "query_params":
@@ -202,7 +202,7 @@ let%expect_test "from_data dimensions alias" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/cover.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/cover.png", "has_port": false,
          "query_params":
@@ -225,7 +225,7 @@ let%expect_test "from_data width only" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/cover.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/cover.png", "has_port": false,
          "query_params":
@@ -248,7 +248,7 @@ let%expect_test "from_data secure_url" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "http://example.com/image.png", "scheme": "http", "host":
           "example.com", "port": null, "path": "/image.png", "has_port": false,
          "query_params":
@@ -277,7 +277,7 @@ let%expect_test "from_data alt" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [V]	{"kind": "image", "url":
+    [V] {"kind": "image", "url":
          {"target": "https://example.com/image.png", "scheme": "https", "host":
           "example.com", "port": null, "path": "/image.png", "has_port": false,
          "query_params":
@@ -300,7 +300,7 @@ let%expect_test "from_data alt rejects blank" =
   |> dump_validation Media.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 

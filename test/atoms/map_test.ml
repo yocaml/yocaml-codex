@@ -38,7 +38,7 @@ let%expect_test "validate from an empty list" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+    [V] {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
         "elements": []}
     |}]
 ;;
@@ -50,7 +50,7 @@ let%expect_test "validate from a list" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"key": {"display_name": "a", "first_name": null, "last_name": null},
           "value": "a"},
@@ -66,7 +66,7 @@ let%expect_test "validate from a list - 2" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"key": {"display_name": "a", "first_name": null, "last_name": null},
           "value": "a"},
@@ -85,7 +85,7 @@ let%expect_test "validate from a list - 3" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"key": {"display_name": "a", "first_name": null, "last_name": null},
           "value": "a"},
@@ -111,7 +111,7 @@ let%expect_test "validate from a record - all" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"key": {"display_name": "a", "first_name": null, "last_name": null},
           "value": "a"},
@@ -137,7 +137,7 @@ let%expect_test "validate from a record - elements" =
   |> dump_validation (MP.to_data Yocaml.Data.string);
   [%expect
     {|
-    [V]	{"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
+    [V] {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
         "elements":
          [{"key": {"display_name": "a", "first_name": null, "last_name": null},
           "value": "a"},

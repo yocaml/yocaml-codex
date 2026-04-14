@@ -7,7 +7,7 @@ let%expect_test "Dump a gender - 1" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "male", "has_pronouns": true, "pronouns":
+    [V] {"name": "male", "has_pronouns": true, "pronouns":
          {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}}
     |}]
 ;;
@@ -18,7 +18,7 @@ let%expect_test "Dump a gender - 2" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "female", "has_pronouns": true, "pronouns":
+    [V] {"name": "female", "has_pronouns": true, "pronouns":
          {"has": true, "all": ["she", "her", "hers"], "repr": "she/her/hers"}}
     |}]
 ;;
@@ -29,7 +29,7 @@ let%expect_test "Dump a gender - 4" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "neutral", "has_pronouns": false, "pronouns":
+    [V] {"name": "neutral", "has_pronouns": false, "pronouns":
          {"has": false, "all": [], "repr": ""}}
     |}]
 ;;
@@ -40,7 +40,7 @@ let%expect_test "Dump a gender - 5" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "female", "has_pronouns": true, "pronouns":
+    [V] {"name": "female", "has_pronouns": true, "pronouns":
          {"has": true, "all": ["she", "her", "hers"], "repr": "she/her/hers"}}
     |}]
 ;;
@@ -51,7 +51,7 @@ let%expect_test "Dump a gender - 6" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "female", "has_pronouns": false, "pronouns":
+    [V] {"name": "female", "has_pronouns": false, "pronouns":
          {"has": false, "all": [], "repr": ""}}
     |}]
 ;;
@@ -66,7 +66,7 @@ let%expect_test "Dump a gender - 7" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "female", "has_pronouns": true, "pronouns":
+    [V] {"name": "female", "has_pronouns": true, "pronouns":
          {"has": true, "all": ["they", "xxx"], "repr": "they/xxx"}}
     |}]
 ;;
@@ -78,7 +78,7 @@ let%expect_test "Dump a gender - 8" =
   |> dump_validation Gender.to_data;
   [%expect
     {|
-    [V]	{"name": "female", "has_pronouns": true, "pronouns":
+    [V] {"name": "female", "has_pronouns": true, "pronouns":
          {"has": true, "all": ["a", "b", "ccc", "ddd"], "repr": "a/b/ccc/ddd"}}
     |}]
 ;;

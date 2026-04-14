@@ -33,10 +33,7 @@ let dump_data f data =
 
 let dump_validation to_data = function
   | Ok value ->
-    value
-    |> to_data
-    |> Format.asprintf "[V]\t%a" Yocaml.Data.pp
-    |> print_endline
+    value |> to_data |> Format.asprintf "[V] %a" Yocaml.Data.pp |> print_endline
   | Error error ->
     let open Yocaml in
     let exn =
@@ -48,7 +45,7 @@ let dump_validation to_data = function
     in
     exn
     |> Format.asprintf
-         "[X]\t%a"
+         "[X] %a"
          (Diagnostic.exception_to_diagnostic
             ?custom_error:None
             ~in_exception_handler:false)

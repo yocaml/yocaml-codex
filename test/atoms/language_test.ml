@@ -7,7 +7,7 @@ let%expect_test "validate a language - from string (code only)" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "es-ES", "code": "es", "iso639p1": "es", "iso639p2": "spa",
+    [V] {"tag": "es-ES", "code": "es", "iso639p1": "es", "iso639p2": "spa",
         "scope": "individual", "is_macro": false, "region": "ES", "has_region":
          true}
     |}]
@@ -19,7 +19,7 @@ let%expect_test "validate a language - from string (code + region)" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "pt-PT", "code": "pt", "iso639p1": "pt", "iso639p2": "por",
+    [V] {"tag": "pt-PT", "code": "pt", "iso639p1": "pt", "iso639p2": "por",
         "scope": "individual", "is_macro": false, "region": "PT", "has_region":
          true}
     |}]
@@ -31,7 +31,7 @@ let%expect_test "validate a language - from canonical name (french)" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "fr-FR", "code": "fr", "iso639p1": "fr", "iso639p2": "fra",
+    [V] {"tag": "fr-FR", "code": "fr", "iso639p1": "fr", "iso639p2": "fra",
         "scope": "individual", "is_macro": false, "region": "FR", "has_region":
          true}
     |}]
@@ -43,7 +43,7 @@ let%expect_test "validate a language - from canonical name (english)" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "en-US", "code": "en", "iso639p1": "en", "iso639p2": "eng",
+    [V] {"tag": "en-US", "code": "en", "iso639p1": "en", "iso639p2": "eng",
         "scope": "individual", "is_macro": false, "region": "US", "has_region":
          true}
     |}]
@@ -55,7 +55,7 @@ let%expect_test "validate a language UK english" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "en-UK", "code": "en", "iso639p1": "en", "iso639p2": "eng",
+    [V] {"tag": "en-UK", "code": "en", "iso639p1": "en", "iso639p2": "eng",
         "scope": "individual", "is_macro": false, "region": "UK", "has_region":
          true}
     |}]
@@ -67,7 +67,7 @@ let%expect_test "validate a language - from record (code only)" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "de-DE", "code": "de", "iso639p1": "de", "iso639p2": "deu",
+    [V] {"tag": "de-DE", "code": "de", "iso639p1": "de", "iso639p2": "deu",
         "scope": "individual", "is_macro": false, "region": "DE", "has_region":
          true}
     |}]
@@ -79,7 +79,7 @@ let%expect_test "validate a language - record with name & country" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [V]	{"tag": "ar-EG", "code": "ar", "iso639p1": "ar", "iso639p2": "ara",
+    [V] {"tag": "ar-EG", "code": "ar", "iso639p1": "ar", "iso639p2": "ara",
         "scope": "macro", "is_macro": true, "region": "EG", "has_region": true}
     |}]
 ;;
@@ -90,7 +90,7 @@ let%expect_test "reject an unknown language" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 
@@ -107,7 +107,7 @@ let%expect_test "reject invalid language format" =
   |> dump_validation Language.to_data;
   [%expect
     {|
-    [X]	--- Oh dear, an error has occurred ---
+    [X] --- Oh dear, an error has occurred ---
     Validation error:
     Entity: `test`
 
