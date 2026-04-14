@@ -182,3 +182,10 @@ module Map = struct
   include S
   include Map.Make (S) (Orderable) (Orderable)
 end
+
+let to_meta authors =
+  authors
+  |> Set.to_list
+  |> List.map (fun { display_name; _ } ->
+    Codex_atoms.Meta.make ~name:[ "creator" ] display_name)
+;;

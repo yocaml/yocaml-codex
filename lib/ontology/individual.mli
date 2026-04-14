@@ -30,3 +30,9 @@ module Map : sig
   include Stdlib.Map.S with type key = t
   include Sigs.MAP with type 'a t := 'a t
 end
+
+(** {1 Utilitie}s *)
+
+(** [to_meta authors] create a list of creators
+    [<meta name="creator" content="display-name"]/>. *)
+val to_meta : Set.t -> Meta.t list

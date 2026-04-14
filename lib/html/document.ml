@@ -36,3 +36,12 @@ let make
   ; content
   }
 ;;
+
+let meta_to_data { authors; tags; description; _ } =
+  let open Codex_atoms.Meta in
+  [ make ~name:[ "generator" ] "YOCaml"
+  ; make ~name:[ "description" ] description
+  ; Codex_atoms.Tag.to_meta tags
+  ]
+  @ (authors |> Codex_ontology.Individual.to_meta)
+;;
