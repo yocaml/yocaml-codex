@@ -148,6 +148,11 @@ let from_string =
      / fun x -> Ok (make x))
 ;;
 
+let from_mailbox =
+  let open Yocaml.Data.Validation in
+  (string & Email.from_mailbox) $ fun (name, email) -> make ~email name
+;;
+
 let from_record =
   let open Yocaml.Data.Validation in
   record (fun fields ->
@@ -160,7 +165,7 @@ let from_record =
 
 let from_data =
   let open Yocaml.Data.Validation in
-  from_string / from_record
+  from_mailbox / from_string / from_record
 ;;
 
 module Orderable = struct

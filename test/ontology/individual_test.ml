@@ -147,3 +147,21 @@ let%expect_test "Validating a simple name using record - 4" =
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
+
+let%expect_test "Validating a simple name from a mailbox" =
+  let input =
+    let open Yocaml.Data in
+    string "Xavier Van de Woestyne <xavier@email.com>"
+  in
+  input |> Individual.from_data |> dump_validation Individual.to_data;
+  [%expect {|
+    [V] {"display_name": "Xavier Van de Woestyne", "slug":
+         "xavier-van-de-woestyne", "first_name": null, "last_name": null,
+        "email":
+         {"address": "xavier@email.com", "local": "xavier", "domain":
+          "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"},
+        "gender": null, "has_first_name": false, "has_last_name": false,
+        "has_email": true, "has_names": false, "has_gender": false, "with_names":
+         null}
+    |}]
+;;
