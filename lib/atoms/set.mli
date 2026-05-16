@@ -26,6 +26,14 @@
     - Or [{ elements = list; ..}] a record containing at least one field
       [elements] (or [set], [values], [all]) which is a list. *)
 
+(** {1 Helpers} *)
+
+val collapse_with_option
+  :  (module Stdlib.Set.S with type elt = 'a and type t = 'b)
+  -> 'b
+  -> 'a option
+  -> 'a option * 'b * 'b
+
 (** {1 Projection}
 
     Construction of Set that can be standardised: [to_data]. *)

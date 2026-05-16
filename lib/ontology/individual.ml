@@ -4,6 +4,10 @@ type t =
   ; last_name : string option
   ; gender : Gender.t option
   ; email : Email.t option
+  ; emails : Email.Set.t
+  ; url : Url.t option
+  ; urls : Url.Set.t
+  ; bio : string option
   }
 
 let compare { display_name; email; _ } other =
@@ -13,25 +17,59 @@ let compare { display_name; email; _ } other =
   if Int.equal c 0 then Option.compare Email.compare email other.email else c
 ;;
 
-let make ?gender ?first_name ?last_name ?email display_name =
-  { display_name; first_name; last_name; gender; email }
+let make
+      ?gender
+      ?first_name
+      ?last_name
+      ?email
+      ?(emails = Email.Set.empty)
+      ?url
+      ?(urls = Url.Set.empty)
+      ?bio
+      display_name
+  =
+  { display_name; first_name; last_name; gender; email; emails; url; urls; bio }
 ;;
 
 let to_syndication inv = Yocaml_syndication.Person.make inv.display_name
 
-let to_data { display_name; first_name; last_name; gender; email } =
+let to_data
+      { display_name
+      ; first_name
+      ; last_name
+      ; gender
+      ; email
+      ; emails
+      ; url
+      ; urls
+      ; bio
+      }
+  =
   let open Yocaml.Data in
   let names = Ext.Option.zip first_name last_name in
+  let email, other_emails, all_emails =
+    Set.collapse_with_option (module Email.Set) emails email
+  in
+  let url, other_urls, all_urls =
+    Set.collapse_with_option (module Url.Set) urls url
+  in
   record
     [ "display_name", string display_name
+    ; "bio", option string bio
     ; "slug", string (Yocaml.Slug.from display_name)
     ; "first_name", option string first_name
     ; "last_name", option string last_name
-    ; "email", option Email.to_data email
     ; "gender", option Gender.to_data gender
+    ; "email", option Email.to_data email
+    ; "url", option Url.to_data url
+    ; "other_emails", Email.Set.to_data other_emails
+    ; "all_emails", Email.Set.to_data all_emails
+    ; "other_urls", Url.Set.to_data other_urls
+    ; "all_urls", Url.Set.to_data all_urls
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
     ; "has_email", bool @@ Ext.Option.to_bool email
+    ; "has_url", bool @@ Ext.Option.to_bool url
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
     ; ( "with_names"
@@ -159,8 +197,36 @@ let from_record =
     let+ display_name, first_name, last_name =
       (validate_name & from_triple) fields
     and+ email = opt fields "email" ~alt:[ "mail" ] Email.from_data
+    and+ emails =
+      opt
+        fields
+        "emails"
+        ~alt:[ "other_emails"; "mails"; "other_mails" ]
+        Email.Set.from_data
+    and+ url = opt fields "url" ~alt:[ "www"; "site"; "homepage" ] Url.from_data
+    and+ urls =
+      opt
+        fields
+        "urls"
+        ~alt:[ "other_urls"; "homepages"; "other_www" ]
+        Url.Set.from_data
+    and+ bio =
+      opt
+        fields
+        "bio"
+        ~alt:[ "biography"; "synopsis"; "desc"; "description" ]
+        as_name
     and+ gender = opt fields "gender" Gender.from_data in
-    make ?gender ?first_name ?email ?last_name display_name)
+    make
+      ?gender
+      ?first_name
+      ?email
+      ?emails
+      ?url
+      ?urls
+      ?last_name
+      ?bio
+      display_name)
 ;;
 
 let from_data =

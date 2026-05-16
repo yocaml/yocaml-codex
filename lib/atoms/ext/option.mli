@@ -4,6 +4,7 @@ val unit : 'a option -> unit option
 val from_bool : bool -> unit option
 val to_bool : 'a option -> bool
 val zip : 'a option -> 'b option -> ('a * 'b) option
+val may_perform : ('a -> 'b -> 'b) -> 'b -> 'a option -> 'b
 
 module Syntax : sig
   val ( let+ ) : 'a option -> ('a -> 'b) -> 'b option

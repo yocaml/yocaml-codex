@@ -12,6 +12,11 @@ let zip a b =
   | _ -> None
 ;;
 
+let may_perform f subject = function
+  | None -> subject
+  | Some x -> f x subject
+;;
+
 module Syntax = struct
   let ( let+ ) x f = Stdlib.Option.map f x
   let ( let* ) x f = Stdlib.Option.bind x f

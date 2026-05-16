@@ -47,3 +47,16 @@ module Path = struct
   include Yocaml.Path.Set
   include Make (Yocaml.Path.Set) (Orderable.Path) (Orderable.Path)
 end
+
+let collapse_with_option
+      (type a b)
+      (module S : Stdlib.Set.S with type elt = a and type t = b)
+      all
+      opt_one
+  =
+  let open Ext.Option in
+  let main = opt_one <|> S.find_first_opt (fun _ -> true) all in
+  let rest = may_perform S.remove all main in
+  let all = may_perform S.add rest main in
+  main, rest, all
+;;
