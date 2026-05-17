@@ -3,10 +3,39 @@
 
 (** {1 Structure} *)
 
-(* TODO: This module is work in progress. Need to be documented (and
-   completed). *)
-
 type t
+
+(** {2 Projection}
+
+    An individual is projected as the following record:
+
+    {eof@json[
+      {
+        "display_name": string,
+        "bio": Option<string>,
+        "slug": string,
+        "first_name": Option<string>,
+        "last_name": Option<string>,
+        "gender": Option<Gender>,
+        "avatar": Option<Scoped_url>,
+        "email": Option<Email>,
+        "url": Option<Url>,
+        "other_emails": Set<Email>,
+        "all_emails": Set<Email>,
+        "other_urls": Set<Url>,
+        "all_urls": Set<Url>,
+        "has_names": bool,
+        "has_url": bool,
+        "has_last_name": bool,
+        "has_first_name": bool,
+        "has_gender": bool,
+        "has_avatar": bool,
+        "with_names": Option {
+            "initials": string,
+            "display": string
+        }
+      }
+    ]eof} *)
 
 (** {1 Individual API} *)
 
