@@ -1,6 +1,7 @@
 module Set = Set
 module Map = Map
 module Url = Url
+module Scoped_url = Scoped_url
 module Isbn = Isbn
 module Link = Link
 module Email = Email
