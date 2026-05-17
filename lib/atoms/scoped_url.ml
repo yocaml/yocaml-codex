@@ -4,6 +4,8 @@ type t =
 
 let internal p = Path p
 let url u = Url u
+let https ?path s = s |> Url.https ?path |> url
+let http ?path s = s |> Url.http ?path |> url
 
 let to_string = function
   | Url u -> Url.to_string u

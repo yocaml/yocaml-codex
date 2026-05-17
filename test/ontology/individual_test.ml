@@ -10,8 +10,8 @@ let%expect_test "Validating a simple name - 1" =
   [%expect
     {|
     [V] {"display_name": "Xavier", "bio": null, "slug": "xavier", "first_name":
-         null, "last_name": null, "gender": null, "email": null, "url": null,
-        "other_emails":
+         null, "last_name": null, "gender": null, "avatar": null, "email": null,
+        "url": null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -24,8 +24,8 @@ let%expect_test "Validating a simple name - 1" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": false, "has_last_name": false, "has_email": false,
-        "has_url": false, "has_names": false, "has_gender": false, "with_names":
-         null}
+        "has_url": false, "has_names": false, "has_gender": false, "has_avatar":
+         false, "with_names": null}
     |}]
 ;;
 
@@ -39,8 +39,8 @@ let%expect_test "Validating a simple name - 2" =
     {|
     [V] {"display_name": "Xavier Van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "Van de Woestyne", "gender": null, "email": null, "url": null,
-        "other_emails":
+         "Van de Woestyne", "gender": null, "avatar": null, "email": null, "url":
+         null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -53,7 +53,8 @@ let%expect_test "Validating a simple name - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": false,
-        "has_url": false, "has_names": true, "has_gender": false, "with_names":
+        "has_url": false, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
@@ -67,8 +68,8 @@ let%expect_test "Validating a simple name with alias - 1" =
   [%expect
     {|
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
-         "Xavier", "last_name": "Van de Woestyne", "gender": null, "email":
-         null, "url": null, "other_emails":
+         "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
+         null, "email": null, "url": null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -81,7 +82,8 @@ let%expect_test "Validating a simple name with alias - 1" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": false,
-        "has_url": false, "has_names": true, "has_gender": false, "with_names":
+        "has_url": false, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
@@ -95,8 +97,8 @@ let%expect_test "Validating a simple name with alias - 2" =
   [%expect
     {|
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
-         "Xavier", "last_name": "Van de Woestyne", "gender": null, "email":
-         null, "url": null, "other_emails":
+         "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
+         null, "email": null, "url": null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -109,7 +111,8 @@ let%expect_test "Validating a simple name with alias - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": false,
-        "has_url": false, "has_names": true, "has_gender": false, "with_names":
+        "has_url": false, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
@@ -123,8 +126,8 @@ let%expect_test "Validating a simple name using record" =
   [%expect
     {|
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name": null,
-        "last_name": null, "gender": null, "email": null, "url": null,
-        "other_emails":
+        "last_name": null, "gender": null, "avatar": null, "email": null, "url":
+         null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -137,8 +140,8 @@ let%expect_test "Validating a simple name using record" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": false, "has_last_name": false, "has_email": false,
-        "has_url": false, "has_names": false, "has_gender": false, "with_names":
-         null}
+        "has_url": false, "has_names": false, "has_gender": false, "has_avatar":
+         false, "with_names": null}
     |}]
 ;;
 
@@ -153,8 +156,8 @@ let%expect_test "Validating a simple name using record - 2" =
     {|
     [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "email": null, "url": null,
-        "other_emails":
+         "van de Woestyne", "gender": null, "avatar": null, "email": null, "url":
+         null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -167,7 +170,8 @@ let%expect_test "Validating a simple name using record - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": false,
-        "has_url": false, "has_names": true, "has_gender": false, "with_names":
+        "has_url": false, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
@@ -189,7 +193,7 @@ let%expect_test "Validating a simple name using record - 3" =
          "van de Woestyne", "gender":
          {"name": "male", "has_pronouns": true, "pronouns":
           {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}},
-        "email": null, "url": null, "other_emails":
+        "avatar": null, "email": null, "url": null, "other_emails":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "all_emails":
@@ -202,7 +206,8 @@ let%expect_test "Validating a simple name using record - 3" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": false,
-        "has_url": false, "has_names": true, "has_gender": true, "with_names":
+        "has_url": false, "has_names": true, "has_gender": true, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
@@ -225,7 +230,7 @@ let%expect_test "Validating a simple name using record - 4" =
          "van de Woestyne", "gender":
          {"name": "male", "has_pronouns": true, "pronouns":
           {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}},
-        "email":
+        "avatar": null, "email":
          {"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
          "md5": "4ef27adaff5118935a2f8c00df083b91"},
         "url": null, "other_emails":
@@ -243,7 +248,8 @@ let%expect_test "Validating a simple name using record - 4" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": true,
-        "has_url": false, "has_names": true, "has_gender": true, "with_names":
+        "has_url": false, "has_names": true, "has_gender": true, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
@@ -258,7 +264,7 @@ let%expect_test "Validating a simple name from a mailbox" =
     {|
     [V] {"display_name": "Xavier Van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": null, "last_name": null,
-        "gender": null, "email":
+        "gender": null, "avatar": null, "email":
          {"address": "xavier@email.com", "local": "xavier", "domain":
           "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"},
         "url": null, "other_emails":
@@ -276,8 +282,8 @@ let%expect_test "Validating a simple name from a mailbox" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": false, "has_last_name": false, "has_email": true,
-        "has_url": false, "has_names": false, "has_gender": false, "with_names":
-         null}
+        "has_url": false, "has_names": false, "has_gender": false, "has_avatar":
+         false, "with_names": null}
     |}]
 ;;
 
@@ -295,7 +301,7 @@ let%expect_test "Validating a simple name using record" =
     {|
     [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "email":
+         "van de Woestyne", "gender": null, "avatar": null, "email":
          {"address": "foo@t.org", "local": "foo", "domain": "t.org", "md5":
           "58d278c4f6116f5800db2e6137b25843"},
         "url": null, "other_emails":
@@ -317,7 +323,8 @@ let%expect_test "Validating a simple name using record" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "has_first_name": true, "has_last_name": true, "has_email": true,
-        "has_url": false, "has_names": true, "has_gender": false, "with_names":
+        "has_url": false, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
@@ -337,7 +344,7 @@ let%expect_test "Validating a simple name using record" =
   [%expect {|
     [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "email":
+         "van de Woestyne", "gender": null, "avatar": null, "email":
          {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
          "md5": "6c0fbec2cc554c35c3d2b8b51840b49d"},
         "url":
@@ -384,7 +391,8 @@ let%expect_test "Validating a simple name using record" =
            "elements": []},
           "query_string": null, "has_query_string": false}]},
         "has_first_name": true, "has_last_name": true, "has_email": true,
-        "has_url": true, "has_names": true, "has_gender": false, "with_names":
+        "has_url": true, "has_names": true, "has_gender": false, "has_avatar":
+         false, "with_names":
          {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;

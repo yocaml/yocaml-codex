@@ -8,6 +8,7 @@ type t =
   ; url : Url.t option
   ; urls : Url.Set.t
   ; bio : string option
+  ; avatar : Scoped_url.t option
   }
 
 let compare { display_name; email; _ } other =
@@ -26,9 +27,20 @@ let make
       ?url
       ?(urls = Url.Set.empty)
       ?bio
+      ?avatar
       display_name
   =
-  { display_name; first_name; last_name; gender; email; emails; url; urls; bio }
+  { display_name
+  ; first_name
+  ; last_name
+  ; gender
+  ; email
+  ; emails
+  ; url
+  ; urls
+  ; bio
+  ; avatar
+  }
 ;;
 
 let to_syndication inv = Yocaml_syndication.Person.make inv.display_name
@@ -43,6 +55,7 @@ let to_data
       ; url
       ; urls
       ; bio
+      ; avatar
       }
   =
   let open Yocaml.Data in
@@ -60,6 +73,7 @@ let to_data
     ; "first_name", option string first_name
     ; "last_name", option string last_name
     ; "gender", option Gender.to_data gender
+    ; "avatar", option Scoped_url.to_data avatar
     ; "email", option Email.to_data email
     ; "url", option Url.to_data url
     ; "other_emails", Email.Set.to_data other_emails
@@ -72,6 +86,7 @@ let to_data
     ; "has_url", bool @@ Ext.Option.to_bool url
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
+    ; "has_avatar", bool @@ Ext.Option.to_bool avatar
     ; ( "with_names"
       , option
           (fun (first_name, last_name) ->

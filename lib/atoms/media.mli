@@ -16,7 +16,7 @@ val image
   -> ?mime_type:string
   -> ?dimension:int * int
   -> ?alt:string
-  -> Url.t
+  -> Scoped_url.t
   -> t
 
 (** [video ~kind url] constructs an image. *)
@@ -25,7 +25,7 @@ val video
   -> ?mime_type:string
   -> ?dimension:int * int
   -> ?alt:string
-  -> Url.t
+  -> Scoped_url.t
   -> t
 
 (** {1 Yocaml Related} *)

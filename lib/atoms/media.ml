@@ -4,7 +4,7 @@ type kind =
 
 type t =
   { kind : kind
-  ; url : Url.t
+  ; url : Scoped_url.t
   ; secure_url : Url.t option
   ; mime_type : string option
   ; dimension : (int * int) option
@@ -17,7 +17,7 @@ let make ~kind ?secure_url ?mime_type ?dimension ?alt url =
 
 let image = make ~kind:Image
 let video = make ~kind:Video
-let compare a b = Url.compare a.url b.url
+let compare a b = Scoped_url.compare a.url b.url
 
 let kind_to_string = function
   | Image -> "image"
@@ -35,10 +35,10 @@ let kind_from_data =
 
 let from_data =
   let open Yocaml.Data.Validation in
-  (Url.from_data $ make ~kind:Image)
+  (Scoped_url.from_data $ make ~kind:Image)
   / record (fun fields ->
     let+ kind = req fields "kind" kind_from_data
-    and+ url = req fields "url" Url.from_data
+    and+ url = req fields "url" Scoped_url.from_data
     and+ mime_type =
       opt fields "type" ~alt:[ "mime_type" ] (string & String.not_blank)
     and+ width = opt fields "width" ~alt:[ "w" ] (int & positive)
@@ -53,7 +53,7 @@ let to_data { kind; url; secure_url; mime_type; dimension; alt } =
   let open Yocaml.Data in
   record
     [ "kind", string (kind_to_string kind)
-    ; "url", Url.to_data url
+    ; "url", Scoped_url.to_data url
     ; "secure_url", option Url.to_data secure_url
     ; "mime_type", option string mime_type
     ; "width", option (fun (w, _) -> int w) dimension
@@ -86,7 +86,7 @@ let to_open_graph { kind; url; secure_url; mime_type; dimension; alt } =
   let k = kind_to_string kind in
   let name = [ "og"; k ] in
   let mk x = name @ [ x ] in
-  [ Meta.make ~name (Url.to_string url)
+  [ Meta.make ~name (Scoped_url.to_string url)
   ; Meta.from_opt ~name:(mk "secure_url") Url.to_string secure_url
   ; Meta.from_opt ~name:(mk "type") Fun.id mime_type
   ; Meta.from_opt ~name:(mk "width") (fun (w, _) -> string_of_int w) dimension

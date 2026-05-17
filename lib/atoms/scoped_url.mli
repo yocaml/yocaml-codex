@@ -10,6 +10,12 @@ val internal : Yocaml.Path.t -> t
 (** [url p] build an external URL. *)
 val url : Url.t -> t
 
+(** [http ?path url] build an http URL. *)
+val http : ?path:Yocaml.Path.t -> string -> t
+
+(** [https ?path url] build an https URL. *)
+val https : ?path:Yocaml.Path.t -> string -> t
+
 (** [to_string url] convert an [url] to a string. *)
 val to_string : t -> string
 
