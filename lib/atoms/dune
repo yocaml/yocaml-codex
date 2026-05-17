@@ -1,7 +1,7 @@
 (library
  (name codex_atoms)
  (public_name yocaml-codex.atoms)
- (modules_without_implementation sigs codex_atoms)
+ (modules_without_implementation sigs)
  (libraries uri emile iso639 yocaml))
 
 (include_subdirs qualified)

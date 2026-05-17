@@ -1,5 +1,4 @@
 (library
  (name codex_open_graph)
  (public_name yocaml-codex.open-graph)
- (modules_without_implementation codex_open_graph)
  (libraries yocaml yocaml-codex.atoms))
