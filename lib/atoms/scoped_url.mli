@@ -1,6 +1,36 @@
 (** Describes a scoped URL (can be local (a Path) or external (an URL)). *)
 
+(** {1 Structure} *)
+
+(** A scoped URL is either a path or a URL. It can therefore be validated
+    as either a path or a URL. *)
+
 type t
+
+(** {2 Projection}
+
+    A Scoped URL is projected as the following record:
+
+    {eof@json[
+      {
+        "kind": "external" | "internal",
+        "target": string,
+        "url": Option<Url>
+      }
+    ]eof}
+
+    If [kind] is ["external"], there is a field [url] with the URL
+    representation.
+
+    {3 Example with Jingoo}
+
+    {eof@html[
+      <img src="{{ scoped_url.target }}" alt="an avatar"/>
+    ]}
+
+    {2 Validation}
+
+    A scoped url can be validated eithers as [path] or as [url]. *)
 
 (** {1 Manipulating URLs} *)
 
