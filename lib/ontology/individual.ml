@@ -9,6 +9,7 @@ type t =
   ; urls : Url.Set.t
   ; bio : string option
   ; avatar : Scoped_url.t option
+  ; social_accounts : Social_account.Set.t
   }
 
 let compare { display_name; email; _ } other =
@@ -28,6 +29,7 @@ let make
       ?(urls = Url.Set.empty)
       ?bio
       ?avatar
+      ?(social_accounts = Social_account.Set.empty)
       display_name
   =
   { display_name
@@ -40,10 +42,45 @@ let make
   ; urls
   ; bio
   ; avatar
+  ; social_accounts
   }
 ;;
 
-let to_syndication inv = Yocaml_syndication.Person.make inv.display_name
+let display_name { display_name; _ } = display_name
+let first_name { first_name; _ } = first_name
+let last_name { last_name; _ } = last_name
+let gender { gender; _ } = gender
+let bio { bio; _ } = bio
+let avatar { avatar; _ } = avatar
+let social_accounts { social_accounts; _ } = social_accounts
+
+let email inv =
+  let email, _, _ =
+    Set.collapse_with_option (module Email.Set) inv.emails inv.email
+  in
+  email
+;;
+
+let url inv =
+  let uri, _, _ = Set.collapse_with_option (module Url.Set) inv.urls inv.url in
+  uri
+;;
+
+let all_emails { email; emails; _ } =
+  let _, _, x = Set.collapse_with_option (module Email.Set) emails email in
+  x
+;;
+
+let all_urls { url; urls; _ } =
+  let _, _, x = Set.collapse_with_option (module Url.Set) urls url in
+  x
+;;
+
+let to_syndication inv =
+  let uri = Option.map Url.to_string (url inv) in
+  let email = Option.map Email.to_string (email inv) in
+  Yocaml_syndication.Person.make ?uri ?email inv.display_name
+;;
 
 let to_data
       { display_name
@@ -56,6 +93,7 @@ let to_data
       ; urls
       ; bio
       ; avatar
+      ; social_accounts
       }
   =
   let open Yocaml.Data in
@@ -80,6 +118,8 @@ let to_data
     ; "all_emails", Email.Set.to_data all_emails
     ; "other_urls", Url.Set.to_data other_urls
     ; "all_urls", Url.Set.to_data all_urls
+    ; "social_accounts", Social_account.Set.to_data social_accounts
+    ; "has_bio", bool @@ Ext.Option.to_bool bio
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
     ; "has_email", bool @@ Ext.Option.to_bool email
@@ -231,7 +271,14 @@ let from_record =
         "bio"
         ~alt:[ "biography"; "synopsis"; "desc"; "description" ]
         as_name
-    and+ gender = opt fields "gender" Gender.from_data in
+    and+ gender = opt fields "gender" Gender.from_data
+    and+ social_accounts =
+      opt
+        fields
+        "social_accounts"
+        ~alt:[ "socials"; "accounts" ]
+        Social_account.Set.from_data
+    in
     make
       ?gender
       ?first_name
@@ -241,6 +288,7 @@ let from_record =
       ?urls
       ?last_name
       ?bio
+      ?social_accounts
       display_name)
 ;;
 
