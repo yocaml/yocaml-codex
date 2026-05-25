@@ -63,7 +63,86 @@ type t
       open Codex_atoms
       open Codex_ontology
 
-      let display_individual i = assert false
+      let display_individual i =
+        Format.asprintf
+          "%s (%a, %a) - %a"
+          (i |> Individual.display_name)
+          (Format.pp_print_option Format.pp_print_string)
+          (i |> Individual.first_name)
+          (Format.pp_print_option Format.pp_print_string)
+          (i |> Individual.last_name)
+          (Format.pp_print_option Format.pp_print_string)
+          (i |> Individual.email |> Option.map Email.to_string)
+      ;;
+    ]}
+
+    Like for other models there are several ways to validate an
+    individual. *)
+
+(** {3 Compact approach}
+
+    Just using a display name:
+
+    {@ocaml[
+      # Yocaml.Data.(string "Xavier Van de Woestyne")
+        |> Individual.from_data
+        |> Result.map display_individual ;;
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "Xavier Van de Woestyne (Xavier, Van de Woestyne) - "
+    ]}
+
+    Using the form: [fname/alias/lmame]:
+
+    {@ocaml[
+      # Yocaml.Data.(string "Xavier/ xvw /Van de Woestyne")
+        |> Individual.from_data
+        |> Result.map display_individual ;;
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "xvw (Xavier, Van de Woestyne) - "
+    ]}
+
+    Using a Mailbox:
+
+    {@ocaml[
+      # Yocaml.Data.(string "Xavier Van de Woestyne <xavier@email.com>")
+        |> Individual.from_data
+        |> Result.map display_individual ;;
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "Xavier Van de Woestyne (Xavier, Van de Woestyne) - xavier@email.com"
+    ]}
+
+    Or coupling mailbox with the previous form:
+
+    {@ocaml[
+      # Yocaml.Data.(string "Xavier / xvw / Van de Woestyne <xavier@email.com>")
+        |> Individual.from_data
+        |> Result.map display_individual ;;
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "xvw (Xavier, Van de Woestyne) - xavier@email.com"
+    ]}
+
+    You can see that the validation function attempts to infer the
+    first name and last name from the display name. If you want
+    to be more precise for each member of your entity, you might
+    as well use a less concise validation method. *)
+
+(** {3 Expanded version} *)
+
+(** The expanded validation uses a record:
+
+    {@ocaml[
+      # Yocaml.Data.(
+           record [
+             "display_name", string "xvw";
+             "first_name", string "Xavier";
+             "last_name", string "Van de Woestyne";
+             "emails", list_of string ["xavier@email.com"; "xavier@lol.com"]
+           ]
+         )
+         |> Individual.from_data
+         |> Result.map display_individual ;;
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "xvw (Xavier, Van de Woestyne) - xavier@email.com"
     ]} *)
 
 (** {1 Individual API} *)

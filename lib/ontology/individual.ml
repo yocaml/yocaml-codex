@@ -231,19 +231,20 @@ let validate_name fields =
   display_name, first_name, last_name
 ;;
 
-let from_string =
+let from_string ?email =
   let open Yocaml.Data.Validation in
   string
   & ((from_string_to_triple
       & record (validate_name & from_triple)
         $ fun (display_name, first_name, last_name) ->
-        make ?first_name ?last_name display_name)
-     / fun x -> Ok (make x))
+        make ?email ?first_name ?last_name display_name)
+     / fun x -> Ok (make ?email x))
 ;;
 
 let from_mailbox =
   let open Yocaml.Data.Validation in
-  (string & Email.from_mailbox) $ fun (name, email) -> make ~email name
+  (string & Email.from_mailbox)
+  & fun (name, email) -> from_string ~email (Yocaml.Data.string name)
 ;;
 
 let from_record =

@@ -287,8 +287,8 @@ let%expect_test "Validating a simple name from a mailbox" =
   [%expect
     {|
     [V] {"display_name": "Xavier Van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": null, "last_name": null,
-        "gender": null, "avatar": null, "email":
+         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
+         "Van de Woestyne", "gender": null, "avatar": null, "email":
          {"address": "xavier@email.com", "local": "xavier", "domain":
           "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"},
         "url": null, "other_emails":
@@ -308,9 +308,10 @@ let%expect_test "Validating a simple name from a mailbox" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
-        "has_bio": false, "has_first_name": false, "has_last_name": false,
-        "has_email": true, "has_url": false, "has_names": false, "has_gender":
-         false, "has_avatar": false, "with_names": null}
+        "has_bio": false, "has_first_name": true, "has_last_name": true,
+        "has_email": true, "has_url": false, "has_names": true, "has_gender":
+         false, "has_avatar": false, "with_names":
+         {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
 
