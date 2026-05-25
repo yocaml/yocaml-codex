@@ -60,7 +60,8 @@ type t
 
       let display_account account =
         Format.asprintf
-          "%s - %s"
+          "%s: %s - %s"
+          (account |> Social_account.kind)
           (account |> Social_account.username)
           (account |> Social_account.url |> Url.to_string)
       ;;
@@ -78,7 +79,7 @@ type t
           Yocaml.Data.(string "bsky/xvw.lol")
         |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "xvw.lol - https://bsky.app/profile/xvw.lol"
+      Ok "bluesky: xvw.lol - https://bsky.app/profile/xvw.lol"
     ]eof}
 
     You can use the following kinds:
@@ -103,22 +104,30 @@ type t
           Yocaml.Data.(string "ig/vdwxv")
         |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "vdwxv - https://instagram.com/vdwxv"
+      Ok "instagram: vdwxv - https://instagram.com/vdwxv"
     ]eof}
 
     {4 Compact approach for mastodon}
 
-    You can also use the form [@instance@username] for a social
-    account related to a Mastodon Instance ([https://] is not
-    mandatory so [@merveilles.town@xvw] is equivalent to
-    [@https://merveilles.town@xvw]):
+    You can also use the form [@username@instance] or [instance@username]
+    for a social account related to a Mastodon Instance
+    ([https://] is not mandatory so [merveilles.town@xvw]
+    is equivalent to [https://merveilles.town@xvw]):
 
     {eof@ocaml[
       # Social_account.from_data
-          Yocaml.Data.(string "@merveilles.town@xvw")
+          Yocaml.Data.(string "merveilles.town@xvw")
         |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "xvw@merveilles.town - https://merveilles.town/@xvw"
+      Ok "mastodon: xvw@merveilles.town - https://merveilles.town/@xvw"
+    ]eof}
+
+    {eof@ocaml[
+      # Social_account.from_data
+          Yocaml.Data.(string "merveilles.town@xvw")
+        |> Result.map display_account
+      - : (string, Yocaml.Data.Validation.value_error) result =
+      Ok "mastodon: xvw@merveilles.town - https://merveilles.town/@xvw"
     ]eof}
 
     {3 Expanded version}
@@ -131,7 +140,7 @@ type t
         ; "username", string "xvw"
         ]) |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "xvw@merveilles.town - https://merveilles.town/@xvw"
+      Ok "mastodon: xvw@merveilles.town - https://merveilles.town/@xvw"
     ]eof}
 
     And here is an example for a Bluesky account:
@@ -142,7 +151,7 @@ type t
         ; "username", string "xvw.lol"
         ]) |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "xvw.lol - https://bsky.app/profile/xvw.lol"
+      Ok "bluesky: xvw.lol - https://bsky.app/profile/xvw.lol"
     ]eof}
 
     [platform] can be substitute by [kind] or [network].
@@ -169,7 +178,7 @@ type t
         ; "url", string "https://ring.muhokama.fun/u/xvw"
         ]) |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "xvw - https://ring.muhokama.fun/u/xvw"
+      Ok "muhokama: xvw - https://ring.muhokama.fun/u/xvw"
     ]eof} *)
 
 (** {1 Building Social media accounts} *)
@@ -220,6 +229,9 @@ val threads : username:string -> unit -> t
 val cara : username:string -> unit -> t
 
 (** {1 Manipulating Social media accounts} *)
+
+(** Get the kind of the social account. *)
+val kind : t -> string
 
 (** Get the main domain of the social media account. *)
 val domain : t -> Url.t

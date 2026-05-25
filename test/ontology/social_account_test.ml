@@ -382,7 +382,7 @@ let%expect_test "to_data of social media account - 13" =
 let%expect_test "Validate a mastodon account 1" =
   let input =
     let open Yocaml.Data in
-    string "@merveilles.town@xvw"
+    string "@xvw@merveilles.town"
   in
   input |> Social_account.from_data |> dump_validation Social_account.to_data;
   [%expect

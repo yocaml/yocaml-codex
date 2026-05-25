@@ -263,9 +263,14 @@ module Validation = struct
   let mastodon_from_string =
     let open Yocaml.Data.Validation in
     string
-    & String.has_prefix ~prefix:"@" $ Ext.String.remove_leading_arobase
     & fun str ->
+    (* NOTE: deal with the following idea:
+       - @x@xs, x is the username, xs is the instance.
+       - x@xs, x is the instance, xs is the username. *)
     match Stdlib.String.split_on_char '@' str with
+    | [ ""; username; instance ] ->
+      let instance = Url.https instance in
+      Ok (mastodon ~instance ~username ())
     | [ instance; username ] ->
       let instance = Url.https instance in
       Ok (mastodon ~instance ~username ())
