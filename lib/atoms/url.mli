@@ -64,6 +64,9 @@ val resolve
 (** [name url] gives a standard name for a given URL. *)
 val name : ?with_scheme:bool -> ?with_path:bool -> t -> string
 
+(** [host url] returns the domain name of the given [url]. *)
+val host : t -> string
+
 (** [compare a b] compare two urls. *)
 val compare : t -> t -> int
 

@@ -29,7 +29,7 @@ type t
         "is_custom": bool,
         "username": string,
         "domain": Url,
-        "url", Url
+        "url": Url
       }
     ]eof}
 
@@ -118,7 +118,7 @@ type t
           Yocaml.Data.(string "@merveilles.town@xvw")
         |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "merveilles.town/xvw - https://merveilles.town/@xvw"
+      Ok "xvw@merveilles.town - https://merveilles.town/@xvw"
     ]eof}
 
     {3 Expanded version}
@@ -131,7 +131,7 @@ type t
         ; "username", string "xvw"
         ]) |> Result.map display_account
       - : (string, Yocaml.Data.Validation.value_error) result =
-      Ok "merveilles.town/xvw - https://merveilles.town/@xvw"
+      Ok "xvw@merveilles.town - https://merveilles.town/@xvw"
     ]eof}
 
     And here is an example for a Bluesky account:
@@ -235,6 +235,11 @@ val compare : t -> t -> int
 
 (** [equal a b] equality between two accounts (using [url]). *)
 val equal : t -> t -> bool
+
+(** {1 Utilities} *)
+
+(** [to_meta] render the [<meta>] tag [author] for twitter and mastodon. *)
+val to_meta : t -> Meta.t
 
 (** {1 Yocaml Related} *)
 

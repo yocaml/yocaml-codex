@@ -30,7 +30,7 @@ let%expect_test "Username of a social media account" =
     {|
     [`xvw`;
     `xvw`;
-    `merveilles.town/xvw`;
+    `xvw@merveilles.town`;
     `kramo`;
     `tim-ats-d`;
     `vdwxv`;
@@ -135,7 +135,7 @@ let%expect_test "to_data of social media account - 3" =
   [%expect
     {|
     {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-     "merveilles.town/xvw", "domain":
+     "xvw@merveilles.town", "domain":
      {"target": "https://merveilles.town", "scheme": "https", "host":
       "merveilles.town", "port": null, "path": "/", "has_port": false,
      "query_params":
@@ -388,7 +388,7 @@ let%expect_test "Validate a mastodon account 1" =
   [%expect
     {|
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-         "merveilles.town/xvw", "domain":
+         "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
          "query_params":
@@ -415,7 +415,7 @@ let%expect_test "Validate a mastodon account 2" =
   [%expect
     {|
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-         "merveilles.town/xvw", "domain":
+         "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
          "query_params":
@@ -441,7 +441,7 @@ let%expect_test "Validate a mastodon account 2" =
   [%expect
     {|
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-         "merveilles.town/xvw", "domain":
+         "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
          "query_params":
@@ -467,7 +467,7 @@ let%expect_test "Validate a mastodon account 3" =
   [%expect
     {|
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-         "merveilles.town/xvw", "domain":
+         "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
          "query_params":
@@ -824,7 +824,7 @@ let%expect_test "Validate from a list - 2" =
   [%expect
     {|
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
-         "merveilles.town/xvw", "domain":
+         "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
           "merveilles.town", "port": null, "path": "/", "has_port": false,
          "query_params":

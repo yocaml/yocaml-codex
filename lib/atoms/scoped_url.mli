@@ -26,7 +26,7 @@ type t
 
     {eof@html[
       <img src="{{ scoped_url.target }}" alt="an avatar"/>
-    ]}
+    ]eof}
 
     {2 Validation}
 

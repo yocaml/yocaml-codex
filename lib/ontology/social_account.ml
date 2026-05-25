@@ -24,18 +24,55 @@ type t =
       }
 
 let make ?kind ~url ~username () = Unknown { url; username; kind }
-let mastodon ~instance ~username () = Known (Mastodon { instance; username })
-let github ~username () = Known (Github username)
-let gitlab ~username () = Known (Gitlab username)
-let codeberg ~username () = Known (Codeberg username)
-let sourcehut ~username () = Known (Sourcehut username)
-let x ~username () = Known (X username)
-let bluesky ~username () = Known (Bluesky username)
-let linkedin ~username () = Known (Linkedin username)
-let instagram ~username () = Known (Instagram username)
-let facebook ~username () = Known (Facebook username)
-let threads ~username () = Known (Threads username)
-let cara ~username () = Known (Cara username)
+
+let mastodon ~instance ~username () =
+  Known
+    (Mastodon
+       { instance; username = Ext.String.remove_leading_arobase username })
+;;
+
+let github ~username () =
+  Known (Github (Ext.String.remove_leading_arobase username))
+;;
+
+let gitlab ~username () =
+  Known (Gitlab (Ext.String.remove_leading_arobase username))
+;;
+
+let codeberg ~username () =
+  Known (Codeberg (Ext.String.remove_leading_arobase username))
+;;
+
+let sourcehut ~username () =
+  Known (Sourcehut (Ext.String.remove_leading_arobase username))
+;;
+
+let x ~username () = Known (X (Ext.String.remove_leading_arobase username))
+
+let bluesky ~username () =
+  Known (Bluesky (Ext.String.remove_leading_arobase username))
+;;
+
+let linkedin ~username () =
+  Known (Linkedin (Ext.String.remove_leading_arobase username))
+;;
+
+let instagram ~username () =
+  Known (Instagram (Ext.String.remove_leading_arobase username))
+;;
+
+let facebook ~username () =
+  Known (Facebook (Ext.String.remove_leading_arobase username))
+;;
+
+let threads ~username () =
+  Known (Threads (Ext.String.remove_leading_arobase username))
+;;
+
+let cara ~username () =
+  Known (Cara (Ext.String.remove_leading_arobase username))
+;;
+
 let twitter = x
 let bsky = bluesky
 
@@ -64,6 +101,11 @@ let kind = function
   | Known provider -> kind_from_provider provider
 ;;
 
+let username_from_mastodon instance username =
+  let instance = Url.host instance in
+  username ^ "@" ^ instance
+;;
+
 let username_from_provider = function
   | Github username
   | Gitlab username
@@ -76,9 +118,7 @@ let username_from_provider = function
   | Cara username
   | Facebook username
   | Threads username -> username
-  | Mastodon { instance; username } ->
-    let instance = Url.name ~with_scheme:false ~with_path:false instance in
-    instance ^ "/" ^ username
+  | Mastodon { instance; username } -> username_from_mastodon instance username
 ;;
 
 let username = function
@@ -354,3 +394,13 @@ module Map = struct
   include S
   include Map.Make (S) (Orderable) (Orderable)
 end
+
+let to_meta = function
+  | Known (Mastodon { instance; username }) ->
+    let value = "@" ^ username_from_mastodon instance username in
+    Meta.make ~name:[ "fediver"; "creator" ] value
+  | Known (X username) ->
+    let value = "@" ^ username in
+    Meta.make ~name:[ "twitter"; "creator" ] value
+  | _ -> None
+;;

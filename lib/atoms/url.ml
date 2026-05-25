@@ -114,6 +114,7 @@ let with_scheme ~scheme ?path rest =
 
 let http = with_scheme ~scheme:"http"
 let https = with_scheme ~scheme:"https"
+let host { host; _ } = host
 
 let name ?(with_scheme = false) ?(with_path = true) { host; scheme; uri; _ } =
   let scheme = if with_scheme then scheme_to_string scheme ^ "://" else ""
