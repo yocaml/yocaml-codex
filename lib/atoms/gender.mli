@@ -123,15 +123,29 @@ type t
 
 (** {1 Building Genders} *)
 
+(** Create the common [male] gender. *)
 val male : ?pronouns:string list -> unit -> t
+
+(** Create the common [female] gender. *)
 val female : ?pronouns:string list -> unit -> t
+
+(** Create an [other] gender. *)
 val other : ?pronouns:string list -> string -> t
 
 (** {1 Accessors} *)
 
+(** Returns the list of nouns related to a gender. *)
 val pronouns : t -> string list
+
+(** Lexical comparison between genders (informal and cold, just for
+    set-stuff). *)
 val compare : t -> t -> int
+
+(** Lexical equality between genders (also informal). *)
 val equal : t -> t -> bool
+
+(** Returns a string representation of the gender. *)
+val to_string : t -> string
 
 (** {1 Yocaml Related} *)
 

@@ -63,6 +63,25 @@ val book
   -> Yocaml.Datetime.t
   -> t
 
+(** Open Graph [profile] kind.
+
+    Corresponds to the following Open Graph meta tags
+    when all optional values are provided:
+
+    {eof@html[
+      <meta property="og:type" content="profile" />
+      <meta property="profile:username" content="jdo" />
+      <meta property="profile:first_name" content="John" />
+      <meta property="profile:last_name" content="Doe" />
+      <meta property="profile:gender" content="male" />
+    ]eof} *)
+val profile
+  :  ?first_name:string
+  -> ?last_name:string
+  -> ?gender:Codex_atoms.Gender.t
+  -> string
+  -> t
+
 (** [to_open_graph kind] returns the list of Open Graph meta tags
     corresponding to [kind]. *)
 val to_open_graph : t -> Codex_atoms.Meta.t list

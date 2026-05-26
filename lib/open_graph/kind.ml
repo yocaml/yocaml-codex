@@ -15,11 +15,21 @@ type t =
       ; release_date : Yocaml.Datetime.t
       ; tags : Tag.Set.t
       }
+  | Profile of
+      { first_name : string option
+      ; last_name : string option
+      ; username : string
+      ; gender : Gender.t option
+      }
 
 let website = Website
 
 let book ?(authors = Url.Set.empty) ?(tags = Tag.Set.empty) isbn release_date =
   Book { authors; isbn; release_date; tags }
+;;
+
+let profile ?first_name ?last_name ?gender username =
+  Profile { first_name; last_name; gender; username }
 ;;
 
 let article
@@ -76,4 +86,13 @@ let to_open_graph = function
     ]
     @ tags
     @ authors
+  | Profile { first_name; last_name; username; gender } ->
+    let open Meta in
+    let prefix = "book" in
+    [ make ~name:[ "og"; "type" ] prefix
+    ; make ~name:[ prefix; "username" ] username
+    ; from_opt ~name:[ prefix; "first_name" ] Fun.id first_name
+    ; from_opt ~name:[ prefix; "last_name" ] Fun.id last_name
+    ; from_opt ~name:[ prefix; "gender" ] Gender.to_string gender
+    ]
 ;;

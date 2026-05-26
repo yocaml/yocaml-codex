@@ -206,3 +206,6 @@ end
 (** [to_meta authors] create a list of creators
     [<meta name="creator" content="display-name"]/>. *)
 val to_meta : Set.t -> Meta.t list
+
+(** Returns the open graph representation of an individual (as a profile). *)
+val to_open_graph : t -> Codex_open_graph.Kind.t

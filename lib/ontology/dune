@@ -2,7 +2,12 @@
  (name codex_ontology)
  (public_name yocaml-codex.ontology)
  (flags (:standard) -open Codex_atoms)
- (libraries uri yocaml yocaml_syndication yocaml-codex.atoms))
+ (libraries
+  uri
+  yocaml
+  yocaml_syndication
+  yocaml-codex.atoms
+  yocaml-codex.open-graph))
 
 (mdx
  (files *.mli)

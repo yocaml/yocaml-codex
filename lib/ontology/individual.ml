@@ -324,3 +324,7 @@ let to_meta authors =
   |> List.map (fun { display_name; _ } ->
     Codex_atoms.Meta.make ~name:[ "creator" ] display_name)
 ;;
+
+let to_open_graph { display_name; first_name; last_name; gender; _ } =
+  Codex_open_graph.Kind.profile ?first_name ?last_name ?gender display_name
+;;
