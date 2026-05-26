@@ -21,6 +21,7 @@ module Media = Media
 
 (** {1 Misc} *)
 
+module Model_merge = Model_merge
 module Derivable = Derivable
 
 (** {1 Reusable signatures & Misc} *)
