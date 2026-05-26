@@ -8,6 +8,7 @@ module Map = Map
 
 (** {1 Elements} *)
 
+module Gender = Gender
 module Url = Url
 module Scoped_url = Scoped_url
 module Isbn = Isbn

@@ -1,5 +1,5 @@
 open Test_util
-open Codex_ontology
+open Codex_atoms
 
 let%expect_test "Dump a gender - 1" =
   Yocaml.Data.string "male"

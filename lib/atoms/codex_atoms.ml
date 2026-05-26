@@ -1,5 +1,6 @@
 module Set = Set
 module Map = Map
+module Gender = Gender
 module Url = Url
 module Scoped_url = Scoped_url
 module Isbn = Isbn

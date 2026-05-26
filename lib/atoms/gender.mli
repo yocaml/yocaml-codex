@@ -39,7 +39,6 @@ type t
 
     {@ocaml[
       open Codex_atoms
-      open Codex_ontology
 
       let display_gender g =
         g |> Gender.to_data |> Format.asprintf "%a" Yocaml.Data.pp
