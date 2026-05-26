@@ -9,6 +9,13 @@ type t =
   ; cover : Media.t option
   }
 
+let kind { kind; _ } = kind
+let title { title; _ } = title
+let site_name { site_name; _ } = site_name
+let locale { locale; _ } = locale
+let url { url; _ } = url
+let cover { cover; _ } = cover
+
 let make ?locale ?cover ~kind ~title ~site_name ~url () =
   { locale; cover; kind; title; site_name; url }
 ;;
