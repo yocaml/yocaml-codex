@@ -323,5 +323,10 @@ let to_meta { display_name; _ } =
 ;;
 
 let to_open_graph { display_name; first_name; last_name; gender; _ } =
-  Codex_open_graph.Kind.profile ?first_name ?last_name ?gender display_name
+  Codex_open_graph.Kind.profile
+    ?first_name
+    ?last_name
+    ?gender
+    ~username:display_name
+    ()
 ;;

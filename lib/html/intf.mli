@@ -24,9 +24,4 @@ class type document = object
   method main_url : Codex_atoms.Url.t option
   method site_name : string option
   method canonical_url : Codex_atoms.Url.t option
-
-  (** Since a profile is identified by a URL, we allow the user to resolve
-      it by implementing this method. *)
-  method resolve_open_graph_authors :
-    Codex_ontology.Individual.t -> Codex_atoms.Url.t option
 end

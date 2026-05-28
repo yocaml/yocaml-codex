@@ -41,9 +41,7 @@ class t
 
     method canonical_url =
       let open Ext.Option in
-      canonical_url <|> (Url.resolve self#target <$> main_url)
-
-    method resolve_open_graph_authors _ = None
+      canonical_url <|> (Url.resolve self#target <$> self#main_url)
 
     method normalize_open_graph_tag =
       match open_graph with
@@ -86,8 +84,16 @@ class t
       ; "source", option path self#source
       ; "cover", option Media.to_data self#cover
       ; "authors", Codex_ontology.Individual.Set.to_data self#authors
+      ; "locale", option Language.to_data self#locale
+      ; "main_url", option Url.to_data self#main_url
+      ; "site_name", option string self#site_name
+      ; "canonical_url", option Url.to_data self#canonical_url
       ; "has_cover", bool @@ Ext.Option.to_bool self#cover
       ; "has_source", bool @@ Ext.Option.to_bool self#source
+      ; "has_locale", bool @@ Ext.Option.to_bool self#locale
+      ; "has_main_url", bool @@ Ext.Option.to_bool self#main_url
+      ; "has_site_name", bool @@ Ext.Option.to_bool self#site_name
+      ; "has_canonical_url", bool @@ Ext.Option.to_bool self#canonical_url
       ]
   end
 

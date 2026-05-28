@@ -57,7 +57,3 @@ val make
   -> target:Yocaml.Path.t
   -> unit
   -> t
-
-(** {2 Open Graph specified}
-
-    Document type associated with Open Graph data. *)

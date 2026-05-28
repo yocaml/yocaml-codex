@@ -59,8 +59,9 @@ val article
 val book
   :  ?authors:Codex_atoms.Url.Set.t
   -> ?tags:Codex_atoms.Tag.Set.t
-  -> Codex_atoms.Isbn.t
-  -> Yocaml.Datetime.t
+  -> isbn:Codex_atoms.Isbn.t
+  -> release_date:Yocaml.Datetime.t
+  -> unit
   -> t
 
 (** Open Graph [profile] kind.
@@ -79,7 +80,8 @@ val profile
   :  ?first_name:string
   -> ?last_name:string
   -> ?gender:Codex_atoms.Gender.t
-  -> string
+  -> username:string
+  -> unit
   -> t
 
 (** [to_open_graph kind] returns the list of Open Graph meta tags

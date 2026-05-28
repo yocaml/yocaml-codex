@@ -24,11 +24,17 @@ type t =
 
 let website = Website
 
-let book ?(authors = Url.Set.empty) ?(tags = Tag.Set.empty) isbn release_date =
+let book
+      ?(authors = Url.Set.empty)
+      ?(tags = Tag.Set.empty)
+      ~isbn
+      ~release_date
+      ()
+  =
   Book { authors; isbn; release_date; tags }
 ;;
 
-let profile ?first_name ?last_name ?gender username =
+let profile ?first_name ?last_name ?gender ~username () =
   Profile { first_name; last_name; gender; username }
 ;;
 
