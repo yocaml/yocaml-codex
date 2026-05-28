@@ -318,11 +318,8 @@ module Map = struct
   include Map.Make (S) (Orderable) (Orderable)
 end
 
-let to_meta authors =
-  authors
-  |> Set.to_list
-  |> List.map (fun { display_name; _ } ->
-    Codex_atoms.Meta.make ~name:[ "author" ] display_name)
+let to_meta { display_name; _ } =
+  Codex_atoms.Meta.make ~name:[ "author" ] display_name
 ;;
 
 let to_open_graph { display_name; first_name; last_name; gender; _ } =

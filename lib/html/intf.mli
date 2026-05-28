@@ -12,7 +12,6 @@ end
 (** Describes the generic interface of a document. *)
 class type document = object
   inherit normalizable
-  method open_graph : Codex_open_graph.Document.t option
   method title : string
   method description : string
   method tags : Codex_atoms.Tag.Set.t
@@ -20,4 +19,14 @@ class type document = object
   method source : Yocaml.Path.t option
   method cover : Codex_atoms.Media.t option
   method authors : Codex_ontology.Individual.Set.t
+  method open_graph : Codex_open_graph.Document.t option
+  method locale : Codex_atoms.Language.t option
+  method main_url : Codex_atoms.Url.t option
+  method site_name : string option
+  method canonical_url : Codex_atoms.Url.t option
+
+  (** Since a profile is identified by a URL, we allow the user to resolve
+      it by implementing this method. *)
+  method resolve_open_graph_authors :
+    Codex_ontology.Individual.t -> Codex_atoms.Url.t option
 end

@@ -403,7 +403,7 @@ end
 let to_meta = function
   | Known (Mastodon { instance; username }) ->
     let value = "@" ^ username_from_mastodon instance username in
-    Meta.make ~name:[ "fediver"; "creator" ] value
+    Meta.make ~name:[ "fediverse"; "creator" ] value
   | Known (X username) ->
     let value = "@" ^ username in
     Meta.make ~name:[ "twitter"; "creator" ] value

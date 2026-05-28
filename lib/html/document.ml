@@ -1,6 +1,12 @@
+open Codex_atoms
+
 class t
   ?open_graph
-  ?(tags = Codex_atoms.Tag.Set.empty)
+  ?locale
+  ?main_url
+  ?site_name
+  ?canonical_url
+  ?(tags = Tag.Set.empty)
   ?(authors = Codex_ontology.Individual.Set.empty)
   ?source
   ?cover
@@ -17,6 +23,10 @@ class t
     val title = title
     val description = description
     val target = target
+    val locale = locale
+    val main_url = main_url
+    val site_name = site_name
+    val canonical_url = canonical_url
     method open_graph = open_graph
     method title = title
     method description = description
@@ -25,18 +35,44 @@ class t
     method source = source
     method cover = cover
     method authors = authors
+    method locale = locale
+    method main_url = main_url
+    method site_name = site_name
+
+    method canonical_url =
+      let open Ext.Option in
+      canonical_url <|> (Url.resolve self#target <$> main_url)
+
+    method resolve_open_graph_authors _ = None
 
     method normalize_open_graph_tag =
       match open_graph with
       | Some og -> Codex_open_graph.Document.to_open_graph og
       | None -> []
 
+    method private classify_authors =
+      let authors, creators =
+        Codex_ontology.Individual.(
+          Set.fold
+            (fun i (authors, creators) ->
+               ( to_meta i :: authors
+               , Codex_ontology.Social_account.Set.fold
+                   (fun sa accounts ->
+                      Codex_ontology.Social_account.to_meta sa :: accounts)
+                   (social_accounts i)
+                   creators ))
+            self#authors
+            ([], []))
+      in
+      authors @ creators
+
     method normalize_meta_tag =
-      let open Codex_atoms.Meta in
+      let open Meta in
       [ make ~name:[ "generator" ] "YOCaml"
       ; make ~name:[ "description" ] description
-      ; Codex_atoms.Tag.to_meta tags
+      ; Tag.to_meta tags
       ]
+      @ self#classify_authors
 
     method normalize =
       let open Codex_atoms in
@@ -57,6 +93,10 @@ class t
 
 let make
       ?open_graph
+      ?locale
+      ?main_url
+      ?site_name
+      ?canonical_url
       ?tags
       ?authors
       ?source
@@ -66,5 +106,18 @@ let make
       ~target
       ()
   =
-  new t ?open_graph ?tags ?authors ?source ?cover ~title ~description ~target ()
+  new t
+    ?open_graph
+    ?locale
+    ?main_url
+    ?site_name
+    ?canonical_url
+    ?tags
+    ?authors
+    ?source
+    ?cover
+    ~title
+    ~description
+    ~target
+    ()
 ;;

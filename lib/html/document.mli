@@ -15,6 +15,10 @@
 
 class t :
   ?open_graph:Codex_open_graph.Document.t
+  -> ?locale:Codex_atoms.Language.t
+  -> ?main_url:Codex_atoms.Url.t
+  -> ?site_name:string
+  -> ?canonical_url:Codex_atoms.Url.t
   -> ?tags:Codex_atoms.Tag.Set.t
   -> ?authors:Codex_ontology.Individual.Set.t
   -> ?source:Yocaml.Path.t
@@ -40,6 +44,10 @@ end
 (** Build a concrete HTML document. *)
 val make
   :  ?open_graph:Codex_open_graph.Document.t
+  -> ?locale:Codex_atoms.Language.t
+  -> ?main_url:Codex_atoms.Url.t
+  -> ?site_name:string
+  -> ?canonical_url:Codex_atoms.Url.t
   -> ?tags:Codex_atoms.Tag.Set.t
   -> ?authors:Codex_ontology.Individual.Set.t
   -> ?source:Yocaml.Path.t

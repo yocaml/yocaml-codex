@@ -203,9 +203,9 @@ end
 
 (** {1 Utilities} *)
 
-(** [to_meta authors] create a list of creators
+(** [to_meta author] create the related
     [<meta name="author" content="display-name"]/>. *)
-val to_meta : Set.t -> Meta.t list
+val to_meta : t -> Meta.t
 
 (** Returns the open graph representation of an individual (as a profile). *)
 val to_open_graph : t -> Codex_open_graph.Kind.t
