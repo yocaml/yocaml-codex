@@ -5,11 +5,37 @@
 
 (** {1 Structure} *)
 
-(** The type is parametrized by a potential configuration and by a
-    specific conteent (i.e, an Article, a regular page etc.) *)
-type ('configuration, 'content) t
+(** Typically, Atoms and ontologies are described as records and are
+    relatively static. This is because it is assumed that we would not
+    want to extend them. However, for documents (and likely some
+    complex archetypes), we want to give users the freedom to add
+    fields without having to deal with awkward merge solutions;
+    therefore, we rely on the object model to give users the freedom
+    to extend a model. *)
 
-(** {1 Building documents} *)
+class t :
+  ?open_graph:Codex_open_graph.Document.t
+  -> ?tags:Codex_atoms.Tag.Set.t
+  -> ?authors:Codex_ontology.Individual.Set.t
+  -> ?source:Yocaml.Path.t
+  -> ?cover:Codex_atoms.Media.t
+  -> title:string
+  -> description:string
+  -> target:Yocaml.Path.t
+  -> unit
+  ->
+object
+  inherit Intf.document
+
+  (** Methods to be used in extension *)
+
+  method normalize_meta_tag : Codex_atoms.Meta.t list
+  method normalize_open_graph_tag : Codex_atoms.Meta.t list
+end
+
+(** {1 Building document}
+
+    Functions to facilitate the creation of specific kind of documents. *)
 
 (** Build a concrete HTML document. *)
 val make
@@ -21,22 +47,9 @@ val make
   -> title:string
   -> description:string
   -> target:Yocaml.Path.t
-  -> configuration:'configuration
-  -> content:'content
   -> unit
-  -> ('configuration, 'content) t
+  -> t
 
-(** {1 Yocaml Related} *)
+(** {2 Open Graph specified}
 
-(** Render a document as a templates set of metadata. You can use
-    [more_fields] to compute more records fields on the document. *)
-val normalize
-  :  ?more_fields:
-       ( string
-         , Yocaml.Data.t
-         , ('configuration, 'content) t )
-         Codex_atoms.Model_merge.t
-  -> on_config:(string, Yocaml.Data.t, 'configuration) Codex_atoms.Model_merge.t
-  -> on_content:(string, Yocaml.Data.t, 'content) Codex_atoms.Model_merge.t
-  -> ('configuration, 'content) t
-  -> (string * Yocaml.Data.t) list
+    Document type associated with Open Graph data. *)

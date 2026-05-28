@@ -1,6 +1,7 @@
 (library
  (name codex_html)
  (public_name yocaml-codex.html)
+ (modules_without_implementation intf)
  (libraries
   yocaml
   yocaml-codex.atoms

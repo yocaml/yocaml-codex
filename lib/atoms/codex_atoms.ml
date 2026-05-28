@@ -10,7 +10,6 @@ module Language = Language
 module Meta = Meta
 module Tag = Tag
 module Media = Media
-module Model_merge = Model_merge
 module Derivable = Derivable
 module Ext = Ext
 module Sigs = Sigs
