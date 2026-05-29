@@ -95,6 +95,8 @@ class t
       ; "has_site_name", bool @@ Ext.Option.to_bool self#site_name
       ; "has_canonical_url", bool @@ Ext.Option.to_bool self#canonical_url
       ]
+
+    method to_data = Yocaml.Data.record self#normalize
   end
 
 let make
@@ -127,3 +129,43 @@ let make
     ~target
     ()
 ;;
+
+class with_content
+  on_content_data
+  ?(content_key = "content")
+  ?open_graph
+  ?locale
+  ?main_url
+  ?site_name
+  ?canonical_url
+  ?tags
+  ?authors
+  ?source
+  ?cover
+  ~title
+  ~description
+  ~target
+  content =
+  object
+    inherit
+      t
+        ?open_graph
+        ?locale
+        ?main_url
+        ?site_name
+        ?canonical_url
+        ?tags
+        ?authors
+        ?source
+        ?cover
+        ~title
+        ~description
+        ~target
+        () as super
+
+    val content_key = content_key
+    method content_key = content_key
+
+    method! normalize =
+      (content_key, on_content_data content) :: super#normalize
+  end

@@ -27,14 +27,28 @@ class t :
   -> description:string
   -> target:Yocaml.Path.t
   -> unit
+  -> Intf.document
+
+class with_content :
+  'a Yocaml.Data.converter
+  -> ?content_key:string
+  -> ?open_graph:Codex_open_graph.Document.t
+  -> ?locale:Codex_atoms.Language.t
+  -> ?main_url:Codex_atoms.Url.t
+  -> ?site_name:string
+  -> ?canonical_url:Codex_atoms.Url.t
+  -> ?tags:Codex_atoms.Tag.Set.t
+  -> ?authors:Codex_ontology.Individual.Set.t
+  -> ?source:Yocaml.Path.t
+  -> ?cover:Codex_atoms.Media.t
+  -> title:string
+  -> description:string
+  -> target:Yocaml.Path.t
+  -> 'a
   ->
 object
   inherit Intf.document
-
-  (** Methods to be used in extension *)
-
-  method normalize_meta_tag : Codex_atoms.Meta.t list
-  method normalize_open_graph_tag : Codex_atoms.Meta.t list
+  method content_key : string
 end
 
 (** {1 Building document}

@@ -5,6 +5,9 @@
 class type normalizable = object
   (** Converts the current instance into an associative list of fields. *)
   method normalize : (string * Yocaml.Data.t) list
+
+  (** Returns the normalization as a Record. *)
+  method to_data : Yocaml.Data.t
 end
 
 (** {1 Document} *)
@@ -24,4 +27,6 @@ class type document = object
   method main_url : Codex_atoms.Url.t option
   method site_name : string option
   method canonical_url : Codex_atoms.Url.t option
+  method normalize_meta_tag : Codex_atoms.Meta.t list
+  method normalize_open_graph_tag : Codex_atoms.Meta.t list
 end
