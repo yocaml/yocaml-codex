@@ -9,6 +9,7 @@ type t =
   ; urls : Url.Set.t
   ; bio : string option
   ; avatar : Scoped_url.t option
+  ; birthday : Yocaml.Datetime.t option
   ; social_accounts : Social_account.Set.t
   }
 
@@ -29,6 +30,7 @@ let make
       ?(urls = Url.Set.empty)
       ?bio
       ?avatar
+      ?birthday
       ?(social_accounts = Social_account.Set.empty)
       display_name
   =
@@ -42,6 +44,7 @@ let make
   ; urls
   ; bio
   ; avatar
+  ; birthday
   ; social_accounts
   }
 ;;
@@ -52,6 +55,7 @@ let last_name { last_name; _ } = last_name
 let gender { gender; _ } = gender
 let bio { bio; _ } = bio
 let avatar { avatar; _ } = avatar
+let birthday { birthday; _ } = birthday
 let social_accounts { social_accounts; _ } = social_accounts
 
 let email inv =
@@ -93,6 +97,7 @@ let to_data
       ; urls
       ; bio
       ; avatar
+      ; birthday
       ; social_accounts
       }
   =
@@ -112,6 +117,7 @@ let to_data
     ; "last_name", option string last_name
     ; "gender", option Gender.to_data gender
     ; "avatar", option Scoped_url.to_data avatar
+    ; "birthday", option Yocaml.Datetime.to_data birthday
     ; "email", option Email.to_data email
     ; "url", option Url.to_data url
     ; "other_emails", Email.Set.to_data other_emails
@@ -127,6 +133,7 @@ let to_data
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
     ; "has_avatar", bool @@ Ext.Option.to_bool avatar
+    ; "has_birthday", bool @@ Ext.Option.to_bool birthday
     ; ( "with_names"
       , option
           (fun (first_name, last_name) ->
@@ -273,6 +280,18 @@ let from_record =
         ~alt:[ "biography"; "synopsis"; "desc"; "description" ]
         as_name
     and+ gender = opt fields "gender" Gender.from_data
+    and+ avatar =
+      opt
+        fields
+        "avatar"
+        ~alt:[ "profile_picture"; "picture" ]
+        Scoped_url.from_data
+    and+ birthday =
+      opt
+        fields
+        "birthday"
+        ~alt:[ "birth"; "birthdate" ]
+        Yocaml.Datetime.from_data
     and+ social_accounts =
       opt
         fields
@@ -290,6 +309,8 @@ let from_record =
       ?last_name
       ?bio
       ?social_accounts
+      ?avatar
+      ?birthday
       display_name)
 ;;
 

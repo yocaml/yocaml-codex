@@ -33,7 +33,9 @@ _sub-libraries_ :
   **primitive types** one might want to use (such as `url`)
   
 - `yocaml-codex.open_graph`, `Codex_open_graph`, which describes
-  [open-graph](https://ogp.me/) lexicons
+  [open-graph](https://ogp.me/) lexicons. The implementation is
+  _partial_, but it should be sufficient to describe typical
+  websites.
 
 - `yocaml-codex.ontology`, `Codex_ontology`, which describes complete
   data models (such as `repository`)
