@@ -18,6 +18,7 @@ type t
         "last_name": Option<string>,
         "gender": Option<Gender>,
         "avatar": Option<Scoped_url>,
+        "birthday": Option<Datetime>,
         "email": Option<Email>,
         "url": Option<Url>,
         "other_emails": Set<Email>,
@@ -32,6 +33,7 @@ type t
         "has_first_name": bool,
         "has_gender": bool,
         "has_avatar": bool,
+        "has_birthday", bool
         "with_names": Option {
             "initials": string,
             "display": string
@@ -147,6 +149,22 @@ type t
 
 (** {1 Individual API} *)
 
+(** Build an individual. *)
+val make
+  :  ?gender:Gender.t
+  -> ?first_name:string
+  -> ?last_name:string
+  -> ?email:Email.t
+  -> ?emails:Email.Set.t
+  -> ?url:Url.t
+  -> ?urls:Url.Set.t
+  -> ?bio:string
+  -> ?avatar:Scoped_url.t
+  -> ?birthday:Yocaml.Datetime.t
+  -> ?social_accounts:Social_account.Set.t
+  -> string
+  -> t
+
 (** Returns the display name of an individual. *)
 val display_name : t -> string
 
@@ -164,6 +182,9 @@ val bio : t -> string option
 
 (** Returns the avatar of an individual. *)
 val avatar : t -> Scoped_url.t option
+
+(** Returns the birthday of an individual. *)
+val birthday : t -> Yocaml.Datetime.t option
 
 (** Returns the set of associated social accounts. *)
 val social_accounts : t -> Social_account.Set.t
