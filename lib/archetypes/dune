@@ -1,0 +1,11 @@
+(library
+ (name codex_archetypes)
+ (public_name yocaml-codex.archetypes)
+ (flags (:standard) -open Codex_atoms)
+ (libraries
+  yocaml
+  yocaml_syndication
+  yocaml-codex.atoms
+  yocaml-codex.ontology
+  yocaml-codex.open-graph
+  yocaml-codex.html))

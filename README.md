@@ -31,7 +31,7 @@ _sub-libraries_ :
 
 - `yocaml-codex.atoms`, `Codex_atoms`, which describes the set of
   **primitive types** one might want to use (such as `url`)
-  
+
 - `yocaml-codex.open_graph`, `Codex_open_graph`, which describes
   [open-graph](https://ogp.me/) lexicons. The implementation is
   _partial_, but it should be sufficient to describe typical
@@ -39,10 +39,15 @@ _sub-libraries_ :
 
 - `yocaml-codex.ontology`, `Codex_ontology`, which describes complete
   data models (such as `repository`)
-  
+
 - `yocaml-codex.html`, `Codex_html`, which describes metadata attached
   to an HTML document. (_Usually, every page should be lifted into a
   document_).
+
+- `yocaml-codex.archetypes`, `Codex_archetypes` which describes
+  ready-to-use templates for creating HTML documents. Typically, each
+  archetype can be converted into a `Codex_html.Document.t` (or a
+  derived class).
 
 ## Local development environment
 
@@ -51,7 +56,7 @@ To work, we assume that a version greater than or equal to `2.2.0~beta1` of
 OPAM](https://opam.ocaml.org/doc/Install.html), [upgrade to version
 `2.2.0~xxxx`](https://opam.ocaml.org/blog/opam-2-2-0-beta2/#Try-it)).
 
-> [!TIP]  
+> [!TIP]
 > We're relying on version `2.2.x` to support the `dev-setup` flag, which allows
 > development dependencies to be packaged, making it very practical to install
 > locally all the elements needed to create a pleasant development environment.
