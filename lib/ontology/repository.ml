@@ -353,7 +353,7 @@ module Validation = struct
 
   let required_repository fields =
     let open Yocaml.Data.Validation in
-    req fields "repository" ~alt:[ "name"; "repo" ] Ext.Misc.as_name
+    req fields "repository" ~alt:[ "name"; "repo" ] Ext.Misc.from_handle_to_name
   ;;
 
   let resolve_derivable_links =
@@ -368,7 +368,7 @@ module Validation = struct
     let open Yocaml.Data.Validation in
     record (fun fields ->
       let+ kind = required_kind fields
-      and+ username = req fields "user" Ext.Misc.as_name
+      and+ username = req fields "user" Ext.Misc.from_handle_to_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       let make =
@@ -385,8 +385,8 @@ module Validation = struct
   let from_record_org =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ name = req fields "name" Ext.Misc.as_name
-      and+ project = req fields "project" Ext.Misc.as_name
+      let+ name = req fields "name" Ext.Misc.from_handle_to_name
+      and+ project = req fields "project" Ext.Misc.from_handle_to_name
       and+ repository = required_repository fields
       and+ bug_tracker, releases = sub_record fields resolve_derivable_links in
       gitlab_org ~bug_tracker ~releases ~name ~project ~repository ())
@@ -400,8 +400,9 @@ module Validation = struct
   let from_unknown_record =
     let open Yocaml.Data.Validation in
     record (fun fields ->
-      let+ kind = opt fields "kind" Ext.Misc.as_name
-      and+ default_branch = opt fields "default_branch" Ext.Misc.as_name
+      let+ kind = opt fields "kind" Ext.Misc.from_handle_to_name
+      and+ default_branch =
+        opt fields "default_branch" Ext.Misc.from_handle_to_name
       and+ bug_tracker = opt fields "bug_tracker" Url.from_data
       and+ releases = opt fields "releases" Url.from_data
       and+ repository = required_repository fields

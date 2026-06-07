@@ -137,7 +137,7 @@ let to_data
     ; ( "with_names"
       , option
           (fun (first_name, last_name) ->
-             (* Should be safe because of `as_name` that guards
+             (* Should be safe because of `Ext.Misc.as_name` that guards
                 names of length > 1. *)
              let ff = first_name.[0] |> Ext.String.from_char
              and fl = last_name.[0] |> Ext.String.from_char in
@@ -146,11 +146,6 @@ let to_data
              record [ "initials", string initials; "display", string display ])
           names )
     ]
-;;
-
-let as_name =
-  let open Yocaml.Data.Validation in
-  string $ String.trim & String.not_blank & String.length_gt 1
 ;;
 
 let missing_display_name =
@@ -224,16 +219,16 @@ let validate_name fields =
         ; "handle"
         ; "dname"
         ]
-      as_name
+      Ext.Misc.as_name
   and+ first_name =
     opt
       fields
       "first_name"
       ~alt:
         [ "given_name"; "firstname"; "forename"; "fname"; "givenname"; "gname" ]
-      as_name
+      Ext.Misc.as_name
   and+ last_name =
-    opt fields "last_name" ~alt:[ "lastname"; "lname" ] as_name
+    opt fields "last_name" ~alt:[ "lastname"; "lname" ] Ext.Misc.as_name
   in
   display_name, first_name, last_name
 ;;
@@ -278,7 +273,7 @@ let from_record =
         fields
         "bio"
         ~alt:[ "biography"; "synopsis"; "desc"; "description" ]
-        as_name
+        Ext.Misc.as_name
     and+ gender = opt fields "gender" Gender.from_data
     and+ avatar =
       opt

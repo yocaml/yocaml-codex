@@ -282,7 +282,7 @@ module Validation = struct
       fields
       "username"
       ~alt:[ "user"; "profile"; "id"; "ident" ]
-      Ext.Misc.as_name
+      Ext.Misc.from_handle_to_name
   ;;
 
   let mastodon_from_record =

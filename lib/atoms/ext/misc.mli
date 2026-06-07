@@ -8,6 +8,9 @@ val split_path : string -> string list
 
 (** A validator that checks if something looks like a name (not blank)
     and without denominating chars like [@] and [~]. *)
+val from_handle_to_name : string Yocaml.Data.validable
+
+(** Sanitize a name. *)
 val as_name : string Yocaml.Data.validable
 
 (** [add_scheme ?scheme s] adds the [scheme] to [s] if there is no
@@ -16,11 +19,3 @@ val add_scheme : ?scheme:string -> string -> string
 
 (** [ltrim_path xs] remove leading empty sectin in [xs]. *)
 val ltrim_path : string list -> string list
-
-(** [merge_record_fields ?key fields data] recompute a list of fields
-    merged with the given [data]. *)
-val merge_record_fields
-  :  ?key:string
-  -> (string * Yocaml.Data.t) list
-  -> Yocaml.Data.t
-  -> (string * Yocaml.Data.t) list

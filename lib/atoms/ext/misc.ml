@@ -28,7 +28,7 @@ let ltrim_path = function
   | xs -> xs
 ;;
 
-let as_name =
+let from_handle_to_name =
   let open Yocaml.Data.Validation in
   (string
    $ fun x ->
@@ -41,28 +41,13 @@ let as_name =
   & String.not_blank
 ;;
 
+let as_name =
+  let open Yocaml.Data.Validation in
+  string $ String.trim & String.not_blank & String.length_gt 1
+;;
+
 let add_scheme ?(scheme = "https") s =
   match Stdlib.String.split_on_char ':' s with
   | _ :: ([ xs ] | xs :: _) when Stdlib.String.starts_with ~prefix:"//" xs -> s
   | _ -> scheme ^ "://" ^ s
-;;
-
-let merge_record_fields ?key fields = function
-  | Yocaml.Data.Record xs ->
-    (match key with
-     | None -> fields @ xs
-     | Some key -> (key, Yocaml.Data.record xs) :: fields)
-  | other ->
-    let key =
-      match key, other with
-      | Some k, _ -> k
-      | None, Yocaml.Data.Null -> "null"
-      | None, Yocaml.Data.Bool _ -> "bool"
-      | None, Yocaml.Data.Int _ -> "int"
-      | None, Yocaml.Data.Float _ -> "float"
-      | None, Yocaml.Data.String _ -> "string"
-      | None, Yocaml.Data.List _ -> "list"
-      | None, Yocaml.Data.Record _ -> "record"
-    in
-    (key, other) :: fields
 ;;
