@@ -11,6 +11,8 @@ type t =
   ; avatar : Scoped_url.t option
   ; birthday : Yocaml.Datetime.t option
   ; social_accounts : Social_account.Set.t
+  ; company : Company.t option
+  ; companies : Company.Set.t
   }
 
 let compare { display_name; email; _ } other =
@@ -32,6 +34,8 @@ let make
       ?avatar
       ?birthday
       ?(social_accounts = Social_account.Set.empty)
+      ?company
+      ?(companies = Company.Set.empty)
       display_name
   =
   { display_name
@@ -46,6 +50,8 @@ let make
   ; avatar
   ; birthday
   ; social_accounts
+  ; companies
+  ; company
   }
 ;;
 
@@ -65,6 +71,13 @@ let email inv =
   email
 ;;
 
+let company inv =
+  let company, _, _ =
+    Set.collapse_with_option (module Company.Set) inv.companies inv.company
+  in
+  company
+;;
+
 let url inv =
   let uri, _, _ = Set.collapse_with_option (module Url.Set) inv.urls inv.url in
   uri
@@ -77,6 +90,13 @@ let all_emails { email; emails; _ } =
 
 let all_urls { url; urls; _ } =
   let _, _, x = Set.collapse_with_option (module Url.Set) urls url in
+  x
+;;
+
+let all_companies inv =
+  let _, _, x =
+    Set.collapse_with_option (module Company.Set) inv.companies inv.company
+  in
   x
 ;;
 
@@ -99,6 +119,8 @@ let to_data
       ; avatar
       ; birthday
       ; social_accounts
+      ; company
+      ; companies
       }
   =
   let open Yocaml.Data in
@@ -108,6 +130,9 @@ let to_data
   in
   let url, other_urls, all_urls =
     Set.collapse_with_option (module Url.Set) urls url
+  in
+  let company, other_companies, all_companies =
+    Set.collapse_with_option (module Company.Set) companies company
   in
   record
     [ "display_name", string display_name
@@ -125,11 +150,15 @@ let to_data
     ; "other_urls", Url.Set.to_data other_urls
     ; "all_urls", Url.Set.to_data all_urls
     ; "social_accounts", Social_account.Set.to_data social_accounts
+    ; "company", option Company.to_data company
+    ; "other_companies", Company.Set.to_data other_companies
+    ; "all_companies", Company.Set.to_data all_companies
     ; "has_bio", bool @@ Ext.Option.to_bool bio
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
     ; "has_email", bool @@ Ext.Option.to_bool email
     ; "has_url", bool @@ Ext.Option.to_bool url
+    ; "has_company", bool @@ Ext.Option.to_bool company
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
     ; "has_avatar", bool @@ Ext.Option.to_bool avatar

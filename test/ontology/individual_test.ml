@@ -26,9 +26,16 @@ let%expect_test "Validating a simple name - 1" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": false, "has_last_name": false,
-        "has_email": false, "has_url": false, "has_names": false, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names": null}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         false, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": null}
     |}]
 ;;
 
@@ -58,10 +65,16 @@ let%expect_test "Validating a simple name - 2" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": false, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
 
@@ -90,10 +103,16 @@ let%expect_test "Validating a simple name with alias - 1" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": false, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
 
@@ -122,10 +141,16 @@ let%expect_test "Validating a simple name with alias - 2" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": false, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
 
@@ -154,9 +179,16 @@ let%expect_test "Validating a simple name using record" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": false, "has_last_name": false,
-        "has_email": false, "has_url": false, "has_names": false, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names": null}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         false, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": null}
     |}]
 ;;
 
@@ -187,10 +219,16 @@ let%expect_test "Validating a simple name using record - 2" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": false, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
 
@@ -227,10 +265,16 @@ let%expect_test "Validating a simple name using record - 3" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": false, "has_url": false, "has_names": true, "has_gender":
-         true, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": false, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": true, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
 
@@ -272,10 +316,16 @@ let%expect_test "Validating a simple name using record - 4" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": true, "has_url": false, "has_names": true, "has_gender":
-         true, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": true, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": true, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
 
@@ -310,10 +360,16 @@ let%expect_test "Validating a simple name from a mailbox" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": true, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "has_email": true, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. Van de Woestyne"}}
     |}]
 ;;
 
@@ -356,10 +412,16 @@ let%expect_test "Validating a simple name using record" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": true, "has_url": false, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": true, "has_url": false, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
 
@@ -478,10 +540,16 @@ let%expect_test "Validating a simple name using record with social accounts" =
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
            "query_string": null, "has_query_string": false}}]},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": true, "has_url": true, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": true, "has_url": true, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;
 
@@ -551,9 +619,15 @@ let%expect_test "Validating a simple name using record" =
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
+        "company": null, "other_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
+        "all_companies":
+         {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
+         "elements": []},
         "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_email": true, "has_url": true, "has_names": true, "has_gender":
-         false, "has_avatar": false, "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "has_email": true, "has_url": true, "has_company": false, "has_names":
+         true, "has_gender": false, "has_avatar": false, "has_birthday": false,
+        "with_names": {"initials": "xv", "display": "X. van de Woestyne"}}
     |}]
 ;;

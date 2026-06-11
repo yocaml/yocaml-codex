@@ -25,11 +25,14 @@ type t
         "all_emails": Set<Email>,
         "other_urls": Set<Url>,
         "all_urls": Set<Url>,
+        "other_companies": Set<Company>,
+        "all_companies": Set<Company>,
         "social_accounts": Set<Social_account>,
         "has_bio": bool,
         "has_names": bool,
         "has_email", bool,
         "has_url": bool,
+        "has_company": bool,
         "has_last_name": bool,
         "has_first_name": bool,
         "has_gender": bool,
@@ -163,6 +166,8 @@ val make
   -> ?avatar:Scoped_url.t
   -> ?birthday:Yocaml.Datetime.t
   -> ?social_accounts:Social_account.Set.t
+  -> ?company:Company.t
+  -> ?companies:Company.Set.t
   -> string
   -> t
 
@@ -196,11 +201,17 @@ val email : t -> Email.t option
 (** Returns the url of an individual. (uses [all_urls] field). *)
 val url : t -> Url.t option
 
+(** Returns the company of an individual. (uses [all_companies] field). *)
+val company : t -> Company.t option
+
 (** Returns the set of all associated emails. *)
 val all_emails : t -> Email.Set.t
 
 (** Returns the set of all associated urls. *)
 val all_urls : t -> Url.Set.t
+
+(** Returns the set of all associated companies. *)
+val all_companies : t -> Company.Set.t
 
 (** [to_syndication individual] convert [individual] into a [person]
     in Syndication sense.*)
