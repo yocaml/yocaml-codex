@@ -22,3 +22,12 @@ module Person : sig
   include Yocaml.Data.S with type t := t
   include Yocaml.Data.Validation.S with type t := t
 end
+
+module type D = sig
+  type t
+
+  val from_data : t Yocaml.Data.validable
+  val to_data : t Yocaml.Data.converter
+end
+
+val inspect : (module D) -> Yocaml.Data.t -> unit

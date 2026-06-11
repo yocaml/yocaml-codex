@@ -36,7 +36,17 @@ let make
   }
 ;;
 
-let from_data =
+let from_name =
+  let open Yocaml.Data.Validation in
+  Ext.Misc.as_name $ fun name -> make name
+;;
+
+let from_mailbox =
+  let open Yocaml.Data.Validation in
+  (string & Email.from_mailbox) $ fun (name, email) -> make ~email name
+;;
+
+let from_record =
   let open Yocaml.Data.Validation in
   record (fun h ->
     let+ name =
@@ -78,6 +88,11 @@ let from_data =
       ?urls
       ?social_accounts
       name)
+;;
+
+let from_data =
+  let open Yocaml.Data.Validation in
+  from_record / from_mailbox / from_name
 ;;
 
 let to_data

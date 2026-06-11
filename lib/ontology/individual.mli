@@ -28,6 +28,7 @@ type t
         "social_accounts": Set<Social_account>,
         "has_bio": bool,
         "has_names": bool,
+        "has_email", bool,
         "has_url": bool,
         "has_last_name": bool,
         "has_first_name": bool,

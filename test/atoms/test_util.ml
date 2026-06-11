@@ -88,3 +88,14 @@ module Person = struct
       { display_name; first_name; last_name })
   ;;
 end
+
+module type D = sig
+  type t
+
+  val from_data : t Yocaml.Data.validable
+  val to_data : t Yocaml.Data.converter
+end
+
+let inspect (module T : D) subject =
+  subject |> T.from_data |> dump_validation T.to_data
+;;
