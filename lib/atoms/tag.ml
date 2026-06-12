@@ -25,17 +25,7 @@ module Orderable = struct
   let from_data = from_data
 end
 
-module Set = struct
-  module S = Stdlib.Set.Make (Orderable)
-  include S
-  include Set.Make (S) (Orderable) (Orderable)
-end
-
-module Map = struct
-  module S = Stdlib.Map.Make (Orderable)
-  include S
-  include Map.Make (S) (Orderable) (Orderable)
-end
+include Make.Enumerable (Orderable)
 
 let of_list = List.fold_left (fun acc tag -> Set.add (make tag) acc) Set.empty
 let set_to_string set = set |> Set.to_list |> String.concat ", "

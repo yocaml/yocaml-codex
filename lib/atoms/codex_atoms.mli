@@ -22,6 +22,7 @@ module Media = Media
 (** {1 Misc} *)
 
 module Derivable = Derivable
+module Make = Make
 
 (** {1 Reusable signatures & Misc} *)
 

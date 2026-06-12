@@ -35,8 +35,7 @@ include Yocaml.Data.Validation.S with type t := t
 
 (** {1 Enumerable} *)
 
-module Set : Stdlib.Set.S with type elt = t
-module Map : Stdlib.Map.S with type key = t
+include Sigs.SET_AND_MAP with type t := t
 
 (** {1 Open Graph Related} *)
 

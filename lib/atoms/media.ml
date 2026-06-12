@@ -70,17 +70,7 @@ module Orderable = struct
   let from_data = from_data
 end
 
-module Set = struct
-  module S = Stdlib.Set.Make (Orderable)
-  include S
-  include Set.Make (S) (Orderable) (Orderable)
-end
-
-module Map = struct
-  module S = Stdlib.Map.Make (Orderable)
-  include S
-  include Map.Make (S) (Orderable) (Orderable)
-end
+include Make.Enumerable (Orderable)
 
 let to_open_graph { kind; url; secure_url; mime_type; dimension; alt } =
   let k = kind_to_string kind in

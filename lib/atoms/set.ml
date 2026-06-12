@@ -30,17 +30,18 @@ struct
   include Projectable (Set) (P)
   include Validable (Set) (V)
 
-  module Zero_or_more = struct
-    type elt = Set.elt
-    type set = Set.t
+  type elt = Set.elt
 
+  module Zero_or_more = struct
     type t =
-      { main : elt option
-      ; other : set
+      { main : P.t option
+      ; other : Set.t
       }
 
+    let empty = { main = None; other = Set.empty }
+
     let from_list = function
-      | [] -> { main = None; other = Set.empty }
+      | [] -> empty
       | x :: xs ->
         let main = Some x in
         let other = xs |> Set.of_list |> Set.remove x in

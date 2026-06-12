@@ -79,12 +79,4 @@ include Yocaml.Data.Validation.S with type t := t
 
 (** {1 Enumerable} *)
 
-module Set : sig
-  include Stdlib.Set.S with type elt = t
-  include Sigs.SET with type t := t
-end
-
-module Map : sig
-  include Stdlib.Map.S with type key = t
-  include Sigs.MAP with type 'a t := 'a t
-end
+include Sigs.SET_AND_MAP with type t := t

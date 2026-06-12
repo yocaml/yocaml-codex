@@ -53,8 +53,40 @@ end
 module type SET = sig
   (** A module that describe a projectable and validable set. *)
 
+  type elt
+
   include Yocaml.Data.S
   include Yocaml.Data.Validation.S with type t := t
+
+  module Zero_or_more : sig
+    (** [Zero_or_more] allows a list to be treated as a primary element and a
+        set of additional elements. This makes it possible to have a
+        primary value and additional values. *)
+
+    type set := t
+
+    (** The pair is normalized using the following record:
+
+        {eof@json[
+          {
+            "main": Option<T>,
+            "has_main": Bool,
+            "other": Set<T>,
+            "all": Set<T>
+          }
+        ]eof}
+
+        The field [all] is [main + other]. If there is no [main],
+        there is no [other]. *)
+
+    include Yocaml.Data.S
+    include Yocaml.Data.Validation.S with type t := t
+
+    val empty : t
+    val main : t -> elt option
+    val other : t -> set
+    val all : t -> set
+  end
 end
 
 module type MAP = sig
@@ -64,4 +96,20 @@ module type MAP = sig
 
   val to_data : 'a Yocaml.Data.converter -> 'a t Yocaml.Data.converter
   val from_data : 'a Yocaml.Data.validable -> 'a t Yocaml.Data.validable
+end
+
+module type SET_AND_MAP = sig
+  (** Handle SET and MAP (In order to be include) *)
+
+  type t
+
+  module Set : sig
+    include Stdlib.Set.S with type elt = t
+    include SET with type t := t and type elt := elt
+  end
+
+  module Map : sig
+    include Stdlib.Map.S with type key = t
+    include MAP with type 'a t := 'a t
+  end
 end

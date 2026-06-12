@@ -1,5 +1,6 @@
 module Set = Set
 module Map = Map
+module Make = Make
 module Gender = Gender
 module Url = Url
 module Scoped_url = Scoped_url

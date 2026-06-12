@@ -60,50 +60,22 @@ module Validable
 module Make
     (Set : Stdlib.Set.S)
     (_ : Yocaml.Data.S with type t = Set.elt)
-    (_ : Yocaml.Data.Validation.S with type t = Set.elt) : sig
-  include Sigs.SET with type t = Set.t
-
-  module Zero_or_more : sig
-    (** [Zero_or_more] allows a list to be treated as a primary element and a
-        set of additional elements. This makes it possible to have a
-        primary value and additional values. *)
-
-    (** The pair is normalized using the following record:
-
-        {eof@json[
-          {
-            "main": Option<T>,
-            "has_main": Bool,
-            "other": Set<T>,
-            "all": Set<T>
-          }
-        ]eof}
-
-        The field [all] is [main + other]. If there is no [main],
-        there is no [other]. *)
-
-    include Yocaml.Data.S
-    include Yocaml.Data.Validation.S with type t := t
-
-    val main : t -> Set.elt option
-    val other : t -> Set.t
-    val all : t -> Set.t
-  end
-end
+    (_ : Yocaml.Data.Validation.S with type t = Set.elt) :
+  Sigs.SET with type t = Set.t and type elt = Set.elt
 
 (** {1 Predefined Sets} *)
 
 module String : sig
   include module type of Stdlib.Set.Make (Stdlib.String)
-  include Sigs.SET with type t := t
+  include Sigs.SET with type t := t and type elt = string
 end
 
 module Datetime : sig
   include module type of Stdlib.Set.Make (Orderable.Datetime)
-  include Sigs.SET with type t := t
+  include Sigs.SET with type t := t and type elt = Yocaml.Datetime.t
 end
 
 module Path : sig
   include module type of Yocaml.Path.Set
-  include Sigs.SET with type t := t
+  include Sigs.SET with type t := t and type elt = Yocaml.Path.t
 end
