@@ -29,6 +29,43 @@ module Make
 struct
   include Projectable (Set) (P)
   include Validable (Set) (V)
+
+  module Zero_or_more = struct
+    type elt = Set.elt
+    type set = Set.t
+
+    type t =
+      { main : elt option
+      ; other : set
+      }
+
+    let from_list = function
+      | [] -> { main = None; other = Set.empty }
+      | x :: xs ->
+        let main = Some x in
+        let other = xs |> Set.of_list |> Set.remove x in
+        { main; other }
+    ;;
+
+    let main { main; _ } = main
+    let other { other; _ } = other
+    let all { main; other } = Ext.Option.may_perform Set.add other main
+
+    let from_data =
+      let open Yocaml.Data.Validation in
+      list_of V.from_data $ from_list
+    ;;
+
+    let to_data ({ main; other } as x) =
+      let open Yocaml.Data in
+      record
+        [ "main", option P.to_data main
+        ; "has_main", bool @@ Ext.Option.to_bool main
+        ; "other", to_data other
+        ; "all", to_data (all x)
+        ]
+    ;;
+  end
 end
 
 module String = struct
