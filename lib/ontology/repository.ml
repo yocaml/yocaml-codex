@@ -266,11 +266,9 @@ let to_data repo =
     ; ( "pages"
       , record
           [ "home", Url.to_data home
-          ; "bug_tracker", option Url.to_data bug_tracker
-          ; "releases", option Url.to_data releases
+          ; "bug_tracker", Ext.Option.to_data Url.to_data bug_tracker
+          ; "releases", Ext.Option.to_data Url.to_data releases
           ; "blob_root", Url.to_data blob_root
-          ; "has_bug_tracker", bool @@ Option.is_some bug_tracker
-          ; "has_releases", bool @@ Option.is_some releases
           ] )
     ]
 ;;

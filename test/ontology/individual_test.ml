@@ -9,9 +9,12 @@ let%expect_test "Validating a simple name - 1" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier", "bio": null, "slug": "xavier", "first_name":
-         null, "last_name": null, "gender": null, "avatar": null, "birthday":
-         null, "email":
+    [V] {"display_name": "Xavier", "bio": {"value": null, "exists": false},
+        "slug": "xavier", "first_name": {"value": null, "exists": false},
+        "last_name": {"value": null, "exists": false}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -35,9 +38,7 @@ let%expect_test "Validating a simple name - 1" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": false, "has_last_name": false,
-        "has_names": false, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names": null}
+        "with_names": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -49,10 +50,13 @@ let%expect_test "Validating a simple name - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier Van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "Van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier Van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "Van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -76,10 +80,9 @@ let%expect_test "Validating a simple name - 2" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. Van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -91,9 +94,12 @@ let%expect_test "Validating a simple name with alias - 1" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
-         "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
-         null, "birthday": null, "email":
+    [V] {"display_name": "xvw", "bio": {"value": null, "exists": false}, "slug":
+         "xvw", "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "Van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -117,10 +123,9 @@ let%expect_test "Validating a simple name with alias - 1" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. Van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -132,9 +137,12 @@ let%expect_test "Validating a simple name with alias - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
-         "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
-         null, "birthday": null, "email":
+    [V] {"display_name": "xvw", "bio": {"value": null, "exists": false}, "slug":
+         "xvw", "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "Van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -158,10 +166,9 @@ let%expect_test "Validating a simple name with alias - 2" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. Van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -173,9 +180,12 @@ let%expect_test "Validating a simple name using record" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name": null,
-        "last_name": null, "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "xvw", "bio": {"value": null, "exists": false}, "slug":
+         "xvw", "first_name": {"value": null, "exists": false}, "last_name":
+         {"value": null, "exists": false}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -199,9 +209,7 @@ let%expect_test "Validating a simple name using record" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": false, "has_last_name": false,
-        "has_names": false, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names": null}
+        "with_names": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -214,10 +222,13 @@ let%expect_test "Validating a simple name using record - 2" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -241,10 +252,9 @@ let%expect_test "Validating a simple name using record - 2" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -260,12 +270,16 @@ let%expect_test "Validating a simple name using record - 3" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender":
-         {"name": "male", "pronouns":
-          {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
-        "avatar": null, "birthday": null, "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value":
+          {"name": "male", "pronouns":
+           {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
+         "exists": true},
+        "avatar": {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -289,10 +303,9 @@ let%expect_test "Validating a simple name using record - 3" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": true, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -309,12 +322,16 @@ let%expect_test "Validating a simple name using record - 4" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender":
-         {"name": "male", "pronouns":
-          {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
-        "avatar": null, "birthday": null, "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value":
+          {"name": "male", "pronouns":
+           {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
+         "exists": true},
+        "avatar": {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main":
           {"value":
            {"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
@@ -345,10 +362,9 @@ let%expect_test "Validating a simple name using record - 4" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": true, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -360,10 +376,13 @@ let%expect_test "Validating a simple name from a mailbox" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier Van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "Van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier Van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "Van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main":
           {"value":
            {"address": "xavier@email.com", "local": "xavier", "domain":
@@ -394,10 +413,9 @@ let%expect_test "Validating a simple name from a mailbox" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. Van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. Van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -413,10 +431,13 @@ let%expect_test "Validating a simple name using record" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main":
           {"value":
            {"address": "xavier@mail.com", "local": "xavier", "domain":
@@ -451,10 +472,9 @@ let%expect_test "Validating a simple name using record" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -476,10 +496,13 @@ let%expect_test "Validating a simple name using record with social accounts" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main":
           {"value":
            {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
@@ -588,10 +611,9 @@ let%expect_test "Validating a simple name using record with social accounts" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;
 
@@ -609,10 +631,13 @@ let%expect_test "Validating a simple name using record" =
   input |> Individual.from_data |> dump_validation Individual.to_data;
   [%expect
     {|
-    [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
-         "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
-         "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
-        "email":
+    [V] {"display_name": "Xavier van de Woestyne", "bio":
+         {"value": null, "exists": false}, "slug": "xavier-van-de-woestyne",
+        "first_name": {"value": "Xavier", "exists": true}, "last_name":
+         {"value": "van de Woestyne", "exists": true}, "gender":
+         {"value": null, "exists": false}, "avatar":
+         {"value": null, "exists": false}, "birthday":
+         {"value": null, "exists": false}, "email":
          {"main":
           {"value":
            {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
@@ -676,9 +701,8 @@ let%expect_test "Validating a simple name using record" =
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
-        "has_bio": false, "has_first_name": true, "has_last_name": true,
-        "has_names": true, "has_gender": false, "has_avatar": false,
-        "has_birthday": false, "with_names":
-         {"initials": "xv", "display": "X. van de Woestyne"}}
+        "with_names":
+         {"value": {"initials": "xv", "display": "X. van de Woestyne"}, "exists":
+          true}}
     |}]
 ;;

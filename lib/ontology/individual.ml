@@ -88,26 +88,19 @@ let to_data
   let names = Ext.Option.zip first_name last_name in
   record
     [ "display_name", string display_name
-    ; "bio", option string bio
+    ; "bio", Ext.Option.to_data string bio
     ; "slug", string (Yocaml.Slug.from display_name)
-    ; "first_name", option string first_name
-    ; "last_name", option string last_name
-    ; "gender", option Gender.to_data gender
-    ; "avatar", option Scoped_url.to_data avatar
-    ; "birthday", option Yocaml.Datetime.to_data birthday
+    ; "first_name", Ext.Option.to_data string first_name
+    ; "last_name", Ext.Option.to_data string last_name
+    ; "gender", Ext.Option.to_data Gender.to_data gender
+    ; "avatar", Ext.Option.to_data Scoped_url.to_data avatar
+    ; "birthday", Ext.Option.to_data Yocaml.Datetime.to_data birthday
     ; "email", Email.Zero_or_more.to_data email
     ; "url", Url.Zero_or_more.to_data url
     ; "social_accounts", Social_account.Set.to_data social_accounts
     ; "company", Company.Zero_or_more.to_data company
-    ; "has_bio", bool @@ Ext.Option.to_bool bio
-    ; "has_first_name", bool @@ Ext.Option.to_bool first_name
-    ; "has_last_name", bool @@ Ext.Option.to_bool last_name
-    ; "has_names", bool @@ Ext.Option.to_bool names
-    ; "has_gender", bool @@ Ext.Option.to_bool gender
-    ; "has_avatar", bool @@ Ext.Option.to_bool avatar
-    ; "has_birthday", bool @@ Ext.Option.to_bool birthday
     ; ( "with_names"
-      , option
+      , Ext.Option.to_data
           (fun (first_name, last_name) ->
              (* Should be safe because of `Ext.Misc.as_name` that guards
                 names of length > 1. *)

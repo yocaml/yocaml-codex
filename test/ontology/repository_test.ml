@@ -296,20 +296,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -317,8 +322,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -341,20 +345,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -362,8 +371,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -386,20 +394,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -407,8 +420,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -431,21 +443,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
            "https", "host": "gitlab.com", "port":
@@ -453,8 +469,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -477,21 +492,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
            "https", "host": "gitlab.com", "port":
@@ -499,8 +518,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -523,21 +541,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/issues", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
-           "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://gitlab.com/tezos/tezos/-/releases", "scheme":
+            "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path": "/tezos/tezos/-/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://gitlab.com/tezos/tezos/-/blob/main", "scheme":
            "https", "host": "gitlab.com", "port":
@@ -545,8 +567,7 @@ let%expect_test "from_data - from identifier" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -572,23 +593,27 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target":
-           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/issues",
-          "scheme": "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path":
-           "/gitlab-examples/maven/simple-maven-dep/-/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target":
+            "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/issues",
+           "scheme": "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path":
+            "/gitlab-examples/maven/simple-maven-dep/-/issues", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target":
-           "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/releases",
-          "scheme": "https", "host": "gitlab.com", "port":
-           {"value": null, "exists": false}, "path":
-           "/gitlab-examples/maven/simple-maven-dep/-/releases", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target":
+            "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/releases",
+           "scheme": "https", "host": "gitlab.com", "port":
+            {"value": null, "exists": false}, "path":
+            "/gitlab-examples/maven/simple-maven-dep/-/releases", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target":
            "https://gitlab.com/gitlab-examples/maven/simple-maven-dep/-/blob/main",
@@ -597,8 +622,7 @@ let%expect_test "from_data - from identifier" =
            "/gitlab-examples/maven/simple-maven-dep/-/blob/main", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -641,21 +665,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
-           "https", "host": "todo.sr.ht", "port":
-           {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+            "https", "host": "todo.sr.ht", "port":
+            {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
-           "https", "host": "git.sr.ht", "port":
-           {"value": null, "exists": false}, "path":
-           "/~tim-ats-d/ofortune/refs", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+            "https", "host": "git.sr.ht", "port":
+            {"value": null, "exists": false}, "path":
+            "/~tim-ats-d/ofortune/refs", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
           "scheme": "https", "host": "git.sr.ht", "port":
@@ -663,8 +691,7 @@ let%expect_test "from_data - from identifier" =
            "/~tim-ats-d/ofortune/tree/master/item", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -688,21 +715,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
-           "https", "host": "todo.sr.ht", "port":
-           {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+            "https", "host": "todo.sr.ht", "port":
+            {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
-           "https", "host": "git.sr.ht", "port":
-           {"value": null, "exists": false}, "path":
-           "/~tim-ats-d/ofortune/refs", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+            "https", "host": "git.sr.ht", "port":
+            {"value": null, "exists": false}, "path":
+            "/~tim-ats-d/ofortune/refs", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
           "scheme": "https", "host": "git.sr.ht", "port":
@@ -710,8 +741,7 @@ let%expect_test "from_data - from identifier" =
            "/~tim-ats-d/ofortune/tree/master/item", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -735,21 +765,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
-           "https", "host": "todo.sr.ht", "port":
-           {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+            "https", "host": "todo.sr.ht", "port":
+            {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
-           "https", "host": "git.sr.ht", "port":
-           {"value": null, "exists": false}, "path":
-           "/~tim-ats-d/ofortune/refs", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+            "https", "host": "git.sr.ht", "port":
+            {"value": null, "exists": false}, "path":
+            "/~tim-ats-d/ofortune/refs", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
           "scheme": "https", "host": "git.sr.ht", "port":
@@ -757,8 +791,7 @@ let%expect_test "from_data - from identifier" =
            "/~tim-ats-d/ofortune/tree/master/item", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -782,21 +815,25 @@ let%expect_test "from_data - from identifier" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
-           "https", "host": "todo.sr.ht", "port":
-           {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://todo.sr.ht/~tim-ats-d/ofortune", "scheme":
+            "https", "host": "todo.sr.ht", "port":
+            {"value": null, "exists": false}, "path": "/~tim-ats-d/ofortune",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
-           "https", "host": "git.sr.ht", "port":
-           {"value": null, "exists": false}, "path":
-           "/~tim-ats-d/ofortune/refs", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/refs", "scheme":
+            "https", "host": "git.sr.ht", "port":
+            {"value": null, "exists": false}, "path":
+            "/~tim-ats-d/ofortune/refs", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://git.sr.ht/~tim-ats-d/ofortune/tree/master/item",
           "scheme": "https", "host": "git.sr.ht", "port":
@@ -804,8 +841,7 @@ let%expect_test "from_data - from identifier" =
            "/~tim-ats-d/ofortune/tree/master/item", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -832,20 +868,25 @@ let%expect_test "from_data - from record" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -853,8 +894,7 @@ let%expect_test "from_data - from record" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -882,20 +922,25 @@ let%expect_test "from_data - from record" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
-           "https", "host": "xvw.lol", "port": {"value": null, "exists": false},
-          "path": "/capsule/bug-tracker.html", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
+            "https", "host": "xvw.lol", "port":
+            {"value": null, "exists": false}, "path":
+            "/capsule/bug-tracker.html", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -903,8 +948,7 @@ let%expect_test "from_data - from record" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -930,14 +974,14 @@ let%expect_test "from_data - from unknown record" =
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
           "query_string": {"value": null, "exists": false}},
-         "bug_tracker": null, "releases": null, "blob_root":
+         "bug_tracker": {"value": null, "exists": false}, "releases":
+          {"value": null, "exists": false}, "blob_root":
           {"target": "https://xvw.lol/capsule/blob//main", "scheme": "https",
           "host": "xvw.lol", "port": {"value": null, "exists": false}, "path":
            "/capsule/blob//main", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": false, "has_releases": false}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -966,27 +1010,32 @@ let%expect_test "from_data - from unknown record" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
-           "https", "host": "xvw.lol", "port": {"value": null, "exists": false},
-          "path": "/capsule/bug-tracker.html", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://xvw.lol/capsule/bug-tracker.html", "scheme":
+            "https", "host": "xvw.lol", "port":
+            {"value": null, "exists": false}, "path":
+            "/capsule/bug-tracker.html", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://xvw.lol/capsule/releases.html", "scheme": "https",
-          "host": "xvw.lol", "port": {"value": null, "exists": false}, "path":
-           "/capsule/releases.html", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://xvw.lol/capsule/releases.html", "scheme":
+            "https", "host": "xvw.lol", "port":
+            {"value": null, "exists": false}, "path": "/capsule/releases.html",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://xvw.lol/capsule/blob//main", "scheme": "https",
           "host": "xvw.lol", "port": {"value": null, "exists": false}, "path":
            "/capsule/blob//main", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1009,20 +1058,25 @@ let%expect_test "from_data - from uri" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1030,8 +1084,7 @@ let%expect_test "from_data - from uri" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1054,20 +1107,25 @@ let%expect_test "from_data - from uri" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1075,8 +1133,7 @@ let%expect_test "from_data - from uri" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1099,20 +1156,25 @@ let%expect_test "from_data - from uri" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1120,8 +1182,7 @@ let%expect_test "from_data - from uri" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1144,20 +1205,25 @@ let%expect_test "from_data - from uri" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1165,8 +1231,7 @@ let%expect_test "from_data - from uri" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1192,19 +1257,24 @@ let%expect_test "from_data - from uri" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://all-releases.com", "scheme": "https", "host":
-           "all-releases.com", "port": {"value": null, "exists": false}, "path":
-           "/", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://all-releases.com", "scheme": "https", "host":
+            "all-releases.com", "port": {"value": null, "exists": false}, "path":
+            "/", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1212,8 +1282,7 @@ let%expect_test "from_data - from uri" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;
 
@@ -1236,20 +1305,25 @@ let%expect_test "from_data - from list 1" =
            "elements": []},
           "query_string": {"value": null, "exists": false}},
          "bug_tracker":
-          {"target": "https://github.com/xvw/capsule/issues", "scheme": "https",
-          "host": "github.com", "port": {"value": null, "exists": false}, "path":
-           "/xvw/capsule/issues", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/issues", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/issues",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "releases":
-          {"target": "https://github.com/xvw/capsule/releases", "scheme":
-           "https", "host": "github.com", "port":
-           {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
-          "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
+          {"value":
+           {"target": "https://github.com/xvw/capsule/releases", "scheme":
+            "https", "host": "github.com", "port":
+            {"value": null, "exists": false}, "path": "/xvw/capsule/releases",
+           "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
          "blob_root":
           {"target": "https://github.com/xvw/capsule/blob/main", "scheme":
            "https", "host": "github.com", "port":
@@ -1257,7 +1331,6 @@ let%expect_test "from_data - from list 1" =
           "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_bug_tracker": true, "has_releases": true}}
+          "query_string": {"value": null, "exists": false}}}}
     |}]
 ;;

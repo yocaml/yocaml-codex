@@ -5,16 +5,19 @@ let%expect_test "Validate from a name" =
   inspect (module Company) Yocaml.Data.(string "Cargo Cut");
   [%expect
     {|
-    [V] {"name": "Cargo Cut", "description": null, "small_logo": null,
-        "large_logo": null, "logo": null, "cover": null, "url":
-         {"main": null, "has_main": false, "other":
+    [V] {"name": "Cargo Cut", "description": {"value": null, "exists": false},
+        "small_logo": {"value": null, "exists": false}, "large_logo":
+         {"value": null, "exists": false}, "logo":
+         {"value": null, "exists": false}, "cover":
+         {"value": null, "exists": false}, "url":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -22,9 +25,7 @@ let%expect_test "Validate from a name" =
           "elements": []}},
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
-         "elements": []},
-        "has_description": false, "has_small_logo": false, "has_large_logo":
-         false, "has_logo": false}
+         "elements": []}}
     |}]
 ;;
 
@@ -34,9 +35,12 @@ let%expect_test "Validate from a mailbox" =
     Yocaml.Data.(string "Cargo Cut <contact@cargocuuuut.com>");
   [%expect
     {|
-    [V] {"name": "Cargo Cut", "description": null, "small_logo": null,
-        "large_logo": null, "logo": null, "cover": null, "url":
-         {"main": null, "has_main": false, "other":
+    [V] {"name": "Cargo Cut", "description": {"value": null, "exists": false},
+        "small_logo": {"value": null, "exists": false}, "large_logo":
+         {"value": null, "exists": false}, "logo":
+         {"value": null, "exists": false}, "cover":
+         {"value": null, "exists": false}, "url":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -44,9 +48,11 @@ let%expect_test "Validate from a mailbox" =
           "elements": []}},
         "email":
          {"main":
-          {"address": "contact@cargocuuuut.com", "local": "contact", "domain":
-           "cargocuuuut.com", "md5": "fac033c69636e84d78d1073388fcc902"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "contact@cargocuuuut.com", "local": "contact", "domain":
+            "cargocuuuut.com", "md5": "fac033c69636e84d78d1073388fcc902"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -56,9 +62,7 @@ let%expect_test "Validate from a mailbox" =
              "cargocuuuut.com", "md5": "fac033c69636e84d78d1073388fcc902"}]}},
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
-         "elements": []},
-        "has_description": false, "has_small_logo": false, "has_large_logo":
-         false, "has_logo": false}
+         "elements": []}}
     |}]
 ;;
 
@@ -72,16 +76,21 @@ let%expect_test "Validate from a record" =
         ]);
   [%expect
     {|
-    [V] {"name": "Cargo Kult", "description": null, "small_logo": null,
-        "large_logo": null, "logo": null, "cover": null, "url":
+    [V] {"name": "Cargo Kult", "description": {"value": null, "exists": false},
+        "small_logo": {"value": null, "exists": false}, "large_logo":
+         {"value": null, "exists": false}, "logo":
+         {"value": null, "exists": false}, "cover":
+         {"value": null, "exists": false}, "url":
          {"main":
-          {"target": "https://thecargokult.com", "scheme": "https", "host":
-           "thecargokult.com", "port": {"value": null, "exists": false}, "path":
-           "/", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_main": true, "other":
+          {"value":
+           {"target": "https://thecargokult.com", "scheme": "https", "host":
+            "thecargokult.com", "port": {"value": null, "exists": false}, "path":
+            "/", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -94,7 +103,7 @@ let%expect_test "Validate from a record" =
               false, "elements": []},
             "query_string": {"value": null, "exists": false}}]}},
         "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -102,8 +111,6 @@ let%expect_test "Validate from a record" =
           "elements": []}},
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
-         "elements": []},
-        "has_description": false, "has_small_logo": false, "has_large_logo":
-         false, "has_logo": false}
+         "elements": []}}
     |}]
 ;;

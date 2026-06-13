@@ -102,18 +102,14 @@ let to_data
   let open Yocaml.Data in
   record
     [ "name", string name
-    ; "description", option string description
-    ; "small_logo", option Scoped_url.to_data small_logo
-    ; "large_logo", option Scoped_url.to_data large_logo
-    ; "logo", option Scoped_url.to_data logo
-    ; "cover", option Media.to_data cover
+    ; "description", Ext.Option.to_data string description
+    ; "small_logo", Ext.Option.to_data Scoped_url.to_data small_logo
+    ; "large_logo", Ext.Option.to_data Scoped_url.to_data large_logo
+    ; "logo", Ext.Option.to_data Scoped_url.to_data logo
+    ; "cover", Ext.Option.to_data Media.to_data cover
     ; "url", Url.Zero_or_more.to_data url
     ; "email", Email.Zero_or_more.to_data email
     ; "social_accounts", Social_account.Set.to_data social_accounts
-    ; "has_description", bool @@ Ext.Option.to_bool description
-    ; "has_small_logo", bool @@ Ext.Option.to_bool small_logo
-    ; "has_large_logo", bool @@ Ext.Option.to_bool large_logo
-    ; "has_logo", bool @@ Ext.Option.to_bool large_logo
     ]
 ;;
 
