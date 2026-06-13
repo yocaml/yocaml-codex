@@ -159,8 +159,7 @@ val make
   -> ?first_name:string
   -> ?last_name:string
   -> ?email:Email.Zero_or_more.t
-  -> ?url:Url.t
-  -> ?urls:Url.Set.t
+  -> ?url:Url.Zero_or_more.t
   -> ?bio:string
   -> ?avatar:Scoped_url.t
   -> ?birthday:Yocaml.Datetime.t
@@ -198,13 +197,10 @@ val social_accounts : t -> Social_account.Set.t
 val email : t -> Email.Zero_or_more.t
 
 (** Returns the url of an individual. (uses [all_urls] field). *)
-val url : t -> Url.t option
+val url : t -> Url.Zero_or_more.t
 
 (** Returns the company of an individual. (uses [all_companies] field). *)
 val company : t -> Company.t option
-
-(** Returns the set of all associated urls. *)
-val all_urls : t -> Url.Set.t
 
 (** Returns the set of all associated companies. *)
 val all_companies : t -> Company.Set.t

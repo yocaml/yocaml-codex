@@ -4,8 +4,7 @@ type t =
   ; last_name : string option
   ; gender : Gender.t option
   ; email : Email.Zero_or_more.t
-  ; url : Url.t option
-  ; urls : Url.Set.t
+  ; url : Url.Zero_or_more.t
   ; bio : string option
   ; avatar : Scoped_url.t option
   ; birthday : Yocaml.Datetime.t option
@@ -32,8 +31,7 @@ let make
       ?first_name
       ?last_name
       ?(email = Email.Zero_or_more.empty)
-      ?url
-      ?(urls = Url.Set.empty)
+      ?(url = Url.Zero_or_more.empty)
       ?bio
       ?avatar
       ?birthday
@@ -48,7 +46,6 @@ let make
   ; gender
   ; email
   ; url
-  ; urls
   ; bio
   ; avatar
   ; birthday
@@ -67,22 +64,13 @@ let avatar { avatar; _ } = avatar
 let birthday { birthday; _ } = birthday
 let social_accounts { social_accounts; _ } = social_accounts
 let email { email; _ } = email
+let url { url; _ } = url
 
 let company inv =
   let company, _, _ =
     Set.collapse_with_option (module Company.Set) inv.companies inv.company
   in
   company
-;;
-
-let url inv =
-  let uri, _, _ = Set.collapse_with_option (module Url.Set) inv.urls inv.url in
-  uri
-;;
-
-let all_urls { url; urls; _ } =
-  let _, _, x = Set.collapse_with_option (module Url.Set) urls url in
-  x
 ;;
 
 let all_companies inv =
@@ -93,7 +81,7 @@ let all_companies inv =
 ;;
 
 let to_syndication inv =
-  let uri = Option.map Url.to_string (url inv) in
+  let uri = Option.map Url.to_string (Url.Zero_or_more.main inv.url) in
   let email = Option.map Email.to_string (Email.Zero_or_more.main inv.email) in
   Yocaml_syndication.Person.make ?uri ?email inv.display_name
 ;;
@@ -105,7 +93,6 @@ let to_data
       ; gender
       ; email
       ; url
-      ; urls
       ; bio
       ; avatar
       ; birthday
@@ -116,9 +103,6 @@ let to_data
   =
   let open Yocaml.Data in
   let names = Ext.Option.zip first_name last_name in
-  let url, other_urls, all_urls =
-    Set.collapse_with_option (module Url.Set) urls url
-  in
   let company, other_companies, all_companies =
     Set.collapse_with_option (module Company.Set) companies company
   in
@@ -132,9 +116,7 @@ let to_data
     ; "avatar", option Scoped_url.to_data avatar
     ; "birthday", option Yocaml.Datetime.to_data birthday
     ; "email", Email.Zero_or_more.to_data email
-    ; "url", option Url.to_data url
-    ; "other_urls", Url.Set.to_data other_urls
-    ; "all_urls", Url.Set.to_data all_urls
+    ; "url", Url.Zero_or_more.to_data url
     ; "social_accounts", Social_account.Set.to_data social_accounts
     ; "company", option Company.to_data company
     ; "other_companies", Company.Set.to_data other_companies
@@ -142,7 +124,6 @@ let to_data
     ; "has_bio", bool @@ Ext.Option.to_bool bio
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
-    ; "has_url", bool @@ Ext.Option.to_bool url
     ; "has_company", bool @@ Ext.Option.to_bool company
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
@@ -275,13 +256,12 @@ let from_record =
         "email"
         ~alt:[ "mail"; "emails"; "mails" ]
         Email.Zero_or_more.from_data
-    and+ url = opt fields "url" ~alt:[ "www"; "site"; "homepage" ] Url.from_data
-    and+ urls =
+    and+ url =
       opt
         fields
-        "urls"
-        ~alt:[ "other_urls"; "homepages"; "other_www" ]
-        Url.Set.from_data
+        "url"
+        ~alt:[ "www"; "site"; "homepage"; "urls"; "links"; "link" ]
+        Url.Zero_or_more.from_data
     and+ bio =
       opt
         fields
@@ -313,7 +293,6 @@ let from_record =
       ?first_name
       ?email
       ?url
-      ?urls
       ?last_name
       ?bio
       ?social_accounts
