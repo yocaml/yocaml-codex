@@ -164,8 +164,7 @@ val make
   -> ?avatar:Scoped_url.t
   -> ?birthday:Yocaml.Datetime.t
   -> ?social_accounts:Social_account.Set.t
-  -> ?company:Company.t
-  -> ?companies:Company.Set.t
+  -> ?company:Company.Zero_or_more.t
   -> string
   -> t
 
@@ -193,17 +192,14 @@ val birthday : t -> Yocaml.Datetime.t option
 (** Returns the set of associated social accounts. *)
 val social_accounts : t -> Social_account.Set.t
 
-(** Returns the email of an individual. (uses [all_emails] field). *)
+(** Returns the email of an individual. (as a [Zero_or_more] element). *)
 val email : t -> Email.Zero_or_more.t
 
-(** Returns the url of an individual. (uses [all_urls] field). *)
+(** Returns the url of an individual. (as a [Zero_or_more] element). *)
 val url : t -> Url.Zero_or_more.t
 
-(** Returns the company of an individual. (uses [all_companies] field). *)
-val company : t -> Company.t option
-
-(** Returns the set of all associated companies. *)
-val all_companies : t -> Company.Set.t
+(** Returns the company of an individual. (as a [Zero_or_more] element). *)
+val company : t -> Company.Zero_or_more.t
 
 (** [to_syndication individual] convert [individual] into a [person]
     in Syndication sense.*)

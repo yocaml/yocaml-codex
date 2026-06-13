@@ -9,8 +9,7 @@ type t =
   ; avatar : Scoped_url.t option
   ; birthday : Yocaml.Datetime.t option
   ; social_accounts : Social_account.Set.t
-  ; company : Company.t option
-  ; companies : Company.Set.t
+  ; company : Company.Zero_or_more.t
   }
 
 let compare { display_name; email; _ } other =
@@ -36,8 +35,7 @@ let make
       ?avatar
       ?birthday
       ?(social_accounts = Social_account.Set.empty)
-      ?company
-      ?(companies = Company.Set.empty)
+      ?(company = Company.Zero_or_more.empty)
       display_name
   =
   { display_name
@@ -50,7 +48,6 @@ let make
   ; avatar
   ; birthday
   ; social_accounts
-  ; companies
   ; company
   }
 ;;
@@ -65,20 +62,7 @@ let birthday { birthday; _ } = birthday
 let social_accounts { social_accounts; _ } = social_accounts
 let email { email; _ } = email
 let url { url; _ } = url
-
-let company inv =
-  let company, _, _ =
-    Set.collapse_with_option (module Company.Set) inv.companies inv.company
-  in
-  company
-;;
-
-let all_companies inv =
-  let _, _, x =
-    Set.collapse_with_option (module Company.Set) inv.companies inv.company
-  in
-  x
-;;
+let company { company; _ } = company
 
 let to_syndication inv =
   let uri = Option.map Url.to_string (Url.Zero_or_more.main inv.url) in
@@ -98,14 +82,10 @@ let to_data
       ; birthday
       ; social_accounts
       ; company
-      ; companies
       }
   =
   let open Yocaml.Data in
   let names = Ext.Option.zip first_name last_name in
-  let company, other_companies, all_companies =
-    Set.collapse_with_option (module Company.Set) companies company
-  in
   record
     [ "display_name", string display_name
     ; "bio", option string bio
@@ -118,13 +98,10 @@ let to_data
     ; "email", Email.Zero_or_more.to_data email
     ; "url", Url.Zero_or_more.to_data url
     ; "social_accounts", Social_account.Set.to_data social_accounts
-    ; "company", option Company.to_data company
-    ; "other_companies", Company.Set.to_data other_companies
-    ; "all_companies", Company.Set.to_data all_companies
+    ; "company", Company.Zero_or_more.to_data company
     ; "has_bio", bool @@ Ext.Option.to_bool bio
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
-    ; "has_company", bool @@ Ext.Option.to_bool company
     ; "has_names", bool @@ Ext.Option.to_bool names
     ; "has_gender", bool @@ Ext.Option.to_bool gender
     ; "has_avatar", bool @@ Ext.Option.to_bool avatar
