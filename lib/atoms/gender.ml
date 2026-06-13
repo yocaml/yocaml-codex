@@ -38,11 +38,10 @@ let to_data gender =
   let open Yocaml.Data in
   record
     [ "name", string name
-    ; "has_pronouns", bool has_pronouns
     ; ( "pronouns"
       , record
-          [ "has", bool has_pronouns
-          ; "all", list_of string pronouns
+          [ "exists", bool has_pronouns
+          ; "value", list_of string pronouns
           ; "repr", string @@ String.concat "/" pronouns
           ] )
     ]

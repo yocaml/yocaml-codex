@@ -54,11 +54,11 @@ let to_data { kind; url; secure_url; mime_type; dimension; alt } =
   record
     [ "kind", string (kind_to_string kind)
     ; "url", Scoped_url.to_data url
-    ; "secure_url", option Url.to_data secure_url
-    ; "mime_type", option string mime_type
-    ; "width", option (fun (w, _) -> int w) dimension
-    ; "height", option (fun (_, h) -> int h) dimension
-    ; "alt", option string alt
+    ; "secure_url", Ext.Option.to_data Url.to_data secure_url
+    ; "mime_type", Ext.Option.to_data string mime_type
+    ; "width", Ext.Option.to_data (fun (w, _) -> int w) dimension
+    ; "height", Ext.Option.to_data (fun (_, h) -> int h) dimension
+    ; "alt", Ext.Option.to_data string alt
     ]
 ;;
 

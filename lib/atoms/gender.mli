@@ -13,8 +13,8 @@ type t
         "name": string,
         "has_pronouns": bool,
         "pronouns": {
-           "has": bool,
-           "all": List<string>,
+           "exists": bool,
+           "value": List<string>,
            "repr": string
          }
       }
@@ -56,22 +56,21 @@ type t
 
     {@ocaml[
       # Yocaml.Data.(string "male") |> validate
-      {"name": "male", "has_pronouns": true, "pronouns":
-       {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}}
+      {"name": "male", "pronouns":
+       {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}}
       - : unit = ()
     ]}
 
     {@ocaml[
       # Yocaml.Data.(string "female") |> validate
-      {"name": "female", "has_pronouns": true, "pronouns":
-       {"has": true, "all": ["she", "her", "hers"], "repr": "she/her/hers"}}
+      {"name": "female", "pronouns":
+       {"exists": true, "value": ["she", "her", "hers"], "repr": "she/her/hers"}}
       - : unit = ()
     ]}
 
     {@ocaml[
       # Yocaml.Data.(string "neutral") |> validate
-      {"name": "neutral", "has_pronouns": false, "pronouns":
-       {"has": false, "all": [], "repr": ""}}
+      {"name": "neutral", "pronouns": {"exists": false, "value": [], "repr": ""}}
       - : unit = ()
     ]}
 
@@ -83,8 +82,8 @@ type t
       # Yocaml.Data.(record [
            "name", string "male"
         ]) |> validate ;;
-      {"name": "male", "has_pronouns": true, "pronouns":
-       {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}}
+      {"name": "male", "pronouns":
+       {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}}
       - : unit = ()
     ]}
 
@@ -92,8 +91,8 @@ type t
       # Yocaml.Data.(record [
            "name", string "female"
         ]) |> validate ;;
-      {"name": "female", "has_pronouns": true, "pronouns":
-       {"has": true, "all": ["she", "her", "hers"], "repr": "she/her/hers"}}
+      {"name": "female", "pronouns":
+       {"exists": true, "value": ["she", "her", "hers"], "repr": "she/her/hers"}}
       - : unit = ()
     ]}
 
@@ -104,8 +103,8 @@ type t
            "name", string "male"
         ;  "pronouns", list_of string ["a"; "b"; "c"]
         ]) |> validate ;;
-      {"name": "male", "has_pronouns": true, "pronouns":
-       {"has": true, "all": ["a", "b", "c"], "repr": "a/b/c"}}
+      {"name": "male", "pronouns":
+       {"exists": true, "value": ["a", "b", "c"], "repr": "a/b/c"}}
       - : unit = ()
     ]}
 
@@ -116,8 +115,7 @@ type t
            "name", string "female"
         ;  "pronouns", string "<none>"
         ]) |> validate ;;
-      {"name": "female", "has_pronouns": false, "pronouns":
-       {"has": false, "all": [], "repr": ""}}
+      {"name": "female", "pronouns": {"exists": false, "value": [], "repr": ""}}
       - : unit = ()
     ]} *)
 

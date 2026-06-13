@@ -11,11 +11,11 @@ let%expect_test "Validate an external path" =
     {|
     [V] {"kind": "external", "target": "https://www.xvw.lol", "url":
          {"target": "https://www.xvw.lol", "scheme": "https", "host":
-          "www.xvw.lol", "port": null, "path": "/", "has_port": false,
+          "www.xvw.lol", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 

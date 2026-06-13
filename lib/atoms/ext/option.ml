@@ -47,3 +47,8 @@ end
 
 include Infix
 include Syntax
+
+let to_data conv obj =
+  let open Yocaml.Data in
+  record [ "value", option conv obj; "exists", bool (to_bool obj) ]
+;;

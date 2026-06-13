@@ -138,8 +138,7 @@ let to_data ({ code; region } as lang) =
     ; "iso639p2", option string (Iso639.Lang.to_iso639p2t code)
     ; "scope", string scope
     ; "is_macro", bool (Iso639.Lang.scope code = `Macro)
-    ; "region", option string region
-    ; "has_region", bool (Option.is_some region)
+    ; "region", Ext.Option.to_data string region
     ]
 ;;
 

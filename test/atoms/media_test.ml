@@ -70,13 +70,16 @@ let%expect_test "from_data image" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/image.png", "url":
           {"target": "https://example.com/image.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/image.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/image.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": null, "height": null,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -90,13 +93,16 @@ let%expect_test "from_data url" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/image.png", "url":
           {"target": "https://example.com/image.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/image.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/image.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": null, "height": null,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -113,13 +119,16 @@ let%expect_test "from_data kind normalization" =
     [V] {"kind": "video", "url":
          {"kind": "external", "target": "https://example.com/video.mp4", "url":
           {"target": "https://example.com/video.mp4", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/video.mp4", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": null, "height": null,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -137,13 +146,16 @@ let%expect_test "from_data mime_type" =
     [V] {"kind": "video", "url":
          {"kind": "external", "target": "https://example.com/video.mp4", "url":
           {"target": "https://example.com/video.mp4", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/video.mp4", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": "video/mp4", "width": null, "height":
-         null, "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": "video/mp4", "exists": true}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -161,13 +173,16 @@ let%expect_test "from_data mime_type alias" =
     [V] {"kind": "video", "url":
          {"kind": "external", "target": "https://example.com/video.mp4", "url":
           {"target": "https://example.com/video.mp4", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/video.mp4", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/video.mp4", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": "video/mp4", "width": null, "height":
-         null, "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": "video/mp4", "exists": true}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -186,13 +201,15 @@ let%expect_test "from_data dimensions" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/cover.png", "url":
           {"target": "https://example.com/cover.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/cover.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/cover.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": 1200, "height": 630,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": 1200, "exists": true}, "height":
+         {"value": 630, "exists": true}, "alt": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -211,13 +228,15 @@ let%expect_test "from_data dimensions alias" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/cover.png", "url":
           {"target": "https://example.com/cover.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/cover.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/cover.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": 1200, "height": 630,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": 1200, "exists": true}, "height":
+         {"value": 630, "exists": true}, "alt": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -235,13 +254,16 @@ let%expect_test "from_data width only" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/cover.png", "url":
           {"target": "https://example.com/cover.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/cover.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/cover.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": null, "height": null,
-        "alt": null}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -259,19 +281,24 @@ let%expect_test "from_data secure_url" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "http://example.com/image.png", "url":
           {"target": "http://example.com/image.png", "scheme": "http", "host":
-           "example.com", "port": null, "path": "/image.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/image.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
+          "query_string": {"value": null, "exists": false}}},
         "secure_url":
-         {"target": "https://cdn.example.com/image.png", "scheme": "https",
-         "host": "cdn.example.com", "port": null, "path": "/image.png",
-         "has_port": false, "query_params":
-          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-          "elements": []},
-         "query_string": null, "has_query_string": false},
-        "mime_type": null, "width": null, "height": null, "alt": null}
+         {"value":
+          {"target": "https://cdn.example.com/image.png", "scheme": "https",
+          "host": "cdn.example.com", "port": {"value": null, "exists": false},
+          "path": "/image.png", "query_params":
+           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
+           "elements": []},
+          "query_string": {"value": null, "exists": false}},
+         "exists": true},
+        "mime_type": {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -289,13 +316,16 @@ let%expect_test "from_data alt" =
     [V] {"kind": "image", "url":
          {"kind": "external", "target": "https://example.com/image.png", "url":
           {"target": "https://example.com/image.png", "scheme": "https", "host":
-           "example.com", "port": null, "path": "/image.png", "has_port": false,
-          "query_params":
+           "example.com", "port": {"value": null, "exists": false}, "path":
+           "/image.png", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false}},
-        "secure_url": null, "mime_type": null, "width": null, "height": null,
-        "alt": "Example image"}
+          "query_string": {"value": null, "exists": false}}},
+        "secure_url": {"value": null, "exists": false}, "mime_type":
+         {"value": null, "exists": false}, "width":
+         {"value": null, "exists": false}, "height":
+         {"value": null, "exists": false}, "alt":
+         {"value": "Example image", "exists": true}}
     |}]
 ;;
 

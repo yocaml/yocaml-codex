@@ -7,10 +7,10 @@ let%expect_test "dump url 1" =
   [%expect
     {|
     {"target": "http://google.com", "scheme": "http", "host": "google.com",
-    "port": null, "path": "/", "has_port": false, "query_params":
+    "port": {"value": null, "exists": false}, "path": "/", "query_params":
      {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
      "elements": []},
-    "query_string": null, "has_query_string": false}
+    "query_string": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -20,10 +20,10 @@ let%expect_test "dump url 2" =
   [%expect
     {|
     {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol", "port":
-     null, "path": "/", "has_port": false, "query_params":
+     {"value": null, "exists": false}, "path": "/", "query_params":
      {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
      "elements": []},
-    "query_string": null, "has_query_string": false}
+    "query_string": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -33,11 +33,11 @@ let%expect_test "dump url 3" =
   [%expect
     {|
     {"target": "https://xvw.lol/index.html", "scheme": "https", "host":
-     "xvw.lol", "port": null, "path": "/index.html", "has_port": false,
+     "xvw.lol", "port": {"value": null, "exists": false}, "path": "/index.html",
     "query_params":
      {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
      "elements": []},
-    "query_string": null, "has_query_string": false}
+    "query_string": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -47,11 +47,11 @@ let%expect_test "dump url 4" =
   [%expect
     {|
     {"target": "https://xvw.lol/foo/index.html", "scheme": "https", "host":
-     "xvw.lol", "port": null, "path": "/foo/index.html", "has_port": false,
-    "query_params":
+     "xvw.lol", "port": {"value": null, "exists": false}, "path":
+     "/foo/index.html", "query_params":
      {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
      "elements": []},
-    "query_string": null, "has_query_string": false}
+    "query_string": {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -61,13 +61,13 @@ let%expect_test "dump url 5" =
   [%expect
     {|
     {"target": "https://xvw.lol?foo=bar,true&uname=xvw", "scheme": "https",
-    "host": "xvw.lol", "port": null, "path": "/", "has_port": false,
+    "host": "xvw.lol", "port": {"value": null, "exists": false}, "path": "/",
     "query_params":
      {"kind": "map", "length": 2, "is_empty": false, "is_not_empty": true,
      "elements":
       [{"key": "foo", "value": ["bar", "true"]},
       {"key": "uname", "value": ["xvw"]}]},
-    "query_string": "foo=bar,true&uname=xvw", "has_query_string": true}
+    "query_string": {"value": "foo=bar,true&uname=xvw", "exists": true}}
     |}]
 ;;
 
@@ -108,9 +108,9 @@ let%expect_test "from_string corner case" =
   [%expect
     {|
     [V] {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-        "port": null, "path": "/", "has_port": false, "query_params":
+        "port": {"value": null, "exists": false}, "path": "/", "query_params":
          {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
-        "query_string": null, "has_query_string": false}
+        "query_string": {"value": null, "exists": false}}
     |}]
 ;;

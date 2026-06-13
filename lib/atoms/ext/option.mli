@@ -26,3 +26,8 @@ end
 
 include module type of Infix
 include module type of Syntax
+
+(** An alternative representation of [Option], instead of using [unboxed]
+    option ([x | Null] that need to have [has_fields] it use a record
+    with two fields: [{value: T; exists: bool}]). *)
+val to_data : 'a Yocaml.Data.converter -> 'a option Yocaml.Data.converter

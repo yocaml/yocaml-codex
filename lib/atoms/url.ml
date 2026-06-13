@@ -61,12 +61,10 @@ let to_data ({ scheme; host; port; path = uri_path; query_params; uri } as url) 
     [ "target", string @@ to_string url
     ; "scheme", string @@ scheme_to_string scheme
     ; "host", string host
-    ; "port", option int port
+    ; "port", Ext.Option.to_data int port
     ; "path", path uri_path
-    ; "has_port", bool @@ Option.is_some port
     ; "query_params", Map.String.to_data (list_of string) query_params
-    ; "query_string", option string query_string
-    ; "has_query_string", bool @@ Option.is_some query_string
+    ; "query_string", Ext.Option.to_data string query_string
     ]
 ;;
 

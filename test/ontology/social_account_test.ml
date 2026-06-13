@@ -92,17 +92,17 @@ let%expect_test "to_data of social media account - 1" =
     {"kind": "github", "is_known": true, "is_custom": false, "username": "xvw",
     "domain":
      {"target": "https://github.com", "scheme": "https", "host": "github.com",
-     "port": null, "path": "/", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://github.com/xvw", "scheme": "https", "host":
-      "github.com", "port": null, "path": "/xvw", "has_port": false,
+      "github.com", "port": {"value": null, "exists": false}, "path": "/xvw",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -114,17 +114,17 @@ let%expect_test "to_data of social media account - 2" =
     {"kind": "gitlab", "is_known": true, "is_custom": false, "username": "xvw",
     "domain":
      {"target": "https://gitlab.com", "scheme": "https", "host": "gitlab.com",
-     "port": null, "path": "/", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://gitlab.com/xvw", "scheme": "https", "host":
-      "gitlab.com", "port": null, "path": "/xvw", "has_port": false,
+      "gitlab.com", "port": {"value": null, "exists": false}, "path": "/xvw",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -137,18 +137,18 @@ let%expect_test "to_data of social media account - 3" =
     {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
      "xvw@merveilles.town", "domain":
      {"target": "https://merveilles.town", "scheme": "https", "host":
-      "merveilles.town", "port": null, "path": "/", "has_port": false,
+      "merveilles.town", "port": {"value": null, "exists": false}, "path": "/",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-      "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-     "query_params":
+      "merveilles.town", "port": {"value": null, "exists": false}, "path":
+      "/@xvw", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -160,18 +160,18 @@ let%expect_test "to_data of social media account - 4" =
     {"kind": "codeberg", "is_known": true, "is_custom": false, "username":
      "kramo", "domain":
      {"target": "https://codeberg.org", "scheme": "https", "host":
-      "codeberg.org", "port": null, "path": "/", "has_port": false,
+      "codeberg.org", "port": {"value": null, "exists": false}, "path": "/",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://codeberg.org/kramo", "scheme": "https", "host":
-      "codeberg.org", "port": null, "path": "/kramo", "has_port": false,
-     "query_params":
+      "codeberg.org", "port": {"value": null, "exists": false}, "path":
+      "/kramo", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -183,16 +183,17 @@ let%expect_test "to_data of social media account - 5" =
     {"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
      "tim-ats-d", "domain":
      {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
-      null, "path": "/", "has_port": false, "query_params":
+      {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://sr.ht/~tim-ats-d", "scheme": "https", "host": "sr.ht",
-     "port": null, "path": "/~tim-ats-d", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/~tim-ats-d",
+     "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -204,16 +205,16 @@ let%expect_test "to_data of social media account - 6" =
     {"kind": "x", "is_known": true, "is_custom": false, "username": "vdwxv",
     "domain":
      {"target": "https://x.com", "scheme": "https", "host": "x.com", "port":
-      null, "path": "/", "has_port": false, "query_params":
+      {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://x.com/vdwxv", "scheme": "https", "host": "x.com",
-     "port": null, "path": "/vdwxv", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/vdwxv", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -225,17 +226,17 @@ let%expect_test "to_data of social media account - 7" =
     {"kind": "bluesky", "is_known": true, "is_custom": false, "username":
      "xvw.lol", "domain":
      {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
-     "port": null, "path": "/", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https", "host":
-      "bsky.app", "port": null, "path": "/profile/xvw.lol", "has_port": false,
-     "query_params":
+      "bsky.app", "port": {"value": null, "exists": false}, "path":
+      "/profile/xvw.lol", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -247,18 +248,18 @@ let%expect_test "to_data of social media account - 8" =
     {"kind": "instagram", "is_known": true, "is_custom": false, "username":
      "vdwxv", "domain":
      {"target": "https://instagram.com", "scheme": "https", "host":
-      "instagram.com", "port": null, "path": "/", "has_port": false,
+      "instagram.com", "port": {"value": null, "exists": false}, "path": "/",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://instagram.com/vdwxv", "scheme": "https", "host":
-      "instagram.com", "port": null, "path": "/vdwxv", "has_port": false,
-     "query_params":
+      "instagram.com", "port": {"value": null, "exists": false}, "path":
+      "/vdwxv", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -270,18 +271,18 @@ let%expect_test "to_data of social media account - 9" =
     {"kind": "linkedin", "is_known": true, "is_custom": false, "username":
      "xavdw", "domain":
      {"target": "https://linkedin.com", "scheme": "https", "host":
-      "linkedin.com", "port": null, "path": "/", "has_port": false,
+      "linkedin.com", "port": {"value": null, "exists": false}, "path": "/",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://linkedin.com/in/xavdw", "scheme": "https", "host":
-      "linkedin.com", "port": null, "path": "/in/xavdw", "has_port": false,
-     "query_params":
+      "linkedin.com", "port": {"value": null, "exists": false}, "path":
+      "/in/xavdw", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -293,18 +294,18 @@ let%expect_test "to_data of social media account - 10" =
     {"kind": "facebook", "is_known": true, "is_custom": false, "username":
      "nukidoudi", "domain":
      {"target": "https://facebook.com", "scheme": "https", "host":
-      "facebook.com", "port": null, "path": "/", "has_port": false,
+      "facebook.com", "port": {"value": null, "exists": false}, "path": "/",
      "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://facebook.com/nukidoudi", "scheme": "https", "host":
-      "facebook.com", "port": null, "path": "/nukidoudi", "has_port": false,
-     "query_params":
+      "facebook.com", "port": {"value": null, "exists": false}, "path":
+      "/nukidoudi", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -316,17 +317,17 @@ let%expect_test "to_data of social media account - 11" =
     {"kind": "threads", "is_known": true, "is_custom": false, "username":
      "vdwxv", "domain":
      {"target": "https://threads.com", "scheme": "https", "host": "threads.com",
-     "port": null, "path": "/", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://threads.com/@vdwxv", "scheme": "https", "host":
-      "threads.com", "port": null, "path": "/@vdwxv", "has_port": false,
-     "query_params":
+      "threads.com", "port": {"value": null, "exists": false}, "path":
+      "/@vdwxv", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -338,16 +339,16 @@ let%expect_test "to_data of social media account - 12" =
     {"kind": "cara", "is_known": true, "is_custom": false, "username": "vdwxv",
     "domain":
      {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
-     "port": null, "path": "/", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://cara.app/vdwxv", "scheme": "https", "host": "cara.app",
-     "port": null, "path": "/vdwxv", "has_port": false, "query_params":
+     "port": {"value": null, "exists": false}, "path": "/vdwxv", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -364,18 +365,18 @@ let%expect_test "to_data of social media account - 13" =
     {"kind": "muhokama", "is_known": false, "is_custom": true, "username":
      "xvw", "domain":
      {"target": "https://ring.muhokama.fun/", "scheme": "https", "host":
-      "ring.muhokama.fun", "port": null, "path": "/", "has_port": false,
-     "query_params":
+      "ring.muhokama.fun", "port": {"value": null, "exists": false}, "path":
+      "/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false},
+     "query_string": {"value": null, "exists": false}},
     "url":
      {"target": "https://ring.muhokama.fun/u/xvw/", "scheme": "https", "host":
-      "ring.muhokama.fun", "port": null, "path": "/u/xvw/", "has_port": false,
-     "query_params":
+      "ring.muhokama.fun", "port": {"value": null, "exists": false}, "path":
+      "/u/xvw/", "query_params":
       {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
       "elements": []},
-     "query_string": null, "has_query_string": false}}
+     "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -390,18 +391,18 @@ let%expect_test "Validate a mastodon account 1" =
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -417,18 +418,18 @@ let%expect_test "Validate a mastodon account 2" =
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -443,18 +444,18 @@ let%expect_test "Validate a mastodon account 2" =
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -469,18 +470,18 @@ let%expect_test "Validate a mastodon account 3" =
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -495,18 +496,18 @@ let%expect_test "Validate a github account from string" =
     [V] {"kind": "github", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://github.com", "scheme": "https", "host":
-          "github.com", "port": null, "path": "/", "has_port": false,
+          "github.com", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://github.com/xvw", "scheme": "https", "host":
-          "github.com", "port": null, "path": "/xvw", "has_port": false,
-         "query_params":
+          "github.com", "port": {"value": null, "exists": false}, "path":
+          "/xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -521,18 +522,18 @@ let%expect_test "Validate a gitlab account from string" =
     [V] {"kind": "gitlab", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://gitlab.com", "scheme": "https", "host":
-          "gitlab.com", "port": null, "path": "/", "has_port": false,
+          "gitlab.com", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://gitlab.com/xvw", "scheme": "https", "host":
-          "gitlab.com", "port": null, "path": "/xvw", "has_port": false,
-         "query_params":
+          "gitlab.com", "port": {"value": null, "exists": false}, "path":
+          "/xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -547,18 +548,18 @@ let%expect_test "Validate a codeberg account from string" =
     [V] {"kind": "codeberg", "is_known": true, "is_custom": false, "username":
          "forgejo", "domain":
          {"target": "https://codeberg.org", "scheme": "https", "host":
-          "codeberg.org", "port": null, "path": "/", "has_port": false,
+          "codeberg.org", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://codeberg.org/forgejo", "scheme": "https", "host":
-          "codeberg.org", "port": null, "path": "/forgejo", "has_port": false,
-         "query_params":
+          "codeberg.org", "port": {"value": null, "exists": false}, "path":
+          "/forgejo", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -573,17 +574,17 @@ let%expect_test "Validate a sourcehut account from string" =
     [V] {"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
          "tim-ats-d", "domain":
          {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
-          null, "path": "/", "has_port": false, "query_params":
+          {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://sr.ht/~tim-ats-d", "scheme": "https", "host":
-          "sr.ht", "port": null, "path": "/~tim-ats-d", "has_port": false,
-         "query_params":
+          "sr.ht", "port": {"value": null, "exists": false}, "path":
+          "/~tim-ats-d", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -598,16 +599,17 @@ let%expect_test "Validate a x account from string" =
     [V] {"kind": "x", "is_known": true, "is_custom": false, "username": "vdwxv",
         "domain":
          {"target": "https://x.com", "scheme": "https", "host": "x.com", "port":
-          null, "path": "/", "has_port": false, "query_params":
+          {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://x.com/vdwxv", "scheme": "https", "host": "x.com",
-         "port": null, "path": "/vdwxv", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/vdwxv",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -622,17 +624,17 @@ let%expect_test "Validate a bsky account from string" =
     [V] {"kind": "bluesky", "is_known": true, "is_custom": false, "username":
          "xvw.lol", "domain":
          {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
-         "port": null, "path": "/", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https",
-         "host": "bsky.app", "port": null, "path": "/profile/xvw.lol",
-         "has_port": false, "query_params":
+         "host": "bsky.app", "port": {"value": null, "exists": false}, "path":
+          "/profile/xvw.lol", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -647,18 +649,18 @@ let%expect_test "Validate a linkedin account from string" =
     [V] {"kind": "linkedin", "is_known": true, "is_custom": false, "username":
          "xavdw", "domain":
          {"target": "https://linkedin.com", "scheme": "https", "host":
-          "linkedin.com", "port": null, "path": "/", "has_port": false,
+          "linkedin.com", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://linkedin.com/in/xavdw", "scheme": "https", "host":
-          "linkedin.com", "port": null, "path": "/in/xavdw", "has_port": false,
-         "query_params":
+          "linkedin.com", "port": {"value": null, "exists": false}, "path":
+          "/in/xavdw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -673,18 +675,18 @@ let%expect_test "Validate a instagram account from string" =
     [V] {"kind": "instagram", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://instagram.com", "scheme": "https", "host":
-          "instagram.com", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "instagram.com", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://instagram.com/vdwxv", "scheme": "https", "host":
-          "instagram.com", "port": null, "path": "/vdwxv", "has_port": false,
-         "query_params":
+          "instagram.com", "port": {"value": null, "exists": false}, "path":
+          "/vdwxv", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -699,18 +701,18 @@ let%expect_test "Validate a facebook account from string" =
     [V] {"kind": "facebook", "is_known": true, "is_custom": false, "username":
          "nukidoudi", "domain":
          {"target": "https://facebook.com", "scheme": "https", "host":
-          "facebook.com", "port": null, "path": "/", "has_port": false,
+          "facebook.com", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://facebook.com/nukidoudi", "scheme": "https", "host":
-          "facebook.com", "port": null, "path": "/nukidoudi", "has_port": false,
-         "query_params":
+          "facebook.com", "port": {"value": null, "exists": false}, "path":
+          "/nukidoudi", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -725,17 +727,17 @@ let%expect_test "Validate a cara account from string" =
     [V] {"kind": "cara", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
-         "port": null, "path": "/", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://cara.app/vdwxv", "scheme": "https", "host":
-          "cara.app", "port": null, "path": "/vdwxv", "has_port": false,
-         "query_params":
+          "cara.app", "port": {"value": null, "exists": false}, "path":
+          "/vdwxv", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -750,18 +752,18 @@ let%expect_test "Validate a threads account from string" =
     [V] {"kind": "threads", "is_known": true, "is_custom": false, "username":
          "xvw", "domain":
          {"target": "https://threads.com", "scheme": "https", "host":
-          "threads.com", "port": null, "path": "/", "has_port": false,
+          "threads.com", "port": {"value": null, "exists": false}, "path": "/",
          "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://threads.com/@xvw", "scheme": "https", "host":
-          "threads.com", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "threads.com", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -776,17 +778,17 @@ let%expect_test "Validate a cara account from string" =
     [V] {"kind": "cara", "is_known": true, "is_custom": false, "username":
          "vdwxv", "domain":
          {"target": "https://cara.app", "scheme": "https", "host": "cara.app",
-         "port": null, "path": "/", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://cara.app/vdwxv", "scheme": "https", "host":
-          "cara.app", "port": null, "path": "/vdwxv", "has_port": false,
-         "query_params":
+          "cara.app", "port": {"value": null, "exists": false}, "path":
+          "/vdwxv", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -801,17 +803,17 @@ let%expect_test "Validate from a list - 1" =
     [V] {"kind": "sourcehut", "is_known": true, "is_custom": false, "username":
          "tim-ats-d", "domain":
          {"target": "https://sr.ht", "scheme": "https", "host": "sr.ht", "port":
-          null, "path": "/", "has_port": false, "query_params":
+          {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://sr.ht/~tim-ats-d", "scheme": "https", "host":
-          "sr.ht", "port": null, "path": "/~tim-ats-d", "has_port": false,
-         "query_params":
+          "sr.ht", "port": {"value": null, "exists": false}, "path":
+          "/~tim-ats-d", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -826,18 +828,18 @@ let%expect_test "Validate from a list - 2" =
     [V] {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
          "xvw@merveilles.town", "domain":
          {"target": "https://merveilles.town", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-          "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-         "query_params":
+          "merveilles.town", "port": {"value": null, "exists": false}, "path":
+          "/@xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -852,17 +854,17 @@ let%expect_test "Validate from a known record" =
     [V] {"kind": "bluesky", "is_known": true, "is_custom": false, "username":
          "xvw.lol", "domain":
          {"target": "https://bsky.app", "scheme": "https", "host": "bsky.app",
-         "port": null, "path": "/", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https",
-         "host": "bsky.app", "port": null, "path": "/profile/xvw.lol",
-         "has_port": false, "query_params":
+         "host": "bsky.app", "port": {"value": null, "exists": false}, "path":
+          "/profile/xvw.lol", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -881,17 +883,17 @@ let%expect_test "Validate from an unknown record" =
     [V] {"kind": "muhokama", "is_known": false, "is_custom": true, "username":
          "xvw", "domain":
          {"target": "https://ring.muhokama.fun/", "scheme": "https", "host":
-          "ring.muhokama.fun", "port": null, "path": "/", "has_port": false,
-         "query_params":
+          "ring.muhokama.fun", "port": {"value": null, "exists": false}, "path":
+          "/", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
+         "query_string": {"value": null, "exists": false}},
         "url":
          {"target": "https://ring.muhokama.fun/u/xvw", "scheme": "https", "host":
-          "ring.muhokama.fun", "port": null, "path": "/u/xvw", "has_port":
-          false, "query_params":
+          "ring.muhokama.fun", "port": {"value": null, "exists": false}, "path":
+          "/u/xvw", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;

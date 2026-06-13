@@ -44,11 +44,12 @@ let%expect_test "Valid ISBN validation" =
     [V] {"value": "9782020058377", "kind": 13, "repr": "978-2-0200-5837-7",
         "target":
          {"target": "https://isbnsearch.org/isbn/9782020058377", "scheme":
-          "https", "host": "isbnsearch.org", "port": null, "path":
-          "/isbn/9782020058377", "has_port": false, "query_params":
+          "https", "host": "isbnsearch.org", "port":
+          {"value": null, "exists": false}, "path": "/isbn/9782020058377",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -62,11 +63,12 @@ let%expect_test "Valid ISBN validation" =
     [V] {"value": "9782020058377", "kind": 13, "repr": "978-2-0200-5837-7",
         "target":
          {"target": "https://isbnsearch.org/isbn/9782020058377", "scheme":
-          "https", "host": "isbnsearch.org", "port": null, "path":
-          "/isbn/9782020058377", "has_port": false, "query_params":
+          "https", "host": "isbnsearch.org", "port":
+          {"value": null, "exists": false}, "path": "/isbn/9782020058377",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -79,11 +81,11 @@ let%expect_test "Valid ISBN validation" =
     {|
     [V] {"value": "2020058377", "kind": 10, "repr": "2-0200-5837-7", "target":
          {"target": "https://isbnsearch.org/isbn/2020058377", "scheme": "https",
-         "host": "isbnsearch.org", "port": null, "path": "/isbn/2020058377",
-         "has_port": false, "query_params":
+         "host": "isbnsearch.org", "port": {"value": null, "exists": false},
+         "path": "/isbn/2020058377", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;
 
@@ -96,10 +98,10 @@ let%expect_test "Valid ISBN validation" =
     {|
     [V] {"value": "2020058377", "kind": 10, "repr": "2-0200-5837-7", "target":
          {"target": "https://isbnsearch.org/isbn/2020058377", "scheme": "https",
-         "host": "isbnsearch.org", "port": null, "path": "/isbn/2020058377",
-         "has_port": false, "query_params":
+         "host": "isbnsearch.org", "port": {"value": null, "exists": false},
+         "path": "/isbn/2020058377", "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false}}
+         "query_string": {"value": null, "exists": false}}}
     |}]
 ;;

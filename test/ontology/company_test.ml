@@ -76,11 +76,11 @@ let%expect_test "Validate from a record" =
         "large_logo": null, "logo": null, "cover": null, "url":
          {"main":
           {"target": "https://thecargokult.com", "scheme": "https", "host":
-           "thecargokult.com", "port": null, "path": "/", "has_port": false,
-          "query_params":
+           "thecargokult.com", "port": {"value": null, "exists": false}, "path":
+           "/", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false},
+          "query_string": {"value": null, "exists": false}},
          "has_main": true, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
@@ -88,11 +88,11 @@ let%expect_test "Validate from a record" =
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "https://thecargokult.com", "scheme": "https", "host":
-             "thecargokult.com", "port": null, "path": "/", "has_port": false,
-            "query_params":
+             "thecargokult.com", "port": {"value": null, "exists": false},
+            "path": "/", "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false}]}},
+            "query_string": {"value": null, "exists": false}}]}},
         "email":
          {"main": null, "has_main": false, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,

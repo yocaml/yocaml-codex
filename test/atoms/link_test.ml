@@ -9,12 +9,13 @@ let%expect_test "validate a link - from a simple URL" =
     {|
     [V] {"name": "xvw.lol/foo", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
-         "port": null, "path": "/foo", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/foo",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
-        "target": "https://xvw.lol/foo", "description": null, "has_description":
-         false}
+         "query_string": {"value": null, "exists": false}},
+        "target": "https://xvw.lol/foo", "description":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -26,12 +27,13 @@ let%expect_test "validate a link - from an url 2" =
     {|
     [V] {"name": "xvw.lol/foo", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
-         "port": null, "path": "/foo", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/foo",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
-        "target": "https://xvw.lol/foo", "description": null, "has_description":
-         false}
+         "query_string": {"value": null, "exists": false}},
+        "target": "https://xvw.lol/foo", "description":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -44,12 +46,13 @@ let%expect_test "validate a link - from an url with a name" =
     {|
     [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
-         "port": null, "path": "/foo", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/foo",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
-        "target": "https://xvw.lol/foo", "description": null, "has_description":
-         false}
+         "query_string": {"value": null, "exists": false}},
+        "target": "https://xvw.lol/foo", "description":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -62,12 +65,13 @@ let%expect_test "validate a link - from an url with a name 2" =
     {|
     [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
-         "port": null, "path": "/foo", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/foo",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
-        "target": "https://xvw.lol/foo", "description": null, "has_description":
-         false}
+         "query_string": {"value": null, "exists": false}},
+        "target": "https://xvw.lol/foo", "description":
+         {"value": null, "exists": false}}
     |}]
 ;;
 
@@ -84,11 +88,12 @@ let%expect_test "validate a link - from an url with a name and desc" =
     {|
     [V] {"name": "xvw", "url":
          {"target": "https://xvw.lol/foo", "scheme": "https", "host": "xvw.lol",
-         "port": null, "path": "/foo", "has_port": false, "query_params":
+         "port": {"value": null, "exists": false}, "path": "/foo",
+         "query_params":
           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
-         "query_string": null, "has_query_string": false},
-        "target": "https://xvw.lol/foo", "description": "A description",
-        "has_description": true}
+         "query_string": {"value": null, "exists": false}},
+        "target": "https://xvw.lol/foo", "description":
+         {"value": "A description", "exists": true}}
     |}]
 ;;

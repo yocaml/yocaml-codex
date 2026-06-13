@@ -263,8 +263,8 @@ let%expect_test "Validating a simple name using record - 3" =
     [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
          "van de Woestyne", "gender":
-         {"name": "male", "has_pronouns": true, "pronouns":
-          {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}},
+         {"name": "male", "pronouns":
+          {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
         "avatar": null, "birthday": null, "email":
          {"main": null, "has_main": false, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -312,8 +312,8 @@ let%expect_test "Validating a simple name using record - 4" =
     [V] {"display_name": "Xavier van de Woestyne", "bio": null, "slug":
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
          "van de Woestyne", "gender":
-         {"name": "male", "has_pronouns": true, "pronouns":
-          {"has": true, "all": ["he", "him", "his"], "repr": "he/him/his"}},
+         {"name": "male", "pronouns":
+          {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
         "avatar": null, "birthday": null, "email":
          {"main":
           {"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
@@ -496,79 +496,81 @@ let%expect_test "Validating a simple name using record with social accounts" =
         "url":
          {"main":
           {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-          "port": null, "path": "/", "has_port": false, "query_params":
+          "port": {"value": null, "exists": false}, "path": "/", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false},
+          "query_string": {"value": null, "exists": false}},
          "has_main": true, "other":
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
-            "port": null, "path": "/", "has_port": false, "query_params":
+            "port": {"value": null, "exists": false}, "path": "/",
+            "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false}]},
+            "query_string": {"value": null, "exists": false}}]},
          "all":
           {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-            "port": null, "path": "/", "has_port": false, "query_params":
+            "port": {"value": null, "exists": false}, "path": "/",
+            "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false},
+            "query_string": {"value": null, "exists": false}},
            {"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
-           "port": null, "path": "/", "has_port": false, "query_params":
+           "port": {"value": null, "exists": false}, "path": "/", "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false}]}},
+           "query_string": {"value": null, "exists": false}}]}},
         "social_accounts":
          {"kind": "set", "length": 3, "is_empty": false, "is_not_empty": true,
          "elements":
           [{"kind": "bluesky", "is_known": true, "is_custom": false, "username":
             "xvw.lol", "domain":
             {"target": "https://bsky.app", "scheme": "https", "host":
-             "bsky.app", "port": null, "path": "/", "has_port": false,
+             "bsky.app", "port": {"value": null, "exists": false}, "path": "/",
             "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false},
+            "query_string": {"value": null, "exists": false}},
            "url":
             {"target": "https://bsky.app/profile/xvw.lol", "scheme": "https",
-            "host": "bsky.app", "port": null, "path": "/profile/xvw.lol",
-            "has_port": false, "query_params":
+            "host": "bsky.app", "port": {"value": null, "exists": false}, "path":
+             "/profile/xvw.lol", "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false}},
+            "query_string": {"value": null, "exists": false}}},
           {"kind": "github", "is_known": true, "is_custom": false, "username":
            "xvw", "domain":
            {"target": "https://github.com", "scheme": "https", "host":
-            "github.com", "port": null, "path": "/", "has_port": false,
+            "github.com", "port": {"value": null, "exists": false}, "path": "/",
            "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false},
+           "query_string": {"value": null, "exists": false}},
           "url":
            {"target": "https://github.com/xvw", "scheme": "https", "host":
-            "github.com", "port": null, "path": "/xvw", "has_port": false,
-           "query_params":
+            "github.com", "port": {"value": null, "exists": false}, "path":
+            "/xvw", "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false}},
+           "query_string": {"value": null, "exists": false}}},
           {"kind": "mastodon", "is_known": true, "is_custom": false, "username":
            "xvw@merveilles.town", "domain":
            {"target": "https://merveilles.town", "scheme": "https", "host":
-            "merveilles.town", "port": null, "path": "/", "has_port": false,
-           "query_params":
+            "merveilles.town", "port": {"value": null, "exists": false}, "path":
+            "/", "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false},
+           "query_string": {"value": null, "exists": false}},
           "url":
            {"target": "https://merveilles.town/@xvw", "scheme": "https", "host":
-            "merveilles.town", "port": null, "path": "/@xvw", "has_port": false,
-           "query_params":
+            "merveilles.town", "port": {"value": null, "exists": false}, "path":
+            "/@xvw", "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false}}]},
+           "query_string": {"value": null, "exists": false}}}]},
         "company":
          {"main": null, "has_main": false, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
@@ -623,31 +625,33 @@ let%expect_test "Validating a simple name using record" =
         "url":
          {"main":
           {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-          "port": null, "path": "/", "has_port": false, "query_params":
+          "port": {"value": null, "exists": false}, "path": "/", "query_params":
            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
            "elements": []},
-          "query_string": null, "has_query_string": false},
+          "query_string": {"value": null, "exists": false}},
          "has_main": true, "other":
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
-            "port": null, "path": "/", "has_port": false, "query_params":
+            "port": {"value": null, "exists": false}, "path": "/",
+            "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false}]},
+            "query_string": {"value": null, "exists": false}}]},
          "all":
           {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-            "port": null, "path": "/", "has_port": false, "query_params":
+            "port": {"value": null, "exists": false}, "path": "/",
+            "query_params":
              {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
               false, "elements": []},
-            "query_string": null, "has_query_string": false},
+            "query_string": {"value": null, "exists": false}},
            {"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
-           "port": null, "path": "/", "has_port": false, "query_params":
+           "port": {"value": null, "exists": false}, "path": "/", "query_params":
             {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
              false, "elements": []},
-           "query_string": null, "has_query_string": false}]}},
+           "query_string": {"value": null, "exists": false}}]}},
         "social_accounts":
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},

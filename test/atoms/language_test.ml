@@ -8,8 +8,8 @@ let%expect_test "validate a language - from string (code only)" =
   [%expect
     {|
     [V] {"tag": "es-ES", "code": "es", "iso639p1": "es", "iso639p2": "spa",
-        "scope": "individual", "is_macro": false, "region": "ES", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "ES", "exists": true}}
     |}]
 ;;
 
@@ -20,8 +20,8 @@ let%expect_test "validate a language - from string (code + region)" =
   [%expect
     {|
     [V] {"tag": "pt-PT", "code": "pt", "iso639p1": "pt", "iso639p2": "por",
-        "scope": "individual", "is_macro": false, "region": "PT", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "PT", "exists": true}}
     |}]
 ;;
 
@@ -32,8 +32,8 @@ let%expect_test "validate a language - from canonical name (french)" =
   [%expect
     {|
     [V] {"tag": "fr-FR", "code": "fr", "iso639p1": "fr", "iso639p2": "fra",
-        "scope": "individual", "is_macro": false, "region": "FR", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "FR", "exists": true}}
     |}]
 ;;
 
@@ -44,8 +44,8 @@ let%expect_test "validate a language - from canonical name (english)" =
   [%expect
     {|
     [V] {"tag": "en-US", "code": "en", "iso639p1": "en", "iso639p2": "eng",
-        "scope": "individual", "is_macro": false, "region": "US", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "US", "exists": true}}
     |}]
 ;;
 
@@ -56,8 +56,8 @@ let%expect_test "validate a language UK english" =
   [%expect
     {|
     [V] {"tag": "en-UK", "code": "en", "iso639p1": "en", "iso639p2": "eng",
-        "scope": "individual", "is_macro": false, "region": "UK", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "UK", "exists": true}}
     |}]
 ;;
 
@@ -68,8 +68,8 @@ let%expect_test "validate a language - from record (code only)" =
   [%expect
     {|
     [V] {"tag": "de-DE", "code": "de", "iso639p1": "de", "iso639p2": "deu",
-        "scope": "individual", "is_macro": false, "region": "DE", "has_region":
-         true}
+        "scope": "individual", "is_macro": false, "region":
+         {"value": "DE", "exists": true}}
     |}]
 ;;
 
@@ -80,7 +80,8 @@ let%expect_test "validate a language - record with name & country" =
   [%expect
     {|
     [V] {"tag": "ar-EG", "code": "ar", "iso639p1": "ar", "iso639p2": "ara",
-        "scope": "macro", "is_macro": true, "region": "EG", "has_region": true}
+        "scope": "macro", "is_macro": true, "region":
+         {"value": "EG", "exists": true}}
     |}]
 ;;
 
@@ -123,7 +124,7 @@ let%expect_test "dump french" =
   [%expect
     {|
     {"tag": "fr-FR", "code": "fr", "iso639p1": "fr", "iso639p2": "fra", "scope":
-     "individual", "is_macro": false, "region": "FR", "has_region": true}
+     "individual", "is_macro": false, "region": {"value": "FR", "exists": true}}
     |}]
 ;;
 
@@ -132,7 +133,7 @@ let%expect_test "dump en-US" =
   [%expect
     {|
     {"tag": "en-US", "code": "en", "iso639p1": "en", "iso639p2": "eng", "scope":
-     "individual", "is_macro": false, "region": "US", "has_region": true}
+     "individual", "is_macro": false, "region": {"value": "US", "exists": true}}
     |}]
 ;;
 
@@ -141,6 +142,6 @@ let%expect_test "dump en-UK" =
   [%expect
     {|
     {"tag": "en-UK", "code": "en", "iso639p1": "en", "iso639p2": "eng", "scope":
-     "individual", "is_macro": false, "region": "UK", "has_region": true}
+     "individual", "is_macro": false, "region": {"value": "UK", "exists": true}}
     |}]
 ;;

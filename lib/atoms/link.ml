@@ -34,8 +34,7 @@ let to_data { name; url; description } =
     [ "name", string name
     ; "url", Url.to_data url
     ; "target", string @@ Url.to_string url
-    ; "description", option string description
-    ; "has_description", bool @@ Option.is_some description
+    ; "description", Ext.Option.to_data string description
     ]
 ;;
 
