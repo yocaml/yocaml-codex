@@ -114,4 +114,6 @@ module type SET_AND_MAP = sig
     include Stdlib.Map.S with type key = t
     include MAP with type 'a t := 'a t
   end
+
+  module Zero_or_more = Set.Zero_or_more
 end

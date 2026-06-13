@@ -12,4 +12,6 @@ module Enumerable (O : Sigs.MODEL) = struct
     include STD
     include COD
   end
+
+  module Zero_or_more = Set.Zero_or_more
 end

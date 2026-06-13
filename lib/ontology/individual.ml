@@ -3,7 +3,7 @@ type t =
   ; first_name : string option
   ; last_name : string option
   ; gender : Gender.t option
-  ; email : Email.Set.Zero_or_more.t
+  ; email : Email.Zero_or_more.t
   ; url : Url.t option
   ; urls : Url.Set.t
   ; bio : string option
@@ -22,8 +22,8 @@ let compare { display_name; email; _ } other =
   then
     Option.compare
       Email.compare
-      (Email.Set.Zero_or_more.main email)
-      (Email.Set.Zero_or_more.main other.email)
+      (Email.Zero_or_more.main email)
+      (Email.Zero_or_more.main other.email)
   else c
 ;;
 
@@ -31,7 +31,7 @@ let make
       ?gender
       ?first_name
       ?last_name
-      ?(email = Email.Set.Zero_or_more.empty)
+      ?(email = Email.Zero_or_more.empty)
       ?url
       ?(urls = Url.Set.empty)
       ?bio
@@ -94,9 +94,7 @@ let all_companies inv =
 
 let to_syndication inv =
   let uri = Option.map Url.to_string (url inv) in
-  let email =
-    Option.map Email.to_string (Email.Set.Zero_or_more.main inv.email)
-  in
+  let email = Option.map Email.to_string (Email.Zero_or_more.main inv.email) in
   Yocaml_syndication.Person.make ?uri ?email inv.display_name
 ;;
 
@@ -133,7 +131,7 @@ let to_data
     ; "gender", option Gender.to_data gender
     ; "avatar", option Scoped_url.to_data avatar
     ; "birthday", option Yocaml.Datetime.to_data birthday
-    ; "email", Email.Set.Zero_or_more.to_data email
+    ; "email", Email.Zero_or_more.to_data email
     ; "url", option Url.to_data url
     ; "other_urls", Url.Set.to_data other_urls
     ; "all_urls", Url.Set.to_data all_urls
@@ -263,9 +261,7 @@ let from_mailbox =
   let open Yocaml.Data.Validation in
   (string & Email.from_mailbox)
   & fun (name, email) ->
-  from_string
-    ~email:(Email.Set.Zero_or_more.one email)
-    (Yocaml.Data.string name)
+  from_string ~email:(Email.Zero_or_more.one email) (Yocaml.Data.string name)
 ;;
 
 let from_record =
@@ -278,7 +274,7 @@ let from_record =
         fields
         "email"
         ~alt:[ "mail"; "emails"; "mails" ]
-        Email.Set.Zero_or_more.from_data
+        Email.Zero_or_more.from_data
     and+ url = opt fields "url" ~alt:[ "www"; "site"; "homepage" ] Url.from_data
     and+ urls =
       opt

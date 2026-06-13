@@ -77,7 +77,7 @@ type t
           (Format.pp_print_option Format.pp_print_string)
           (i
            |> Individual.email
-           |> Email.Set.Zero_or_more.main
+           |> Email.Zero_or_more.main
            |> Option.map Email.to_string)
       ;;
     ]}
@@ -158,7 +158,7 @@ val make
   :  ?gender:Gender.t
   -> ?first_name:string
   -> ?last_name:string
-  -> ?email:Email.Set.Zero_or_more.t
+  -> ?email:Email.Zero_or_more.t
   -> ?url:Url.t
   -> ?urls:Url.Set.t
   -> ?bio:string
@@ -195,7 +195,7 @@ val birthday : t -> Yocaml.Datetime.t option
 val social_accounts : t -> Social_account.Set.t
 
 (** Returns the email of an individual. (uses [all_emails] field). *)
-val email : t -> Email.Set.Zero_or_more.t
+val email : t -> Email.Zero_or_more.t
 
 (** Returns the url of an individual. (uses [all_urls] field). *)
 val url : t -> Url.t option
