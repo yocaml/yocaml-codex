@@ -81,19 +81,13 @@ class t
       ; "description", string self#description
       ; "tags", Tag.Set.to_data self#tags
       ; "target", path self#target
-      ; "source", option path self#source
-      ; "cover", option Media.to_data self#cover
+      ; "source", Ext.Option.to_data path self#source
+      ; "cover", Ext.Option.to_data Media.to_data self#cover
       ; "authors", Codex_ontology.Individual.Set.to_data self#authors
-      ; "locale", option Language.to_data self#locale
-      ; "main_url", option Url.to_data self#main_url
-      ; "site_name", option string self#site_name
-      ; "canonical_url", option Url.to_data self#canonical_url
-      ; "has_cover", bool @@ Ext.Option.to_bool self#cover
-      ; "has_source", bool @@ Ext.Option.to_bool self#source
-      ; "has_locale", bool @@ Ext.Option.to_bool self#locale
-      ; "has_main_url", bool @@ Ext.Option.to_bool self#main_url
-      ; "has_site_name", bool @@ Ext.Option.to_bool self#site_name
-      ; "has_canonical_url", bool @@ Ext.Option.to_bool self#canonical_url
+      ; "locale", Ext.Option.to_data Language.to_data self#locale
+      ; "main_url", Ext.Option.to_data Url.to_data self#main_url
+      ; "site_name", Ext.Option.to_data string self#site_name
+      ; "canonical_url", Ext.Option.to_data Url.to_data self#canonical_url
       ]
 
     method to_data = Yocaml.Data.record self#normalize
