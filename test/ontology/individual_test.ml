@@ -12,14 +12,14 @@ let%expect_test "Validating a simple name - 1" =
     [V] {"display_name": "Xavier", "bio": null, "slug": "xavier", "first_name":
          null, "last_name": null, "gender": null, "avatar": null, "birthday":
          null, "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -29,7 +29,7 @@ let%expect_test "Validating a simple name - 1" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -53,14 +53,14 @@ let%expect_test "Validating a simple name - 2" =
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
          "Van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -70,7 +70,7 @@ let%expect_test "Validating a simple name - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -94,14 +94,14 @@ let%expect_test "Validating a simple name with alias - 1" =
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
          "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
          null, "birthday": null, "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -111,7 +111,7 @@ let%expect_test "Validating a simple name with alias - 1" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -135,14 +135,14 @@ let%expect_test "Validating a simple name with alias - 2" =
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name":
          "Xavier", "last_name": "Van de Woestyne", "gender": null, "avatar":
          null, "birthday": null, "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -152,7 +152,7 @@ let%expect_test "Validating a simple name with alias - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -176,14 +176,14 @@ let%expect_test "Validating a simple name using record" =
     [V] {"display_name": "xvw", "bio": null, "slug": "xvw", "first_name": null,
         "last_name": null, "gender": null, "avatar": null, "birthday": null,
         "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -193,7 +193,7 @@ let%expect_test "Validating a simple name using record" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -218,14 +218,14 @@ let%expect_test "Validating a simple name using record - 2" =
          "xavier-van-de-woestyne", "first_name": "Xavier", "last_name":
          "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -235,7 +235,7 @@ let%expect_test "Validating a simple name using record - 2" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -266,14 +266,14 @@ let%expect_test "Validating a simple name using record - 3" =
          {"name": "male", "pronouns":
           {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
         "avatar": null, "birthday": null, "email":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -283,7 +283,7 @@ let%expect_test "Validating a simple name using record - 3" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -316,9 +316,11 @@ let%expect_test "Validating a simple name using record - 4" =
           {"exists": true, "value": ["he", "him", "his"], "repr": "he/him/his"}},
         "avatar": null, "birthday": null, "email":
          {"main":
-          {"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
-          "md5": "4ef27adaff5118935a2f8c00df083b91"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
+           "md5": "4ef27adaff5118935a2f8c00df083b91"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -327,7 +329,7 @@ let%expect_test "Validating a simple name using record - 4" =
            [{"address": "xavier@me.com", "local": "xavier", "domain": "me.com",
             "md5": "4ef27adaff5118935a2f8c00df083b91"}]}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -337,7 +339,7 @@ let%expect_test "Validating a simple name using record - 4" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -363,9 +365,11 @@ let%expect_test "Validating a simple name from a mailbox" =
          "Van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
          {"main":
-          {"address": "xavier@email.com", "local": "xavier", "domain":
-           "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "xavier@email.com", "local": "xavier", "domain":
+            "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -374,7 +378,7 @@ let%expect_test "Validating a simple name from a mailbox" =
            [{"address": "xavier@email.com", "local": "xavier", "domain":
              "email.com", "md5": "216a49d3e59a26adc15efc498e79708d"}]}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -384,7 +388,7 @@ let%expect_test "Validating a simple name from a mailbox" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -414,9 +418,11 @@ let%expect_test "Validating a simple name using record" =
          "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
          {"main":
-          {"address": "xavier@mail.com", "local": "xavier", "domain":
-           "mail.com", "md5": "c05f09e2f2505e07efcec0bf0037ceba"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "xavier@mail.com", "local": "xavier", "domain":
+            "mail.com", "md5": "c05f09e2f2505e07efcec0bf0037ceba"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"address": "foo@t.org", "local": "foo", "domain": "t.org", "md5":
@@ -429,7 +435,7 @@ let%expect_test "Validating a simple name using record" =
            {"address": "xavier@mail.com", "local": "xavier", "domain":
             "mail.com", "md5": "c05f09e2f2505e07efcec0bf0037ceba"}]}},
         "url":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -439,7 +445,7 @@ let%expect_test "Validating a simple name using record" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -475,9 +481,11 @@ let%expect_test "Validating a simple name using record with social accounts" =
          "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
          {"main":
-          {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
-          "md5": "6c0fbec2cc554c35c3d2b8b51840b49d"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
+           "md5": "6c0fbec2cc554c35c3d2b8b51840b49d"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"address": "foo@t.org", "local": "foo", "domain": "t.org", "md5":
@@ -495,12 +503,14 @@ let%expect_test "Validating a simple name using record with social accounts" =
             "mail.com", "md5": "c05f09e2f2505e07efcec0bf0037ceba"}]}},
         "url":
          {"main":
-          {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-          "port": {"value": null, "exists": false}, "path": "/", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_main": true, "other":
+          {"value":
+           {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
+           "port": {"value": null, "exists": false}, "path": "/", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
@@ -572,7 +582,7 @@ let%expect_test "Validating a simple name using record with social accounts" =
              false, "elements": []},
            "query_string": {"value": null, "exists": false}}}]},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":
@@ -604,9 +614,11 @@ let%expect_test "Validating a simple name using record" =
          "van de Woestyne", "gender": null, "avatar": null, "birthday": null,
         "email":
          {"main":
-          {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
-          "md5": "6c0fbec2cc554c35c3d2b8b51840b49d"},
-         "has_main": true, "other":
+          {"value":
+           {"address": "foo@gmail.com", "local": "foo", "domain": "gmail.com",
+           "md5": "6c0fbec2cc554c35c3d2b8b51840b49d"},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 2, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"address": "foo@t.org", "local": "foo", "domain": "t.org", "md5":
@@ -624,12 +636,14 @@ let%expect_test "Validating a simple name using record" =
             "mail.com", "md5": "c05f09e2f2505e07efcec0bf0037ceba"}]}},
         "url":
          {"main":
-          {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
-          "port": {"value": null, "exists": false}, "path": "/", "query_params":
-           {"kind": "map", "length": 0, "is_empty": true, "is_not_empty": false,
-           "elements": []},
-          "query_string": {"value": null, "exists": false}},
-         "has_main": true, "other":
+          {"value":
+           {"target": "https://xvw.lol", "scheme": "https", "host": "xvw.lol",
+           "port": {"value": null, "exists": false}, "path": "/", "query_params":
+            {"kind": "map", "length": 0, "is_empty": true, "is_not_empty":
+             false, "elements": []},
+           "query_string": {"value": null, "exists": false}},
+          "exists": true},
+         "other":
           {"kind": "set", "length": 1, "is_empty": false, "is_not_empty": true,
           "elements":
            [{"target": "http://yyy.org", "scheme": "http", "host": "yyy.org",
@@ -656,7 +670,7 @@ let%expect_test "Validating a simple name using record" =
          {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
          "elements": []},
         "company":
-         {"main": null, "has_main": false, "other":
+         {"main": {"value": null, "exists": false}, "other":
           {"kind": "set", "length": 0, "is_empty": true, "is_not_empty": false,
           "elements": []},
          "all":

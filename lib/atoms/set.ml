@@ -61,8 +61,7 @@ struct
     let to_data ({ main; other } as x) =
       let open Yocaml.Data in
       record
-        [ "main", option P.to_data main
-        ; "has_main", bool @@ Ext.Option.to_bool main
+        [ "main", Ext.Option.to_data P.to_data main
         ; "other", to_data other
         ; "all", to_data (all x)
         ]
