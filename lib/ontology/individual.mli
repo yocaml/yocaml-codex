@@ -19,10 +19,8 @@ type t
         "gender": Option<Gender>,
         "avatar": Option<Scoped_url>,
         "birthday": Option<Datetime>,
-        "email": Option<Email>,
+        "email": Zero_or_more<Email>,
         "url": Option<Url>,
-        "other_emails": Set<Email>,
-        "all_emails": Set<Email>,
         "other_urls": Set<Url>,
         "all_urls": Set<Url>,
         "other_companies": Set<Company>,
@@ -30,7 +28,6 @@ type t
         "social_accounts": Set<Social_account>,
         "has_bio": bool,
         "has_names": bool,
-        "has_email", bool,
         "has_url": bool,
         "has_company": bool,
         "has_last_name": bool,
@@ -78,7 +75,10 @@ type t
           (Format.pp_print_option Format.pp_print_string)
           (i |> Individual.last_name)
           (Format.pp_print_option Format.pp_print_string)
-          (i |> Individual.email |> Option.map Email.to_string)
+          (i
+           |> Individual.email
+           |> Email.Set.Zero_or_more.main
+           |> Option.map Email.to_string)
       ;;
     ]}
 
@@ -158,8 +158,7 @@ val make
   :  ?gender:Gender.t
   -> ?first_name:string
   -> ?last_name:string
-  -> ?email:Email.t
-  -> ?emails:Email.Set.t
+  -> ?email:Email.Set.Zero_or_more.t
   -> ?url:Url.t
   -> ?urls:Url.Set.t
   -> ?bio:string
@@ -196,16 +195,13 @@ val birthday : t -> Yocaml.Datetime.t option
 val social_accounts : t -> Social_account.Set.t
 
 (** Returns the email of an individual. (uses [all_emails] field). *)
-val email : t -> Email.t option
+val email : t -> Email.Set.Zero_or_more.t
 
 (** Returns the url of an individual. (uses [all_urls] field). *)
 val url : t -> Url.t option
 
 (** Returns the company of an individual. (uses [all_companies] field). *)
 val company : t -> Company.t option
-
-(** Returns the set of all associated emails. *)
-val all_emails : t -> Email.Set.t
 
 (** Returns the set of all associated urls. *)
 val all_urls : t -> Url.Set.t

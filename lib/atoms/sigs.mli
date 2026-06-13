@@ -83,6 +83,8 @@ module type SET = sig
     include Yocaml.Data.Validation.S with type t := t
 
     val empty : t
+    val one : elt -> t
+    val more : elt list -> t
     val main : t -> elt option
     val other : t -> set
     val all : t -> set

@@ -3,8 +3,7 @@ type t =
   ; first_name : string option
   ; last_name : string option
   ; gender : Gender.t option
-  ; email : Email.t option
-  ; emails : Email.Set.t
+  ; email : Email.Set.Zero_or_more.t
   ; url : Url.t option
   ; urls : Url.Set.t
   ; bio : string option
@@ -19,15 +18,20 @@ let compare { display_name; email; _ } other =
   (* HACK: the comparison seems a little bit lax here. But for the moment I
      think it is sufficient. *)
   let c = String.compare display_name other.display_name in
-  if Int.equal c 0 then Option.compare Email.compare email other.email else c
+  if Int.equal c 0
+  then
+    Option.compare
+      Email.compare
+      (Email.Set.Zero_or_more.main email)
+      (Email.Set.Zero_or_more.main other.email)
+  else c
 ;;
 
 let make
       ?gender
       ?first_name
       ?last_name
-      ?email
-      ?(emails = Email.Set.empty)
+      ?(email = Email.Set.Zero_or_more.empty)
       ?url
       ?(urls = Url.Set.empty)
       ?bio
@@ -43,7 +47,6 @@ let make
   ; last_name
   ; gender
   ; email
-  ; emails
   ; url
   ; urls
   ; bio
@@ -63,13 +66,7 @@ let bio { bio; _ } = bio
 let avatar { avatar; _ } = avatar
 let birthday { birthday; _ } = birthday
 let social_accounts { social_accounts; _ } = social_accounts
-
-let email inv =
-  let email, _, _ =
-    Set.collapse_with_option (module Email.Set) inv.emails inv.email
-  in
-  email
-;;
+let email { email; _ } = email
 
 let company inv =
   let company, _, _ =
@@ -81,11 +78,6 @@ let company inv =
 let url inv =
   let uri, _, _ = Set.collapse_with_option (module Url.Set) inv.urls inv.url in
   uri
-;;
-
-let all_emails { email; emails; _ } =
-  let _, _, x = Set.collapse_with_option (module Email.Set) emails email in
-  x
 ;;
 
 let all_urls { url; urls; _ } =
@@ -102,7 +94,9 @@ let all_companies inv =
 
 let to_syndication inv =
   let uri = Option.map Url.to_string (url inv) in
-  let email = Option.map Email.to_string (email inv) in
+  let email =
+    Option.map Email.to_string (Email.Set.Zero_or_more.main inv.email)
+  in
   Yocaml_syndication.Person.make ?uri ?email inv.display_name
 ;;
 
@@ -112,7 +106,6 @@ let to_data
       ; last_name
       ; gender
       ; email
-      ; emails
       ; url
       ; urls
       ; bio
@@ -125,9 +118,6 @@ let to_data
   =
   let open Yocaml.Data in
   let names = Ext.Option.zip first_name last_name in
-  let email, other_emails, all_emails =
-    Set.collapse_with_option (module Email.Set) emails email
-  in
   let url, other_urls, all_urls =
     Set.collapse_with_option (module Url.Set) urls url
   in
@@ -143,10 +133,8 @@ let to_data
     ; "gender", option Gender.to_data gender
     ; "avatar", option Scoped_url.to_data avatar
     ; "birthday", option Yocaml.Datetime.to_data birthday
-    ; "email", option Email.to_data email
+    ; "email", Email.Set.Zero_or_more.to_data email
     ; "url", option Url.to_data url
-    ; "other_emails", Email.Set.to_data other_emails
-    ; "all_emails", Email.Set.to_data all_emails
     ; "other_urls", Url.Set.to_data other_urls
     ; "all_urls", Url.Set.to_data all_urls
     ; "social_accounts", Social_account.Set.to_data social_accounts
@@ -156,7 +144,6 @@ let to_data
     ; "has_bio", bool @@ Ext.Option.to_bool bio
     ; "has_first_name", bool @@ Ext.Option.to_bool first_name
     ; "has_last_name", bool @@ Ext.Option.to_bool last_name
-    ; "has_email", bool @@ Ext.Option.to_bool email
     ; "has_url", bool @@ Ext.Option.to_bool url
     ; "has_company", bool @@ Ext.Option.to_bool company
     ; "has_names", bool @@ Ext.Option.to_bool names
@@ -275,7 +262,10 @@ let from_string ?email =
 let from_mailbox =
   let open Yocaml.Data.Validation in
   (string & Email.from_mailbox)
-  & fun (name, email) -> from_string ~email (Yocaml.Data.string name)
+  & fun (name, email) ->
+  from_string
+    ~email:(Email.Set.Zero_or_more.one email)
+    (Yocaml.Data.string name)
 ;;
 
 let from_record =
@@ -283,13 +273,12 @@ let from_record =
   record (fun fields ->
     let+ display_name, first_name, last_name =
       (validate_name & from_triple) fields
-    and+ email = opt fields "email" ~alt:[ "mail" ] Email.from_data
-    and+ emails =
+    and+ email =
       opt
         fields
-        "emails"
-        ~alt:[ "other_emails"; "mails"; "other_mails" ]
-        Email.Set.from_data
+        "email"
+        ~alt:[ "mail"; "emails"; "mails" ]
+        Email.Set.Zero_or_more.from_data
     and+ url = opt fields "url" ~alt:[ "www"; "site"; "homepage" ] Url.from_data
     and+ urls =
       opt
@@ -327,7 +316,6 @@ let from_record =
       ?gender
       ?first_name
       ?email
-      ?emails
       ?url
       ?urls
       ?last_name

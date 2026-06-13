@@ -39,8 +39,9 @@ struct
       }
 
     let empty = { main = None; other = Set.empty }
+    let one main = { main = Some main; other = Set.empty }
 
-    let from_list = function
+    let more = function
       | [] -> empty
       | x :: xs ->
         let main = Some x in
@@ -54,7 +55,7 @@ struct
 
     let from_data =
       let open Yocaml.Data.Validation in
-      list_of V.from_data $ from_list
+      (list_of V.from_data $ more) / (V.from_data $ one)
     ;;
 
     let to_data ({ main; other } as x) =
