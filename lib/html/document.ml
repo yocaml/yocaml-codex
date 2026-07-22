@@ -163,3 +163,40 @@ class with_content
     method! normalize =
       (content_key, on_content_data content) :: super#normalize
   end
+
+let make_with_content
+      on_content_data
+      ?content_key
+      ?open_graph
+      ?locale
+      ?main_url
+      ?site_name
+      ?canonical_url
+      ?tags
+      ?authors
+      ?source
+      ?cover
+      ~title
+      ~description
+      ~target
+      content
+  =
+  new with_content
+    on_content_data
+    ?content_key
+    ?open_graph
+    ?locale
+    ?main_url
+    ?site_name
+    ?canonical_url
+    ?tags
+    ?authors
+    ?source
+    ?cover
+    ~title
+    ~description
+    ~target
+    content
+;;
+
+let normalize d = d#normalize
