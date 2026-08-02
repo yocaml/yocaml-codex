@@ -68,16 +68,16 @@ type t
     {2 Validation}
 
     {@ocaml[
-      open Codex_atoms
-      open Codex_ontology
+    open Codex_atoms
+    open Codex_ontology
 
-      let display_repo repo =
-        [ "url", Some (Repository.homepage repo)
-        ; "bug_tracker", Repository.bug_tracker repo
-        ; "releases", Repository.releases repo
-        ]
-        |> List.map (fun (k, v) -> k, Option.map Url.to_string v)
-      ;;
+    let display_repo repo =
+      [ "url", Some (Repository.homepage repo)
+      ; "bug_tracker", Repository.bug_tracker repo
+      ; "releases", Repository.releases repo
+      ]
+      |> List.map (fun (k, v) -> k, Option.map Url.to_string v)
+    ;;
     ]}
 
     To ensure a compact repository expression, there are several ways

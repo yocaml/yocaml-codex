@@ -38,18 +38,18 @@ type t
     {2 Validation}
 
     {@ocaml[
-      open Codex_atoms
+    open Codex_atoms
 
-      let display_gender g =
-        g |> Gender.to_data |> Format.asprintf "%a" Yocaml.Data.pp
-      ;;
+    let display_gender g =
+      g |> Gender.to_data |> Format.asprintf "%a" Yocaml.Data.pp
+    ;;
 
-      let validate s =
-        s
-        |> Gender.from_data
-        |> Result.map display_gender
-        |> Result.iter print_endline
-      ;;
+    let validate s =
+      s
+      |> Gender.from_data
+      |> Result.map display_gender
+      |> Result.iter print_endline
+    ;;
     ]}
 
     The validation is pretty simple, you can just use a string :

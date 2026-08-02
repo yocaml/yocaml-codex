@@ -63,23 +63,23 @@ type t
 (** {2 Validation} *)
 
 (** {@ocaml[
-      open Codex_atoms
-      open Codex_ontology
+    open Codex_atoms
+    open Codex_ontology
 
-      let display_individual i =
-        Format.asprintf
-          "%s (%a, %a) - %a"
-          (i |> Individual.display_name)
-          (Format.pp_print_option Format.pp_print_string)
-          (i |> Individual.first_name)
-          (Format.pp_print_option Format.pp_print_string)
-          (i |> Individual.last_name)
-          (Format.pp_print_option Format.pp_print_string)
-          (i
-           |> Individual.email
-           |> Email.Zero_or_more.main
-           |> Option.map Email.to_string)
-      ;;
+    let display_individual i =
+      Format.asprintf
+        "%s (%a, %a) - %a"
+        (i |> Individual.display_name)
+        (Format.pp_print_option Format.pp_print_string)
+        (i |> Individual.first_name)
+        (Format.pp_print_option Format.pp_print_string)
+        (i |> Individual.last_name)
+        (Format.pp_print_option Format.pp_print_string)
+        (i
+         |> Individual.email
+         |> Email.Zero_or_more.main
+         |> Option.map Email.to_string)
+    ;;
     ]}
 
     Like for other models there are several ways to validate an

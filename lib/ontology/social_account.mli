@@ -55,16 +55,16 @@ type t
     {2 Validation}
 
     {@ocaml[
-      open Codex_atoms
-      open Codex_ontology
+    open Codex_atoms
+    open Codex_ontology
 
-      let display_account account =
-        Format.asprintf
-          "%s: %s - %s"
-          (account |> Social_account.kind)
-          (account |> Social_account.username)
-          (account |> Social_account.url |> Url.to_string)
-      ;;
+    let display_account account =
+      Format.asprintf
+        "%s: %s - %s"
+        (account |> Social_account.kind)
+        (account |> Social_account.username)
+        (account |> Social_account.url |> Url.to_string)
+    ;;
     ]}
 
     To ensure a compact social account expression, there are several ways

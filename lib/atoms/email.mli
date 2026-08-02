@@ -35,7 +35,7 @@ type t
     {2 Validation}
 
     {@ocaml[
-      open Codex_atoms
+    open Codex_atoms
     ]}
 
     Validating an address isn't a big deal; it's just a simple string.
